@@ -1,0 +1,289 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		33B3A3EE18CD36BE00AA64C8 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33B3A3ED18CD36BE00AA64C8 /* AppKit.framework */; };
+		33B3A3F018CD36BE00AA64C8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33B3A3EF18CD36BE00AA64C8 /* Foundation.framework */; };
+		33B3A3F618CD36BE00AA64C8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 33B3A3F418CD36BE00AA64C8 /* InfoPlist.strings */; };
+		33B3A3F918CD36BF00AA64C8 /* Semantique.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B3A3F818CD36BE00AA64C8 /* Semantique.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		33B3A3EA18CD36BE00AA64C8 /* Semantique.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Semantique.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		33B3A3ED18CD36BE00AA64C8 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		33B3A3EF18CD36BE00AA64C8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		33B3A3F318CD36BE00AA64C8 /* Semantique-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Semantique-Info.plist"; sourceTree = "<group>"; };
+		33B3A3F518CD36BE00AA64C8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		33B3A3F718CD36BE00AA64C8 /* Semantique.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Semantique.h; sourceTree = "<group>"; };
+		33B3A3F818CD36BE00AA64C8 /* Semantique.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Semantique.m; sourceTree = "<group>"; };
+		33B3A3FA18CD36BF00AA64C8 /* Semantique-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Semantique-Prefix.pch"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		33B3A3E718CD36BE00AA64C8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33B3A3EE18CD36BE00AA64C8 /* AppKit.framework in Frameworks */,
+				33B3A3F018CD36BE00AA64C8 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		33B3A3E118CD36BE00AA64C8 = {
+			isa = PBXGroup;
+			children = (
+				33B3A3F118CD36BE00AA64C8 /* Semantique */,
+				33B3A3EC18CD36BE00AA64C8 /* Frameworks */,
+				33B3A3EB18CD36BE00AA64C8 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		33B3A3EB18CD36BE00AA64C8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				33B3A3EA18CD36BE00AA64C8 /* Semantique.xcplugin */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		33B3A3EC18CD36BE00AA64C8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				33B3A3ED18CD36BE00AA64C8 /* AppKit.framework */,
+				33B3A3EF18CD36BE00AA64C8 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		33B3A3F118CD36BE00AA64C8 /* Semantique */ = {
+			isa = PBXGroup;
+			children = (
+				33B3A3F718CD36BE00AA64C8 /* Semantique.h */,
+				33B3A3F818CD36BE00AA64C8 /* Semantique.m */,
+				33B3A3F218CD36BE00AA64C8 /* Supporting Files */,
+			);
+			path = Semantique;
+			sourceTree = "<group>";
+		};
+		33B3A3F218CD36BE00AA64C8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				33B3A3F318CD36BE00AA64C8 /* Semantique-Info.plist */,
+				33B3A3F418CD36BE00AA64C8 /* InfoPlist.strings */,
+				33B3A3FA18CD36BF00AA64C8 /* Semantique-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		33B3A3E918CD36BE00AA64C8 /* Semantique */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 33B3A3FD18CD36BF00AA64C8 /* Build configuration list for PBXNativeTarget "Semantique" */;
+			buildPhases = (
+				33B3A3E618CD36BE00AA64C8 /* Sources */,
+				33B3A3E718CD36BE00AA64C8 /* Frameworks */,
+				33B3A3E818CD36BE00AA64C8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Semantique;
+			productName = Semantique;
+			productReference = 33B3A3EA18CD36BE00AA64C8 /* Semantique.xcplugin */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		33B3A3E218CD36BE00AA64C8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Kolin Krewinkel";
+			};
+			buildConfigurationList = 33B3A3E518CD36BE00AA64C8 /* Build configuration list for PBXProject "Semantique" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 33B3A3E118CD36BE00AA64C8;
+			productRefGroup = 33B3A3EB18CD36BE00AA64C8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				33B3A3E918CD36BE00AA64C8 /* Semantique */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		33B3A3E818CD36BE00AA64C8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33B3A3F618CD36BE00AA64C8 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		33B3A3E618CD36BE00AA64C8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33B3A3F918CD36BF00AA64C8 /* Semantique.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		33B3A3F418CD36BE00AA64C8 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				33B3A3F518CD36BE00AA64C8 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		33B3A3FB18CD36BF00AA64C8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		33B3A3FC18CD36BF00AA64C8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		33B3A3FE18CD36BF00AA64C8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(HOME)";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Semantique/Semantique-Prefix.pch";
+				INFOPLIST_FILE = "Semantique/Semantique-Info.plist";
+				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xcplugin;
+			};
+			name = Debug;
+		};
+		33B3A3FF18CD36BF00AA64C8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(HOME)";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Semantique/Semantique-Prefix.pch";
+				INFOPLIST_FILE = "Semantique/Semantique-Info.plist";
+				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xcplugin;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		33B3A3E518CD36BE00AA64C8 /* Build configuration list for PBXProject "Semantique" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				33B3A3FB18CD36BF00AA64C8 /* Debug */,
+				33B3A3FC18CD36BF00AA64C8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		33B3A3FD18CD36BF00AA64C8 /* Build configuration list for PBXNativeTarget "Semantique" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				33B3A3FE18CD36BF00AA64C8 /* Debug */,
+				33B3A3FF18CD36BF00AA64C8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 33B3A3E218CD36BE00AA64C8 /* Project object */;
+}

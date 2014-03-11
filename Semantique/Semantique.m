@@ -8,26 +8,39 @@
 
 #import "Semantique.h"
 #import "SMQSwizzling.h"
-
-static Semantique *sharedPlugin;
+#import "DVTTextStorage+SMQHighlightingHook.h"
 
 @interface Semantique()
 
 @property (nonatomic, strong) NSBundle *bundle;
+
 @end
 
 @implementation Semantique
 
 + (void)pluginDidLoad:(NSBundle *)plugin
 {
-    static id sharedPlugin = nil;
-    static dispatch_once_t onceToken;
     NSString *currentApplicationName = [[NSBundle mainBundle] infoDictionary][@"CFBundleName"];
     if ([currentApplicationName isEqual:@"Xcode"]) {
-        dispatch_once(&onceToken, ^{
-            sharedPlugin = [[self alloc] initWithBundle:plugin];
-        });
+        [self sharedPluginWithBundle:plugin];
     }
+}
+
++ (instancetype)sharedPluginWithBundle:(NSBundle *)bundle
+{
+    static id sharedPlugin = nil;
+    static dispatch_once_t onceToken;
+
+    dispatch_once(&onceToken, ^{
+        sharedPlugin = [[self alloc] initWithBundle:bundle];
+    });
+
+    return sharedPlugin;
+}
+
++ (instancetype)sharedPlugin
+{
+    return [self sharedPluginWithBundle:nil];
 }
 
 - (id)initWithBundle:(NSBundle *)plugin
@@ -40,13 +53,6 @@ static Semantique *sharedPlugin;
     }
 
     return self;
-}
-
-// Sample Action, for menu item:
-- (void)doMenuAction
-{
-    NSAlert *alert = [NSAlert alertWithMessageText:@"Hello, World" defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:@""];
-    [alert runModal];
 }
 
 - (void)dealloc

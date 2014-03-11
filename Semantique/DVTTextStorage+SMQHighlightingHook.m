@@ -50,6 +50,8 @@ static IMP originalColoring;
 //        [self smq_handleItem:sourceModel.sourceItems];
 //    });
 
+    /* Basically, Xcode calls you a given range. It seems to start with the entirety and spiral its way inward. Once given a range, its broken down by the colorAt: method. It replaces the range pointer passed, which Xcode then applies changes, and adapts the numerical changes.  So, the next thing it asks about is whatever is just beyond whatever the replaced range is. It also takes the previous length (assuming it can fit in the total text range, at which point it defaults to the max value before subtracting), and subtracts the new range length from it to determine the next passed length.     */
+
     NSColor *color = (NSColor *)originalColoring(self, @selector(colorAtCharacterIndex:effectiveRange:context:), index, effectiveRange, context);
 
     NSRange newRange = *effectiveRange;

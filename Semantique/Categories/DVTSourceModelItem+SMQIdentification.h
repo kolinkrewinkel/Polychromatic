@@ -11,5 +11,6 @@
 @interface DVTSourceModelItem (SMQIdentification)
 
 - (BOOL)smq_isString;
+- (BOOL)smq_isIdentifier;
 
 @end

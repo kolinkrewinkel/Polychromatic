@@ -18,6 +18,7 @@
 		33F94F2618CED78B0092E74C /* DVTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F94F2518CED78B0092E74C /* DVTKit.framework */; };
 		33F94F2918CEE2040092E74C /* DVTTextStorage+SMQHighlightingHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 33F94F2818CEE2040092E74C /* DVTTextStorage+SMQHighlightingHook.m */; };
 		33F94F2F18CFC4D70092E74C /* DVTSourceModelItem+SMQIdentification.m in Sources */ = {isa = PBXBuildFile; fileRef = 33F94F2E18CFC4D70092E74C /* DVTSourceModelItem+SMQIdentification.m */; };
+		33F94F3318CFCBE20092E74C /* SMQVariableManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 33F94F3218CFCBE20092E74C /* SMQVariableManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,8 @@
 		33F94F2C18CEF8F30092E74C /* OhNoMoreXcodeInterfaces.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OhNoMoreXcodeInterfaces.h; path = "DVT Classes/OhNoMoreXcodeInterfaces.h"; sourceTree = "<group>"; };
 		33F94F2D18CFC4D70092E74C /* DVTSourceModelItem+SMQIdentification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "DVTSourceModelItem+SMQIdentification.h"; path = "Categories/DVTSourceModelItem+SMQIdentification.h"; sourceTree = "<group>"; };
 		33F94F2E18CFC4D70092E74C /* DVTSourceModelItem+SMQIdentification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "DVTSourceModelItem+SMQIdentification.m"; path = "Categories/DVTSourceModelItem+SMQIdentification.m"; sourceTree = "<group>"; };
+		33F94F3118CFCBE20092E74C /* SMQVariableManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMQVariableManager.h; sourceTree = "<group>"; };
+		33F94F3218CFCBE20092E74C /* SMQVariableManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMQVariableManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +119,8 @@
 		33B3A40418CD375300AA64C8 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				33F94F3118CFCBE20092E74C /* SMQVariableManager.h */,
+				33F94F3218CFCBE20092E74C /* SMQVariableManager.m */,
 				33B3A40C18CD38DF00AA64C8 /* SMQSwizzling.c */,
 				33B3A40D18CD38DF00AA64C8 /* SMQSwizzling.h */,
 			);
@@ -206,6 +211,7 @@
 			files = (
 				33F94F2918CEE2040092E74C /* DVTTextStorage+SMQHighlightingHook.m in Sources */,
 				33B3A41818CD3B5100AA64C8 /* SMQSwizzling.c in Sources */,
+				33F94F3318CFCBE20092E74C /* SMQVariableManager.m in Sources */,
 				33F94F2F18CFC4D70092E74C /* DVTSourceModelItem+SMQIdentification.m in Sources */,
 				33B3A3F918CD36BF00AA64C8 /* Semantique.m in Sources */,
 			);

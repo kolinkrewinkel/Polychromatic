@@ -15,4 +15,9 @@
     return self.nodeType == 4;
 }
 
+- (BOOL)smq_isIdentifier
+{
+    return self.nodeType == 24;
+}
+
 @end

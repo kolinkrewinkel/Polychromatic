@@ -10,4 +10,7 @@
 
 @interface DVTTextStorage (SMQHighlightingHook)
 
+- (NSColor *)smq_colorAtCharacterIndex:(unsigned long long)index effectiveRange:(NSRangePointer)effectiveRange context:(id)context;
+- (void)smq_fixSyntaxColoringInRange:(NSRange)range;
+
 @end

@@ -30,16 +30,14 @@
 		33B3A3FA18CD36BF00AA64C8 /* Semantique-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Semantique-Prefix.pch"; sourceTree = "<group>"; };
 		33B3A40C18CD38DF00AA64C8 /* SMQSwizzling.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SMQSwizzling.c; sourceTree = "<group>"; };
 		33B3A40D18CD38DF00AA64C8 /* SMQSwizzling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMQSwizzling.h; sourceTree = "<group>"; };
-		33F94F1B18CED31D0092E74C /* DVTFoundation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DVTFoundation.h; path = "DVT Classes/DVTFoundation.h"; sourceTree = "<group>"; };
-		33F94F1C18CED31D0092E74C /* DVTKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DVTKit.h; path = "DVT Classes/DVTKit.h"; sourceTree = "<group>"; };
-		33F94F1D18CED31D0092E74C /* IDEFoundation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IDEFoundation.h; path = "DVT Classes/IDEFoundation.h"; sourceTree = "<group>"; };
-		33F94F1E18CED31D0092E74C /* IDEKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IDEKit.h; path = "DVT Classes/IDEKit.h"; sourceTree = "<group>"; };
 		33F94F1F18CED7650092E74C /* DVTFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTFoundation.framework; path = "../../../../Applications/Xcode51-Beta5.app/Contents/SharedFrameworks/DVTFoundation.framework"; sourceTree = "<group>"; };
 		33F94F2118CED77A0092E74C /* IDEKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEKit.framework; path = "../../../../Applications/Xcode51-Beta5.app/Contents/Frameworks/IDEKit.framework"; sourceTree = "<group>"; };
 		33F94F2218CED77A0092E74C /* IDEFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEFoundation.framework; path = "../../../../Applications/Xcode51-Beta5.app/Contents/Frameworks/IDEFoundation.framework"; sourceTree = "<group>"; };
 		33F94F2518CED78B0092E74C /* DVTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTKit.framework; path = "../../../../Applications/Xcode51-Beta5.app/Contents/SharedFrameworks/DVTKit.framework"; sourceTree = "<group>"; };
 		33F94F2718CEE2040092E74C /* DVTTextStorage+SMQHighlightingHook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVTTextStorage+SMQHighlightingHook.h"; sourceTree = "<group>"; };
 		33F94F2818CEE2040092E74C /* DVTTextStorage+SMQHighlightingHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DVTTextStorage+SMQHighlightingHook.m"; sourceTree = "<group>"; };
+		33F94F2B18CEF8F30092E74C /* CPXcodeInterfaces.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CPXcodeInterfaces.h; path = "DVT Classes/CPXcodeInterfaces.h"; sourceTree = "<group>"; };
+		33F94F2C18CEF8F30092E74C /* OhNoMoreXcodeInterfaces.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OhNoMoreXcodeInterfaces.h; path = "DVT Classes/OhNoMoreXcodeInterfaces.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,10 +123,8 @@
 		33F94F2A18CEE2860092E74C /* Xcode Headers */ = {
 			isa = PBXGroup;
 			children = (
-				33F94F1B18CED31D0092E74C /* DVTFoundation.h */,
-				33F94F1C18CED31D0092E74C /* DVTKit.h */,
-				33F94F1D18CED31D0092E74C /* IDEFoundation.h */,
-				33F94F1E18CED31D0092E74C /* IDEKit.h */,
+				33F94F2B18CEF8F30092E74C /* CPXcodeInterfaces.h */,
+				33F94F2C18CEF8F30092E74C /* OhNoMoreXcodeInterfaces.h */,
 			);
 			name = "Xcode Headers";
 			sourceTree = "<group>";

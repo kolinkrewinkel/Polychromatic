@@ -8,5 +8,5 @@
 
 #import <objc/runtime.h>
 
-void SMQPoseSwizzle(Class originalClass, SEL originalSelector, Class posingClass, SEL replacementSelector);
+IMP SMQPoseSwizzle(Class originalClass, SEL originalSelector, Class posingClass, SEL replacementSelector);
 

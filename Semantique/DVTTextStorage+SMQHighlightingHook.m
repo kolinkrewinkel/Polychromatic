@@ -8,6 +8,7 @@
 
 #import "DVTTextStorage+SMQHighlightingHook.h"
 #import "SMQSwizzling.h"
+#import "DVTSourceModelItem+SMQIdentification.h"
 
 static IMP originalColoring;
 
@@ -42,19 +43,20 @@ static IMP originalColoring;
 
     /* We should probably be doing the "effectiveRange" finding, but for now we'll let Xcode solve it out for us. */
 
-    originalColoring(self, @selector(colorAtCharacterIndex:effectiveRange:context:), index, effectiveRange, context);
+    NSColor *color = originalColoring(self, @selector(colorAtCharacterIndex:effectiveRange:context:), index, effectiveRange, context);
 
     NSRange newRange = *effectiveRange;
+    DVTSourceModelItem *item = [self.sourceModelService sourceModelItemAtCharacterIndex:newRange.location];
+    DVTSourceModel *sourceModel = self.sourceModel;
 
-    NSColor *color = [NSColor whiteColor];
-    if ([self.sourceModel isInStringConstantAtLocation:index])
+//    NSLog(@"Name: %@\nID: %i", [DVTSourceNodeTypes nodeTypeNameForId:item.nodeType], item.nodeType);
+    
+
+    if ([item smq_isString])
     {
         color = [NSColor purpleColor];
     }
-    else if ([self.sourceModel isInKeywordAtLocation:index])
-    {
-        color = [NSColor yellowColor];
-    }
+
 
     return color;
 }

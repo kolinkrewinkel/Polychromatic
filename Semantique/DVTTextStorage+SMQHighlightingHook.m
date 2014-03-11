@@ -17,12 +17,12 @@ static IMP originalColoring;
 + (void)initialize
 {
     originalColoring = SMQPoseSwizzle([DVTTextStorage class], NSSelectorFromString(@"colorAtCharacterIndex:effectiveRange:context:"), self, @selector(smq_colorAtCharacterIndex:effectiveRange:context:));
-    SMQPoseSwizzle([DVTTextStorage class], NSSelectorFromString(@"fixSyntaxColoringInRange:"), self, @selector(smq_fixSyntaxColoringInRange:));
+//    SMQPoseSwizzle([DVTTextStorage class], NSSelectorFromString(@"fixSyntaxColoringInRange:"), self, @selector(smq_fixSyntaxColoringInRange:));
 }
 
 - (void)smq_fixSyntaxColoringInRange:(NSRange)range
 {
-    [self setAttributes:@{NSForegroundColorAttributeName: [NSColor redColor]} range:range];
+//    [self setAttributes:@{NSForegroundColorAttributeName: [NSColor redColor]} range:range];
 }
 
 - (void)smq_handleItem:(DVTSourceModelItem *)item
@@ -55,23 +55,28 @@ static IMP originalColoring;
     NSColor *color = (NSColor *)originalColoring(self, @selector(colorAtCharacterIndex:effectiveRange:context:), index, effectiveRange, context);
 
     NSRange newRange = *effectiveRange;
-    effectiveRange->length++;
+//    effectiveRange->length++;
 
     NSLog(@"Changed to: %@", NSStringFromRange(newRange));
 
 
 //    *effectiveRange = NSMakeRange(range.location, 1);
 //
-//    NSColor *color = idx % 2 ? [NSColor greenColor] : [NSColor redColor];
+//    color = idx % 2 ? [NSColor greenColor] : [NSColor redColor];
+
+    if ([self.sourceModel isInStringConstantAtLocation:index])
+    {
+        color = [NSColor purpleColor];
+    }
 //
-//    idx++;
+    idx++;
 
     return color;
 }
 
-- (void)setAttributes:(NSDictionary *)attrs range:(NSRange)range
-{
-    
-}
+//- (void)setAttributes:(NSDictionary *)attrs range:(NSRange)range
+//{
+//    
+//}
 
 @end

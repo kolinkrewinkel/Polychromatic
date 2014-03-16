@@ -9,19 +9,16 @@
 #import "DVTTextStorage+SMQHighlightingHook.h"
 #import "SMQSwizzling.h"
 #import "DVTSourceModelItem+SMQIdentification.h"
+#import "CPXcodeInterfaces.h"
+#import "SMQVariableManager.h"
 
-static IMP originalColoring;
+static IMP originalColorAtCharacterIndexImplementation;
 
 @implementation DVTTextStorage (SMQHighlightingHook)
 
 + (void)initialize
 {
-    originalColoring = SMQPoseSwizzle([DVTTextStorage class], NSSelectorFromString(@"colorAtCharacterIndex:effectiveRange:context:"), self, @selector(smq_colorAtCharacterIndex:effectiveRange:context:));
-//    SMQPoseSwizzle([DVTTextStorage class], NSSelectorFromString(@"fixSyntaxColoringInRange:"), self, @selector(smq_fixSyntaxColoringInRange:));
-}
-
-- (void)smq_fixSyntaxColoringInRange:(NSRange)range
-{
+    originalColorAtCharacterIndexImplementation = SMQPoseSwizzle([DVTTextStorage class], NSSelectorFromString(@"colorAtCharacterIndex:effectiveRange:context:"), self, @selector(smq_colorAtCharacterIndex:effectiveRange:context:), YES);
 }
 
 - (DVTSourceModelItem *)smq_handleItem:(DVTSourceModelItem *)item
@@ -43,14 +40,14 @@ static IMP originalColoring;
 
     /* We should probably be doing the "effectiveRange" finding, but for now we'll let Xcode solve it out for us. */
 
-    originalColoring(self, @selector(colorAtCharacterIndex:effectiveRange:context:), index, effectiveRange, context);
+    originalColorAtCharacterIndexImplementation(self, @selector(colorAtCharacterIndex:effectiveRange:context:), index, effectiveRange, context);
 
     NSRange newRange = *effectiveRange;
     DVTSourceModelItem *item = [self.sourceModelService sourceModelItemAtCharacterIndex:newRange.location];
     DVTSourceModel *sourceModel = self.sourceModel;
     NSString *string = [self.sourceModelService stringForItem:item];
 
-    NSLog(@"\nNode Name: %@\nNode ID: %i\nString: %@", [DVTSourceNodeTypes nodeTypeNameForId:item.nodeType], item.nodeType, string);
+//    NSLog(@"\nNode Name: %@\nNode ID: %i\nString: %@", [DVTSourceNodeTypes nodeTypeNameForId:item.nodeType], item.nodeType, string);
 
     /* It's possible for us to simply use the source model, but we may want to express fine-grain control based on the node. Plus, we already have the item onhand. */
 
@@ -58,18 +55,8 @@ static IMP originalColoring;
 
     if ([item smq_isIdentifier])
     {
-        color = [NSColor purpleColor];
+        color = [[SMQVariableManager sharedManager] colorForVariable:string];
     }
-
-    if ([string isEqualToString:@"heyo"])
-    {
-        
-    }
-
-//    if ([sourceModel isInIdentifierAtLocation:newRange.location])
-//    {
-//        color = [NSColor purpleColor];
-//    }
 
     return color;
 }

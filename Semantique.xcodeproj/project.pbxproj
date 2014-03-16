@@ -12,10 +12,10 @@
 		33B3A3F618CD36BE00AA64C8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 33B3A3F418CD36BE00AA64C8 /* InfoPlist.strings */; };
 		33B3A3F918CD36BF00AA64C8 /* Semantique.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B3A3F818CD36BE00AA64C8 /* Semantique.m */; };
 		33B3A41818CD3B5100AA64C8 /* SMQSwizzling.c in Sources */ = {isa = PBXBuildFile; fileRef = 33B3A40C18CD38DF00AA64C8 /* SMQSwizzling.c */; };
-		33F94F2018CED7650092E74C /* DVTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F94F1F18CED7650092E74C /* DVTFoundation.framework */; };
-		33F94F2318CED77A0092E74C /* IDEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F94F2118CED77A0092E74C /* IDEKit.framework */; };
-		33F94F2418CED77A0092E74C /* IDEFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F94F2218CED77A0092E74C /* IDEFoundation.framework */; };
-		33F94F2618CED78B0092E74C /* DVTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F94F2518CED78B0092E74C /* DVTKit.framework */; };
+		33E48D2318D3F50500FCC557 /* IDEFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33E48D2218D3F50500FCC557 /* IDEFoundation.framework */; };
+		33E48D2518D3F51200FCC557 /* IDEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33E48D2418D3F51200FCC557 /* IDEKit.framework */; };
+		33E48D2818D3F52400FCC557 /* DVTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33E48D2618D3F52400FCC557 /* DVTFoundation.framework */; };
+		33E48D2918D3F52400FCC557 /* DVTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33E48D2718D3F52400FCC557 /* DVTKit.framework */; };
 		33F94F2918CEE2040092E74C /* DVTTextStorage+SMQHighlightingHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 33F94F2818CEE2040092E74C /* DVTTextStorage+SMQHighlightingHook.m */; };
 		33F94F2F18CFC4D70092E74C /* DVTSourceModelItem+SMQIdentification.m in Sources */ = {isa = PBXBuildFile; fileRef = 33F94F2E18CFC4D70092E74C /* DVTSourceModelItem+SMQIdentification.m */; };
 		33F94F3318CFCBE20092E74C /* SMQVariableManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 33F94F3218CFCBE20092E74C /* SMQVariableManager.m */; };
@@ -32,6 +32,12 @@
 		33B3A3FA18CD36BF00AA64C8 /* Semantique-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Semantique-Prefix.pch"; sourceTree = "<group>"; };
 		33B3A40C18CD38DF00AA64C8 /* SMQSwizzling.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SMQSwizzling.c; sourceTree = "<group>"; };
 		33B3A40D18CD38DF00AA64C8 /* SMQSwizzling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMQSwizzling.h; sourceTree = "<group>"; };
+		33E48D1E18D3F4D700FCC557 /* IDEKit */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = IDEKit; path = ../../../../Applications/Xcode.app/Contents/Frameworks/IDEKit.framework/Versions/A/IDEKit; sourceTree = "<group>"; };
+		33E48D2018D3F4F600FCC557 /* IDEFoundation */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = IDEFoundation; path = ../../../../Applications/Xcode.app/Contents/Frameworks/IDEFoundation.framework/Versions/A/IDEFoundation; sourceTree = "<group>"; };
+		33E48D2218D3F50500FCC557 /* IDEFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEFoundation.framework; path = ../../../../Applications/Xcode.app/Contents/Frameworks/IDEFoundation.framework; sourceTree = "<group>"; };
+		33E48D2418D3F51200FCC557 /* IDEKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEKit.framework; path = ../../../../Applications/Xcode.app/Contents/Frameworks/IDEKit.framework; sourceTree = "<group>"; };
+		33E48D2618D3F52400FCC557 /* DVTFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTFoundation.framework; path = ../../../../Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework; sourceTree = "<group>"; };
+		33E48D2718D3F52400FCC557 /* DVTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTKit.framework; path = ../../../../Applications/Xcode.app/Contents/SharedFrameworks/DVTKit.framework; sourceTree = "<group>"; };
 		33F94F1F18CED7650092E74C /* DVTFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTFoundation.framework; path = "../../../../Applications/Xcode51-Beta5.app/Contents/SharedFrameworks/DVTFoundation.framework"; sourceTree = "<group>"; };
 		33F94F2118CED77A0092E74C /* IDEKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEKit.framework; path = "../../../../Applications/Xcode51-Beta5.app/Contents/Frameworks/IDEKit.framework"; sourceTree = "<group>"; };
 		33F94F2218CED77A0092E74C /* IDEFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEFoundation.framework; path = "../../../../Applications/Xcode51-Beta5.app/Contents/Frameworks/IDEFoundation.framework"; sourceTree = "<group>"; };
@@ -51,10 +57,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				33F94F2618CED78B0092E74C /* DVTKit.framework in Frameworks */,
-				33F94F2318CED77A0092E74C /* IDEKit.framework in Frameworks */,
-				33F94F2418CED77A0092E74C /* IDEFoundation.framework in Frameworks */,
-				33F94F2018CED7650092E74C /* DVTFoundation.framework in Frameworks */,
+				33E48D2818D3F52400FCC557 /* DVTFoundation.framework in Frameworks */,
+				33E48D2918D3F52400FCC557 /* DVTKit.framework in Frameworks */,
+				33E48D2518D3F51200FCC557 /* IDEKit.framework in Frameworks */,
+				33E48D2318D3F50500FCC557 /* IDEFoundation.framework in Frameworks */,
 				33B3A3EE18CD36BE00AA64C8 /* AppKit.framework in Frameworks */,
 				33B3A3F018CD36BE00AA64C8 /* Foundation.framework in Frameworks */,
 			);
@@ -83,6 +89,12 @@
 		33B3A3EC18CD36BE00AA64C8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				33E48D2618D3F52400FCC557 /* DVTFoundation.framework */,
+				33E48D2718D3F52400FCC557 /* DVTKit.framework */,
+				33E48D2418D3F51200FCC557 /* IDEKit.framework */,
+				33E48D2218D3F50500FCC557 /* IDEFoundation.framework */,
+				33E48D2018D3F4F600FCC557 /* IDEFoundation */,
+				33E48D1E18D3F4D700FCC557 /* IDEKit */,
 				33F94F2518CED78B0092E74C /* DVTKit.framework */,
 				33F94F2118CED77A0092E74C /* IDEKit.framework */,
 				33F94F2218CED77A0092E74C /* IDEFoundation.framework */,
@@ -309,13 +321,18 @@
 				DSTROOT = "$(HOME)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SYSTEM_APPS_DIR)/Xcode51-Beta5.app/Contents/SharedFrameworks",
-					"$(SYSTEM_APPS_DIR)/Xcode51-Beta5.app/Contents/Frameworks",
+					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Frameworks",
+					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/SharedFrameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Semantique/Semantique-Prefix.pch";
 				INFOPLIST_FILE = "Semantique/Semantique-Info.plist";
 				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Frameworks/IDEKit.framework/Versions/A",
+					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Frameworks/IDEFoundation.framework/Versions/A",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xcplugin;
 			};
@@ -329,13 +346,18 @@
 				DSTROOT = "$(HOME)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SYSTEM_APPS_DIR)/Xcode51-Beta5.app/Contents/SharedFrameworks",
-					"$(SYSTEM_APPS_DIR)/Xcode51-Beta5.app/Contents/Frameworks",
+					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Frameworks",
+					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/SharedFrameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Semantique/Semantique-Prefix.pch";
 				INFOPLIST_FILE = "Semantique/Semantique-Info.plist";
 				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Frameworks/IDEKit.framework/Versions/A",
+					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Frameworks/IDEFoundation.framework/Versions/A",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xcplugin;
 			};

@@ -6,10 +6,12 @@
 //  Copyright (c) 2014 Kolin Krewinkel. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <AppKit/AppKit.h>
 
 @interface SMQVariableManager : NSObject
 
++ (instancetype)sharedManager;
 
+- (NSColor *)colorForVariable:(NSString *)variable;
 
 @end

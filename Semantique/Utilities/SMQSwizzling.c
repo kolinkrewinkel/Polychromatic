@@ -8,10 +8,24 @@
 
 #import "SMQSwizzling.h"
 
-IMP SMQPoseSwizzle(Class originalClass, SEL originalSelector, Class posingClass, SEL replacementSelector)
+IMP SMQPoseSwizzle(Class originalClass, SEL originalSelector, Class posingClass, SEL replacementSelector, BOOL instanceMethod)
 {
-    Method origMethod = class_getInstanceMethod(originalClass, originalSelector);
-    Method newMethod = class_getInstanceMethod(posingClass, replacementSelector);
+    Method origMethod;
+    Method newMethod;
+
+    if (instanceMethod)
+    {
+        origMethod = class_getInstanceMethod(originalClass, originalSelector);
+        newMethod = class_getInstanceMethod(posingClass, replacementSelector);
+    }
+    else
+    {
+        origMethod = class_getClassMethod(originalClass, originalSelector);
+        newMethod = class_getClassMethod(posingClass, replacementSelector);
+
+        originalClass = object_getClass((id)originalClass);
+        posingClass = object_getClass((id)posingClass);
+    }
 
     IMP originalImp = method_getImplementation(origMethod);
 

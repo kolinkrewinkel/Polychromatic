@@ -9,6 +9,7 @@
 #import "Semantique.h"
 #import "SMQSwizzling.h"
 #import "DVTTextStorage+SMQHighlightingHook.h"
+#import "SMQVariableManager.h"
 
 @interface Semantique()
 
@@ -50,6 +51,8 @@
         self.bundle = plugin;
 
         NSLog(@"Plugin loaded.");
+
+        [SMQVariableManager sharedManager];
     }
 
     return self;

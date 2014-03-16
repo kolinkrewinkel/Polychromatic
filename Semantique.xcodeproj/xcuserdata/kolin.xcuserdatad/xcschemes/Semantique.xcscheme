@@ -40,7 +40,7 @@
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
       <PathRunnable
-         FilePath = "/Applications/Xcode51-Beta5.app">
+         FilePath = "/Applications/Xcode.app">
       </PathRunnable>
       <AdditionalOptions>
       </AdditionalOptions>

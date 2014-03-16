@@ -47,7 +47,7 @@ static IMP originalColorAtCharacterIndexImplementation;
     DVTSourceModel *sourceModel = self.sourceModel;
     NSString *string = [self.sourceModelService stringForItem:item];
 
-//    NSLog(@"\nNode Name: %@\nNode ID: %i\nString: %@", [DVTSourceNodeTypes nodeTypeNameForId:item.nodeType], item.nodeType, string);
+    NSLog(@"\nNode Name: %@\nNode ID: %i\nString: %@", [DVTSourceNodeTypes nodeTypeNameForId:item.nodeType], item.nodeType, string);
 
     /* It's possible for us to simply use the source model, but we may want to express fine-grain control based on the node. Plus, we already have the item onhand. */
 

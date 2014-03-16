@@ -51,13 +51,13 @@ static NSString * const IDEIndexDidIndexWorkspaceNotification = @"IDEIndexDidInd
     if (![self.variables containsObject:variable])
     {
         [self.variables addObject:variable];
-        [self.variables sortUsingDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"self" ascending:NO selector:@selector(localizedCaseInsensitiveCompare:)]]];
+        [self.variables sortUsingDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"self" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]]];
     }
 
     NSUInteger index = [self.variables indexOfObject:variable];
     CGFloat hueValue = (CGFloat)index/self.variables.count;
 
-    return [NSColor colorWithCalibratedHue:hueValue saturation:0.6f brightness:0.5f alpha:1.f];
+    return [NSColor colorWithCalibratedHue:hueValue saturation:0.7f brightness:0.7f alpha:1.f];
 }
 
 @end

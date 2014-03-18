@@ -21,19 +21,6 @@ static IMP originalColorAtCharacterIndexImplementation;
     originalColorAtCharacterIndexImplementation = SMQPoseSwizzle([DVTTextStorage class], NSSelectorFromString(@"colorAtCharacterIndex:effectiveRange:context:"), self, @selector(smq_colorAtCharacterIndex:effectiveRange:context:), YES);
 }
 
-- (DVTSourceModelItem *)smq_handleItem:(DVTSourceModelItem *)item
-{
-    if (item.children.count > 0)
-    {
-        for (DVTSourceModelItem *child in item.children)
-        {
-            [self smq_handleItem:child];
-        }
-    }
-
-    return item;
-}
-
 - (NSColor *)smq_colorAtCharacterIndex:(unsigned long long)index effectiveRange:(NSRangePointer)effectiveRange context:(NSDictionary *)context
 {
     /* Basically, Xcode calls you a given range. It seems to start with the entirety and spiral its way inward. Once given a range, its broken down by the colorAt: method. It replaces the range pointer passed, which Xcode then applies changes, and adapts the numerical changes.  So, the next thing it asks about is whatever is just beyond whatever the replaced range is. It also takes the previous length (assuming it can fit in the total text range, at which point it defaults to the max value before subtracting), and subtracts the new range length from it to determine the next passed length.     */

@@ -9,7 +9,7 @@
 #import "SMQVariableManager.h"
 #import "CPXcodeInterfaces.h"
 
-static NSString * const IDEIndexDidIndexWorkspaceNotification = @"IDEIndexDidIndexWorkspaceNotification";
+static NSString *const IDEIndexDidIndexWorkspaceNotification = @"IDEIndexDidIndexWorkspaceNotification";
 
 @interface SMQVariableManager ()
 
@@ -39,6 +39,10 @@ static NSString * const IDEIndexDidIndexWorkspaceNotification = @"IDEIndexDidInd
     if ((self = [super init]))
     {
         self.variables = [[NSMutableOrderedSet alloc] init];
+
+        [[NSNotificationCenter defaultCenter] addObserverForName:IDEIndexDidIndexWorkspaceNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+            NSLog(@"Reindexed.");
+        }];
     }
 
     return self;

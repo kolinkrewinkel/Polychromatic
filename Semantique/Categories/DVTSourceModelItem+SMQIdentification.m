@@ -10,14 +10,39 @@
 
 @implementation DVTSourceModelItem (SMQIdentification)
 
-- (BOOL)smq_isString
-{
-    return self.nodeType == 4;
-}
-
 - (BOOL)smq_isIdentifier
 {
     return self.nodeType == 24;
+}
+
+- (BOOL)smq_isKeyword
+{
+    return (self.nodeType == 7) || (self.nodeType == 33);
+}
+
+- (BOOL)smq_isPlain
+{
+    return (self.nodeType == 0);
+}
+
+- (BOOL)smq_isPreprocessor
+{
+    return (self.nodeType == 8) || (self.nodeType == 28);
+}
+
+- (BOOL)smq_isString
+{
+    return (self.nodeType == 4);
+}
+
+- (BOOL)smq_isSystemClass
+{
+    return (self.nodeType == 18);
+}
+
+- (BOOL)smq_isSystemFunction
+{
+    return (self.nodeType == 19);
 }
 
 @end

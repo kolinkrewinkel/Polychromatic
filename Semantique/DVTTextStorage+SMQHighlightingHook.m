@@ -31,7 +31,6 @@ static IMP originalColorAtCharacterIndexImplementation;
 
     NSRange newRange = *effectiveRange;
     DVTSourceModelItem *item = [self.sourceModelService sourceModelItemAtCharacterIndex:newRange.location];
-    DVTSourceModel *sourceModel = self.sourceModel;
     NSString *string = [self.sourceModelService stringForItem:item];
 
     NSLog(@"\nNode Name: %@\nNode ID: %i\nString: %@", [DVTSourceNodeTypes nodeTypeNameForId:item.nodeType], item.nodeType, string);
@@ -40,10 +39,32 @@ static IMP originalColorAtCharacterIndexImplementation;
 
     NSColor *color = [NSColor whiteColor];
 
-    if ([item smq_isIdentifier])
+    if ([item smq_isPreprocessor])
     {
+        color = [NSColor colorWithCalibratedWhite:0.75f alpha:1.000];
+    }
+    else if ([item smq_isString] || [item smq_isKeyword])
+    {
+        color = [NSColor colorWithCalibratedWhite:0.85f alpha:1.000];
+    }
+    else if ([item smq_isSystemClass] || [item smq_isSystemFunction])
+    {
+        color = [NSColor colorWithCalibratedRed:0.524 green:0.799 blue:0.934 alpha:1.000];
+    }
+//    else if ([item smq_isSystemClass])
+//    {
+//        color = [NSColor colorWithCalibratedRed:0.429 green:0.615 blue:0.695 alpha:1.000];
+//    }
+    else if ([item smq_isIdentifier])
+    {
+        // Have as the last option. Otherwise, it'll apply to others and yeah... descendence.
         color = [[SMQVariableManager sharedManager] colorForVariable:string];
     }
+    else if ([item smq_isPlain])
+    {
+        color = [NSColor colorWithCalibratedWhite:0.667f alpha:1.000];
+    }
+
 
     return color;
 }

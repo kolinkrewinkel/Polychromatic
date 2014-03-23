@@ -10,7 +10,12 @@
 
 @interface DVTSourceModelItem (SMQIdentification)
 
-- (BOOL)smq_isString;
 - (BOOL)smq_isIdentifier;
+- (BOOL)smq_isKeyword;
+- (BOOL)smq_isPlain;
+- (BOOL)smq_isPreprocessor;
+- (BOOL)smq_isString;
+- (BOOL)smq_isSystemClass;
+- (BOOL)smq_isSystemFunction;
 
 @end

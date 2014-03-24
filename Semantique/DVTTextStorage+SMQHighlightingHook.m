@@ -32,9 +32,6 @@ static IMP originalColorAtCharacterIndexImplementation;
     NSRange newRange = *effectiveRange;
     DVTSourceModelItem *item = [self.sourceModelService sourceModelItemAtCharacterIndex:newRange.location];
     NSString *string = [self.sourceModelService stringForItem:item];
-    DVTSourceModel *model = self.sourceModel;
-
-    NSString *name = [DVTSourceNodeTypes nodeTypeNameForId:item.nodeType];
 
     /* It's possible for us to simply use the source model, but we may want to express fine-grain control based on the node. Plus, we already have the item onhand. */
 
@@ -42,44 +39,42 @@ static IMP originalColorAtCharacterIndexImplementation;
 
     if ([item smq_isComment])
     {
-        color = [NSColor colorWithCalibratedWhite:0.5f alpha:1.f];
+        color = [NSColor colorWithCalibratedWhite:0.45f alpha:1.f];
     }
     else if ([item smq_isPreprocessor])
     {
-        color = [NSColor colorWithCalibratedWhite:0.65f alpha:1.000];
+        color = [NSColor colorWithCalibratedWhite:0.5f alpha:1.f];
     }
-    else if ([item smq_isString] || [item smq_isKeyword])
+    else if ([item smq_isKeyword])
     {
-        color = [NSColor colorWithCalibratedWhite:0.85f alpha:1.000];
+        color = [NSColor colorWithCalibratedWhite:0.6f alpha:1.000];
+    }
+    else if ([item smq_isString])
+    {
+        color = [NSColor colorWithCalibratedWhite:0.7f alpha:1.000];
     }
     else if ([item smq_isSystemClass] || [item smq_isSystemFunction])
     {
-        color = [NSColor colorWithCalibratedRed:0.524 green:0.799 blue:0.934 alpha:0.667f];
+        color = [NSColor colorWithCalibratedRed:0.524 green:0.799 blue:0.934 alpha:0.6f];
     }
-    else if ([item smq_isUserClass])
+    else if ([item smq_isUserClass] || item.parent.parent.nodeType == 37)
     {
         color = [NSColor colorWithCalibratedRed:0.524 green:0.799 blue:0.934 alpha:0.9f];
     }
     else if ([item smq_isIdentifier])
     {
-        NSLog(@"\nNode Name: %@\nNode ID: %i\nString: %@", name, item.nodeType, string);
-        NSLog(@"%@", [DVTSourceNodeTypes nodeTypeNameForId:item.parent.parent.nodeType]);
-
         if (![[DVTSourceNodeTypes nodeTypeNameForId:item.parent.nodeType] isEqualToString:@"xcode.syntax.name.partial"])
         {
             // Have as the last option. Otherwise, it'll apply to others and yeah... descendence.
             color = [[SMQVariableManager sharedManager] colorForVariable:string];
-        }
-        else
-        {
-
-            NSLog(@"%@", item.parent);
         }
     }
     else if ([item smq_isPlain])
     {
         color = [NSColor colorWithCalibratedWhite:0.667f alpha:1.000];
     }
+
+//    NSLog(@"\n---------------\nString: %@\nNode: %i\nName: %@\n---------------", string, item.nodeType, [DVTSourceNodeTypes nodeTypeNameForId:item.nodeType]);
 
     return color;
 }

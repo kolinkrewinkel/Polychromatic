@@ -61,7 +61,7 @@ static NSString *const IDEIndexDidIndexWorkspaceNotification = @"IDEIndexDidInde
     NSUInteger index = [self.variables indexOfObject:variable];
     CGFloat hueValue = (CGFloat)index/self.variables.count;
 
-    return [NSColor colorWithCalibratedHue:hueValue saturation:0.6f brightness:0.8f alpha:1.f];
+    return [NSColor colorWithCalibratedHue:hueValue saturation:0.5f brightness:0.8f alpha:1.f];
 }
 
 @end

@@ -10,6 +10,7 @@
 
 @interface DVTSourceModelItem (SMQIdentification)
 
+- (BOOL)smq_isComment;
 - (BOOL)smq_isIdentifier;
 - (BOOL)smq_isKeyword;
 - (BOOL)smq_isPlain;

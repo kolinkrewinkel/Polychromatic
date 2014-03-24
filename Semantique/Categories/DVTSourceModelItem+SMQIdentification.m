@@ -10,9 +10,14 @@
 
 @implementation DVTSourceModelItem (SMQIdentification)
 
+- (BOOL)smq_isComment
+{
+    return (self.nodeType == 1);
+}
+
 - (BOOL)smq_isIdentifier
 {
-    return self.nodeType == 24;
+    return (self.nodeType == 24);
 }
 
 - (BOOL)smq_isKeyword

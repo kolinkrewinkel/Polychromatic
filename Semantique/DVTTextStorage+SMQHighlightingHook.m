@@ -32,8 +32,9 @@ static IMP originalColorAtCharacterIndexImplementation;
     NSRange newRange = *effectiveRange;
     DVTSourceModelItem *item = [self.sourceModelService sourceModelItemAtCharacterIndex:newRange.location];
     NSString *string = [self.sourceModelService stringForItem:item];
+    DVTSourceModel *model = self.sourceModel;
 
-//    NSLog(@"\nNode Name: %@\nNode ID: %i\nString: %@", [DVTSourceNodeTypes nodeTypeNameForId:item.nodeType], item.nodeType, string);
+    NSString *name = [DVTSourceNodeTypes nodeTypeNameForId:item.nodeType];
 
     /* It's possible for us to simply use the source model, but we may want to express fine-grain control based on the node. Plus, we already have the item onhand. */
 
@@ -53,22 +54,32 @@ static IMP originalColorAtCharacterIndexImplementation;
     }
     else if ([item smq_isSystemClass] || [item smq_isSystemFunction])
     {
-        color = [NSColor colorWithCalibratedRed:0.524 green:0.799 blue:0.934 alpha:1.000];
+        color = [NSColor colorWithCalibratedRed:0.524 green:0.799 blue:0.934 alpha:0.667f];
     }
-//    else if ([item smq_isSystemClass])
-//    {
-//        color = [NSColor colorWithCalibratedRed:0.429 green:0.615 blue:0.695 alpha:1.000];
-//    }
+    else if ([item smq_isUserClass])
+    {
+        color = [NSColor colorWithCalibratedRed:0.524 green:0.799 blue:0.934 alpha:0.9f];
+    }
     else if ([item smq_isIdentifier])
     {
-        // Have as the last option. Otherwise, it'll apply to others and yeah... descendence.
-        color = [[SMQVariableManager sharedManager] colorForVariable:string];
+        NSLog(@"\nNode Name: %@\nNode ID: %i\nString: %@", name, item.nodeType, string);
+        NSLog(@"%@", [DVTSourceNodeTypes nodeTypeNameForId:item.parent.parent.nodeType]);
+
+        if (![[DVTSourceNodeTypes nodeTypeNameForId:item.parent.nodeType] isEqualToString:@"xcode.syntax.name.partial"])
+        {
+            // Have as the last option. Otherwise, it'll apply to others and yeah... descendence.
+            color = [[SMQVariableManager sharedManager] colorForVariable:string];
+        }
+        else
+        {
+
+            NSLog(@"%@", item.parent);
+        }
     }
     else if ([item smq_isPlain])
     {
         color = [NSColor colorWithCalibratedWhite:0.667f alpha:1.000];
     }
-
 
     return color;
 }

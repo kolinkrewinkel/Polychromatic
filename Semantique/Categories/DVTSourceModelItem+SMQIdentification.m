@@ -25,6 +25,11 @@
     return (self.nodeType == 7) || (self.nodeType == 33);
 }
 
+- (BOOL)smq_isMethod
+{
+    return (self.nodeType == 42);
+}
+
 - (BOOL)smq_isPlain
 {
     return (self.nodeType == 0);
@@ -48,6 +53,11 @@
 - (BOOL)smq_isSystemFunction
 {
     return (self.nodeType == 19);
+}
+
+- (BOOL)smq_isUserClass
+{
+    return (self.nodeType == 12);
 }
 
 @end

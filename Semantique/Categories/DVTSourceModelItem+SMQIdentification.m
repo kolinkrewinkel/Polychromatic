@@ -17,8 +17,8 @@
 
 - (BOOL)smq_isIdentifier
 {
-    //      Standard Variables       Instances of Macros      Macro Definitions
-    return (self.nodeType == 24) || (self.nodeType == 17) || (self.nodeType == 49);
+    //      Local Vars/Arguments     Ivars and Properties     Instances of Macros      Macro Definitions
+    return (self.nodeType == 24) || (self.nodeType == 16) || (self.nodeType == 17) || (self.nodeType == 49);
 }
 
 - (BOOL)smq_isKeyword
@@ -60,6 +60,11 @@
 {
     //      Class Definitions
     return (self.nodeType == 9) || (self.nodeType == 12);
+}
+
+- (BOOL)smq_isUserFunction
+{
+    return (self.nodeType == 13);
 }
 
 @end

@@ -53,13 +53,9 @@ static IMP originalColorAtCharacterIndexImplementation;
     {
         color = [NSColor colorWithCalibratedWhite:0.7f alpha:1.000];
     }
-    else if ([item smq_isSystemClass] || [item smq_isSystemFunction])
+    else if ([item smq_isSystemFunction] || [item smq_isUserFunction])
     {
-        color = [NSColor colorWithCalibratedRed:0.524 green:0.799 blue:0.934 alpha:0.6f];
-    }
-    else if ([item smq_isUserClass] || item.parent.parent.nodeType == 37)
-    {
-        color = [NSColor colorWithCalibratedRed:0.524 green:0.799 blue:0.934 alpha:0.9f];
+        color = [NSColor colorWithCalibratedWhite:0.6f alpha:1.f];
     }
     else if ([item smq_isIdentifier])
     {
@@ -68,13 +64,15 @@ static IMP originalColorAtCharacterIndexImplementation;
             // Have as the last option. Otherwise, it'll apply to others and yeah... descendence.
             color = [[SMQVariableManager sharedManager] colorForVariable:string];
         }
+        else
+        {
+            color = [NSColor colorWithCalibratedWhite:0.6f alpha:1.f];
+        }
     }
     else if ([item smq_isPlain])
     {
-        color = [NSColor colorWithCalibratedWhite:0.667f alpha:1.000];
+        color = [NSColor colorWithCalibratedWhite:0.55f alpha:1.000];
     }
-
-//    NSLog(@"\n---------------\nString: %@\nNode: %i\nName: %@\n---------------", string, item.nodeType, [DVTSourceNodeTypes nodeTypeNameForId:item.nodeType]);
 
     return color;
 }

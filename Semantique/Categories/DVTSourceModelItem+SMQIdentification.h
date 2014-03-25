@@ -20,5 +20,6 @@
 - (BOOL)smq_isSystemClass;
 - (BOOL)smq_isSystemFunction;
 - (BOOL)smq_isUserClass;
+- (BOOL)smq_isUserFunction;
 
 @end

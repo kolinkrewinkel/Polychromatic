@@ -43,11 +43,11 @@ static IMP originalColorAtCharacterIndexImplementation;
     }
     else if ([item smq_isPreprocessor])
     {
-        color = [NSColor colorWithCalibratedWhite:0.5f alpha:1.f];
+        color = [NSColor colorWithCalibratedWhite:0.4f alpha:1.f];
     }
     else if ([item smq_isKeyword])
     {
-        color = [NSColor colorWithCalibratedWhite:0.6f alpha:1.000];
+        color = [NSColor colorWithCalibratedWhite:0.5f alpha:1.000];
     }
     else if ([item smq_isString])
     {
@@ -56,6 +56,10 @@ static IMP originalColorAtCharacterIndexImplementation;
     else if ([item smq_isSystemFunction] || [item smq_isUserFunction])
     {
         color = [NSColor colorWithCalibratedWhite:0.6f alpha:1.f];
+    }
+    else if ([item smq_isSystemClass] || [item smq_isUserClass])
+    {
+        color = [NSColor colorWithCalibratedWhite:0.85f alpha:1.f];
     }
     else if ([item smq_isIdentifier])
     {
@@ -66,12 +70,12 @@ static IMP originalColorAtCharacterIndexImplementation;
         }
         else
         {
-            color = [NSColor colorWithCalibratedWhite:0.6f alpha:1.f];
+            color = [NSColor colorWithCalibratedWhite:1.f alpha:1.f];
         }
     }
     else if ([item smq_isPlain])
     {
-        color = [NSColor colorWithCalibratedWhite:0.55f alpha:1.000];
+        color = [NSColor colorWithCalibratedWhite:0.6f alpha:1.000];
     }
 
     return color;

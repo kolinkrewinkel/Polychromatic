@@ -539,9 +539,50 @@
 @interface DVTReplacementView : DVTAutoLayoutView
 @end
 
-@interface IDEPreferencesController : NSWindowController <NSToolbarDelegate>
-- (void)setPaneReplacementView:(DVTReplacementView *)replacementView;
-- (DVTReplacementView *)paneReplacementView;
+@class DVTDelayedInvocation, DVTExtension, DVTReplacementView, DVTStateRepository, DVTStateToken, IDEViewController, NSString;
+
+@interface IDEPreferencesController : NSWindowController <NSToolbarDelegate, NSWindowRestoration>
+{
+    DVTReplacementView *_paneReplacementView;
+    DVTExtension *_currentExtension;
+    DVTStateRepository *_stateRepository;
+    DVTDelayedInvocation *_stateSavingInvocation;
+    DVTStateToken *_stateToken;
+}
+
++ (void)configureStateSavingObjectPersistenceByName:(id)arg1;
++ (void)restoreWindowWithIdentifier:(id)arg1 state:(id)arg2 completionHandler:(id)arg3;
++ (id)defaultPreferencesController;
+@property(readonly) DVTDelayedInvocation *stateSavingInvocation; // @synthesize stateSavingInvocation=_stateSavingInvocation;
+@property(retain) DVTStateToken *stateToken; // @synthesize stateToken=_stateToken;
+@property(readonly) DVTStateRepository *stateRepository; // @synthesize stateRepository=_stateRepository;
+@property(retain) DVTExtension *currentExtension; // @synthesize currentExtension=_currentExtension;
+@property(retain) DVTReplacementView *paneReplacementView; // @synthesize paneReplacementView=_paneReplacementView;
+- (BOOL)_loadStateData:(id *)arg1;
+- (BOOL)_saveStateData:(id *)arg1;
+- (id)_stateRepositoryFilePath;
+- (void)commitStateToDictionary:(id)arg1;
+- (void)revertStateWithDictionary:(id)arg1;
+- (void)replacementView:(id)arg1 willCloseViewController:(id)arg2;
+- (void)replacementView:(id)arg1 didInstallViewController:(id)arg2;
+- (void)replacementView:(id)arg1 willInstallViewController:(id)arg2;
+- (void)stateRepositoryDidChange:(id)arg1;
+- (void)selectPreviousTab:(id)arg1;
+- (void)selectNextTab:(id)arg1;
+- (void)_selectToolbarItem:(id)arg1;
+- (void)showPreferencesPanel:(id)arg1;
+- (id)toolbarSelectableItemIdentifiers:(id)arg1;
+- (id)toolbarDefaultItemIdentifiers:(id)arg1;
+- (id)toolbarAllowedItemIdentifiers:(id)arg1;
+- (id)toolbar:(id)arg1 itemForItemIdentifier:(id)arg2 willBeInsertedIntoToolbar:(BOOL)arg3;
+- (void)windowWillClose:(id)arg1;
+- (void)selectPreferencePaneWithIdentifier:(id)arg1;
+@property(readonly) IDEViewController *currentPreferencePaneViewController;
+@property(readonly) NSString *downloadsPrefPaneIdentifier;
+- (void)windowDidLoad;
+- (id)initWithWindow:(id)arg1;
+- (void)_cachePreferencePaneExtensions;
+
 @end
 
 @interface DVTExtension : NSObject

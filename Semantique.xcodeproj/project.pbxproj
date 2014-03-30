@@ -12,6 +12,7 @@
 		33B3A3F618CD36BE00AA64C8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 33B3A3F418CD36BE00AA64C8 /* InfoPlist.strings */; };
 		33B3A3F918CD36BF00AA64C8 /* Semantique.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B3A3F818CD36BE00AA64C8 /* Semantique.m */; };
 		33B3A41818CD3B5100AA64C8 /* SMQSwizzling.c in Sources */ = {isa = PBXBuildFile; fileRef = 33B3A40C18CD38DF00AA64C8 /* SMQSwizzling.c */; };
+		33CC061818E8BECD000D7E62 /* IDEPreferencesController+SMQPreferencesHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CC061718E8BECD000D7E62 /* IDEPreferencesController+SMQPreferencesHook.m */; };
 		33E48D2318D3F50500FCC557 /* IDEFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33E48D2218D3F50500FCC557 /* IDEFoundation.framework */; };
 		33E48D2518D3F51200FCC557 /* IDEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33E48D2418D3F51200FCC557 /* IDEKit.framework */; };
 		33E48D2818D3F52400FCC557 /* DVTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33E48D2618D3F52400FCC557 /* DVTFoundation.framework */; };
@@ -32,6 +33,8 @@
 		33B3A3FA18CD36BF00AA64C8 /* Semantique-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Semantique-Prefix.pch"; sourceTree = "<group>"; };
 		33B3A40C18CD38DF00AA64C8 /* SMQSwizzling.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SMQSwizzling.c; sourceTree = "<group>"; };
 		33B3A40D18CD38DF00AA64C8 /* SMQSwizzling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMQSwizzling.h; sourceTree = "<group>"; };
+		33CC061618E8BECD000D7E62 /* IDEPreferencesController+SMQPreferencesHook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "IDEPreferencesController+SMQPreferencesHook.h"; path = "Categories/IDEPreferencesController+SMQPreferencesHook.h"; sourceTree = "<group>"; };
+		33CC061718E8BECD000D7E62 /* IDEPreferencesController+SMQPreferencesHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "IDEPreferencesController+SMQPreferencesHook.m"; path = "Categories/IDEPreferencesController+SMQPreferencesHook.m"; sourceTree = "<group>"; };
 		33E48D1E18D3F4D700FCC557 /* IDEKit */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = IDEKit; path = ../../../../Applications/Xcode.app/Contents/Frameworks/IDEKit.framework/Versions/A/IDEKit; sourceTree = "<group>"; };
 		33E48D2018D3F4F600FCC557 /* IDEFoundation */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = IDEFoundation; path = ../../../../Applications/Xcode.app/Contents/Frameworks/IDEFoundation.framework/Versions/A/IDEFoundation; sourceTree = "<group>"; };
 		33E48D2218D3F50500FCC557 /* IDEFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEFoundation.framework; path = ../../../../Applications/Xcode.app/Contents/Frameworks/IDEFoundation.framework; sourceTree = "<group>"; };
@@ -153,6 +156,8 @@
 				33F94F2E18CFC4D70092E74C /* DVTSourceModelItem+SMQIdentification.m */,
 				33F94F2718CEE2040092E74C /* DVTTextStorage+SMQHighlightingHook.h */,
 				33F94F2818CEE2040092E74C /* DVTTextStorage+SMQHighlightingHook.m */,
+				33CC061618E8BECD000D7E62 /* IDEPreferencesController+SMQPreferencesHook.h */,
+				33CC061718E8BECD000D7E62 /* IDEPreferencesController+SMQPreferencesHook.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -220,6 +225,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				33F94F2918CEE2040092E74C /* DVTTextStorage+SMQHighlightingHook.m in Sources */,
+				33CC061818E8BECD000D7E62 /* IDEPreferencesController+SMQPreferencesHook.m in Sources */,
 				33B3A41818CD3B5100AA64C8 /* SMQSwizzling.c in Sources */,
 				33F94F3318CFCBE20092E74C /* SMQVariableManager.m in Sources */,
 				33F94F2F18CFC4D70092E74C /* DVTSourceModelItem+SMQIdentification.m in Sources */,

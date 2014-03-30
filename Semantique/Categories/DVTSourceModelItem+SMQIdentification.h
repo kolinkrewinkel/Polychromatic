@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Kolin Krewinkel. All rights reserved.
 //
 
-#import "OhNoMoreXcodeInterfaces.h"
+#import "DVTInterfaces.h"
 
 @interface DVTSourceModelItem (SMQIdentification)
 

@@ -7,7 +7,7 @@
 //
 
 #import "SMQVariableManager.h"
-#import "CPXcodeInterfaces.h"
+#import "DVTInterfaces.h"
 
 static NSString *const IDEIndexDidIndexWorkspaceNotification = @"IDEIndexDidIndexWorkspaceNotification";
 

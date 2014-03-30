@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Kolin Krewinkel. All rights reserved.
 //
 
-#import "DVT Classes/OhNoMoreXcodeInterfaces.h"
+#import "DVTInterfaces.h"
 
 @interface DVTTextStorage (SMQHighlightingHook)
 

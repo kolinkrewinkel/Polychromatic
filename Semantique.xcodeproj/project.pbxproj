@@ -44,8 +44,7 @@
 		33F94F2518CED78B0092E74C /* DVTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTKit.framework; path = "../../../../Applications/Xcode51-Beta5.app/Contents/SharedFrameworks/DVTKit.framework"; sourceTree = "<group>"; };
 		33F94F2718CEE2040092E74C /* DVTTextStorage+SMQHighlightingHook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVTTextStorage+SMQHighlightingHook.h"; sourceTree = "<group>"; };
 		33F94F2818CEE2040092E74C /* DVTTextStorage+SMQHighlightingHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DVTTextStorage+SMQHighlightingHook.m"; sourceTree = "<group>"; };
-		33F94F2B18CEF8F30092E74C /* CPXcodeInterfaces.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CPXcodeInterfaces.h; path = "DVT Classes/CPXcodeInterfaces.h"; sourceTree = "<group>"; };
-		33F94F2C18CEF8F30092E74C /* OhNoMoreXcodeInterfaces.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OhNoMoreXcodeInterfaces.h; path = "DVT Classes/OhNoMoreXcodeInterfaces.h"; sourceTree = "<group>"; };
+		33F94F2B18CEF8F30092E74C /* DVTInterfaces.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DVTInterfaces.h; path = "DVT Classes/DVTInterfaces.h"; sourceTree = "<group>"; };
 		33F94F2D18CFC4D70092E74C /* DVTSourceModelItem+SMQIdentification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "DVTSourceModelItem+SMQIdentification.h"; path = "Categories/DVTSourceModelItem+SMQIdentification.h"; sourceTree = "<group>"; };
 		33F94F2E18CFC4D70092E74C /* DVTSourceModelItem+SMQIdentification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "DVTSourceModelItem+SMQIdentification.m"; path = "Categories/DVTSourceModelItem+SMQIdentification.m"; sourceTree = "<group>"; };
 		33F94F3118CFCBE20092E74C /* SMQVariableManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMQVariableManager.h; sourceTree = "<group>"; };
@@ -142,8 +141,7 @@
 		33F94F2A18CEE2860092E74C /* Xcode Headers */ = {
 			isa = PBXGroup;
 			children = (
-				33F94F2B18CEF8F30092E74C /* CPXcodeInterfaces.h */,
-				33F94F2C18CEF8F30092E74C /* OhNoMoreXcodeInterfaces.h */,
+				33F94F2B18CEF8F30092E74C /* DVTInterfaces.h */,
 			);
 			name = "Xcode Headers";
 			sourceTree = "<group>";

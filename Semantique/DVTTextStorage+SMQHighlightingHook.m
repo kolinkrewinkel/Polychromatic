@@ -9,7 +9,6 @@
 #import "DVTTextStorage+SMQHighlightingHook.h"
 #import "SMQSwizzling.h"
 #import "DVTSourceModelItem+SMQIdentification.h"
-#import "CPXcodeInterfaces.h"
 #import "SMQVariableManager.h"
 
 static IMP originalColorAtCharacterIndexImplementation;

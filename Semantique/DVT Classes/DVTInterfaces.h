@@ -806,7 +806,7 @@ extern NSString *IDEEditorDocumentDidChangeNotification;
 
 @class DVTCustomDataSpecifier, DVTPointerArray, DVTStackBacktrace, NSColor, NSFont, NSImage, NSString, NSURL;
 
-@interface DVTFontAndColorTheme : NSObject <DVTPreferenceSet>
+@interface DVTFontAndColorTheme : NSObject
 {
     NSString *_name;
     NSImage *_image;

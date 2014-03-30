@@ -27,10 +27,13 @@ static IMP originalColorAtCharacterIndexImplementation;
     /* We should probably be doing the "effectiveRange" finding, but for now we'll let Xcode solve it out for us. */
 
     originalColorAtCharacterIndexImplementation(self, @selector(colorAtCharacterIndex:effectiveRange:context:), index, effectiveRange, context);
-
     NSRange newRange = *effectiveRange;
+
     DVTSourceModelItem *item = [self.sourceModelService sourceModelItemAtCharacterIndex:newRange.location];
     NSString *string = [self.sourceModelService stringForItem:item];
+
+    IDEIndex *workspaceIndex = context[@"IDEIndex"];
+    IDEWorkspace *workspace = [workspaceIndex valueForKey:@"_workspace"];
 
     /* It's possible for us to simply use the source model, but we may want to express fine-grain control based on the node. Plus, we already have the item onhand. */
 
@@ -60,17 +63,10 @@ static IMP originalColorAtCharacterIndexImplementation;
     {
         color = [NSColor colorWithCalibratedWhite:0.85f alpha:1.f];
     }
-    else if ([item smq_isIdentifier])
+    else if ([item smq_isIdentifier] && ![[DVTSourceNodeTypes nodeTypeNameForId:item.parent.nodeType] isEqualToString:@"xcode.syntax.name.partial"] && workspaceIndex)
     {
-        if (![[DVTSourceNodeTypes nodeTypeNameForId:item.parent.nodeType] isEqualToString:@"xcode.syntax.name.partial"])
-        {
-            // Have as the last option. Otherwise, it'll apply to others and yeah... descendence.
-            color = [[SMQVariableManager sharedManager] colorForVariable:string];
-        }
-        else
-        {
-            color = [NSColor colorWithCalibratedWhite:1.f alpha:1.f];
-        }
+        // Have as the last option. Otherwise, it'll apply to others and yeah... descendence.
+        color = [[SMQVariableManager sharedManager] colorForVariable:string inWorkspace:workspace];
     }
     else if ([item smq_isPlain])
     {

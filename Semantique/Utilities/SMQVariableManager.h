@@ -8,10 +8,11 @@
 
 #import <AppKit/AppKit.h>
 
+@class IDEWorkspace;
 @interface SMQVariableManager : NSObject
 
 + (instancetype)sharedManager;
 
-- (NSColor *)colorForVariable:(NSString *)variable;
+- (NSColor *)colorForVariable:(NSString *)variable inWorkspace:(IDEWorkspace *)workspace;
 
 @end

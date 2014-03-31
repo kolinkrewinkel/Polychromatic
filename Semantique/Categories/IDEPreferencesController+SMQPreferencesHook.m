@@ -10,19 +10,29 @@
 #import "SMQSwizzling.h"
 
 static IMP originalWindowDidLoadImplementation;
+static IMP originalReplacementViewWillInstallViewControllerImplementation;
 
 @implementation IDEPreferencesController (SMQPreferencesHook)
 
-+ (void)initialize
++ (void)load
 {
     originalWindowDidLoadImplementation = SMQPoseSwizzle(self, @selector(windowDidLoad), self, @selector(smq_windowDidLoad), YES);
+    originalReplacementViewWillInstallViewControllerImplementation = SMQPoseSwizzle(self, @selector(replacementView:willInstallViewController:), self, @selector(smq_replacementView:willInstallViewController:), YES);
 }
 
 - (void)smq_windowDidLoad
 {
     originalWindowDidLoadImplementation(self, @selector(windowDidLoad));
+}
 
-//    [[self.window toolbar] insertItemWithItemIdentifier:@"TEST" atIndex:0];
+- (void)smq_replacementView:(DVTReplacementView *)replacementView willInstallViewController:(IDEViewController *)viewController
+{
+    originalReplacementViewWillInstallViewControllerImplementation(self, @selector(replacementView:willInstallViewController:), replacementView, viewController);
+
+    if ([self.window.toolbar.selectedItemIdentifier isEqualToString:@"Xcode.PreferencePane.FontAndColor"])
+    {
+        [viewController.view.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    }
 }
 
 @end

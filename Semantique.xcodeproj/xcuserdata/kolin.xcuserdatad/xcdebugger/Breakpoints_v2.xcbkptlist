@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Semantique/Categories/IDEPreferencesController+SMQPreferencesHook.m"
-            timestampString = "418007416.247843"
+            timestampString = "418012503.327216"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
             landmarkName = "-smq_replacementView:willInstallViewController:"
             landmarkType = "5">
          </BreakpointContent>
@@ -36,11 +36,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Semantique/Categories/IDEPreferencesController+SMQPreferencesHook.m"
-            timestampString = "418008556.985941"
+            timestampString = "418012516.627764"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
             landmarkName = "-smq_replacementView:willInstallViewController:"
             landmarkType = "5">
          </BreakpointContent>
@@ -52,43 +52,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Semantique/Categories/IDEPreferencesController+SMQPreferencesHook.m"
-            timestampString = "418008556.985941"
+            timestampString = "418012503.327216"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
-            landmarkName = "-smq_replacementView:willInstallViewController:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Semantique/Categories/IDEPreferencesController+SMQPreferencesHook.m"
-            timestampString = "418008556.985941"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
-            landmarkName = "-smq_replacementView:willInstallViewController:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Semantique/Categories/IDEPreferencesController+SMQPreferencesHook.m"
-            timestampString = "418009144.558301"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
             landmarkName = "-smq_replacementView:willInstallViewController:"
             landmarkType = "5">
          </BreakpointContent>

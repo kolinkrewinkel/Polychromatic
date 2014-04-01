@@ -34,21 +34,29 @@ static char *SMQThemePreferencesViewControllerName = "SMQThemePreferencesViewCon
 
 - (void)smq_replacementView:(DVTReplacementView *)replacementView willInstallViewController:(IDEViewController *)viewController
 {
-    if ([self.window.toolbar.selectedItemIdentifier isEqualToString:@"Xcode.PreferencePane.FontAndColor"])
+
+    if ([self.window.toolbar.selectedItemIdentifier isEqualToString:@"Xcode.PreferencePane.FontAndColor"] && ![viewController isKindOfClass:[SMQThemePreferencesViewController class]])
     {
         SMQThemePreferencesViewController *newViewController = [[SMQThemePreferencesViewController alloc] init];
+//
+//        [self smq_setReplacementThemePreferencesViewController:newViewController];
+//
+//        [viewController.view.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+//        newViewController.view = viewController.view;
+        replacementView.installedViewController = newViewController;
 
-        [self smq_setReplacementThemePreferencesViewController:newViewController];
+        originalReplacementViewWillInstallViewControllerImplementation(self, @selector(replacementView:willInstallViewController:), replacementView, newViewController);
 
-        [viewController.view.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-        newViewController.view = viewController.view;
     }
     else
     {
         [self smq_setReplacementThemePreferencesViewController:nil];
+
+        originalReplacementViewWillInstallViewControllerImplementation(self, @selector(replacementView:willInstallViewController:), replacementView, viewController);
+
     }
 
-    originalReplacementViewWillInstallViewControllerImplementation(self, @selector(replacementView:willInstallViewController:), replacementView, viewController);
+
 }
 
 #pragma mark - Setters

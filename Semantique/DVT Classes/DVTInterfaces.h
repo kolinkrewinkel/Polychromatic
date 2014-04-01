@@ -533,10 +533,128 @@
 - (NSArray *)keyBindings;
 @end
 
-@interface DVTAutoLayoutView : NSView
+@interface DVTLayoutView_ML : NSView
+{
+    NSMutableDictionary *invalidationTokens;
+    BOOL _layoutNeeded;
+    BOOL _implementsLayoutCompletionCallback;
+    NSCountedSet *_frameChangeObservations;
+    NSCountedSet *_boundsChangeObservations;
+    BOOL _implementsDrawRect;
+    BOOL _needsSecondLayoutPass;
+}
+
++ (void)_layoutWindow:(id)arg1;
++ (void)_recursivelyLayoutSubviewsOfView:(id)arg1 populatingSetWithLaidOutViews:(id)arg2;
++ (void)_doRecursivelyLayoutSubviewsOfView:(id)arg1 populatingSetWithLaidOutViews:(id)arg2 completionCallBackHandlers:(id)arg3 currentLayoutPass:(long long)arg4 needsSecondPass:(char *)arg5;
++ (void)scheduleWindowForLayout:(id)arg1;
++ (id)alreadyLaidOutViewsForCurrentDisplayPassOfWindow:(id)arg1;
++ (void)clearAlreadyLaidOutViewsForCurrentDisplayPassOfWindow:(id)arg1;
+@property BOOL needsSecondLayoutPass; // @synthesize needsSecondLayoutPass=_needsSecondLayoutPass;
+@property(getter=isLayoutNeeded) BOOL layoutNeeded; // @synthesize layoutNeeded=_layoutNeeded;
+- (BOOL)wantsDefaultClipping;
+- (void)stopInvalidatingLayoutWithChangesToKeyPath:(id)arg1 ofObject:(id)arg2;
+- (void)invalidateLayoutWithChangesToKeyPath:(id)arg1 ofObject:(id)arg2;
+- (void)_autoLayoutViewViewFrameDidChange:(id)arg1;
+- (void)_autoLayoutViewViewBoundsDidChange:(id)arg1;
+- (void)stopInvalidatingLayoutWithBoundsChangesToView:(id)arg1;
+- (void)stopInvalidatingLayoutWithFrameChangesToView:(id)arg1;
+- (void)invalidateLayoutWithBoundsChangesToView:(id)arg1;
+- (void)invalidateLayoutWithFrameChangesToView:(id)arg1;
+- (void)tearDownObservationForObservedObject:(id)arg1 notificationName:(id)arg2 table:(id)arg3;
+- (void)setupObservationForObservedObject:(id)arg1 selector:(SEL)arg2 notificationName:(id)arg3 table:(id *)arg4;
+- (void)setFrameSize:(struct CGSize)arg1;
+- (void)didCompleteLayout;
+- (void)layoutBottomUp;
+- (void)layoutTopDown;
+- (void)layoutIfNeeded;
+- (void)didLayoutSubview:(id)arg1;
+- (id)subviewsOrderedForLayout;
+- (void)viewWillDraw;
+- (void)_reallyLayoutIfNeededBottomUp;
+- (void)_reallyLayoutIfNeededTopDown;
+- (void)invalidateLayout;
+- (void)viewDidMoveToWindow;
+- (id)initWithCoder:(id)arg1;
+- (id)initWithFrame:(struct CGRect)arg1;
+- (void)_DVTLayoutView_MLSharedInit;
+- (void)dealloc;
+
 @end
 
-@interface DVTReplacementView : DVTAutoLayoutView
+@class DVTExtension, DVTStackBacktrace, DVTViewController, NSMapTable, NSString;
+
+@interface DVTReplacementView : DVTLayoutView_ML
+{
+    Class _controllerClass;
+    NSString *_controllerExtensionIdentifier;
+    DVTExtension *_controllerExtension;
+    DVTViewController *_installedViewController;
+    id _forwardedBindingInfo;
+//    id <DVTReplacementViewDelegate> _delegate;
+    int _horizontalContentViewResizingMode;
+    int _verticalContentViewResizingMode;
+    struct {
+        unsigned int _needToReloadSubview:1;
+        unsigned int _shouldNotifyInstalledViewControllerObservers:1;
+        unsigned int _delegate_willInstallViewController:1;
+        unsigned int _delegate_didInstallViewController:1;
+        unsigned int _delegate_willCloseViewController:1;
+        unsigned int _delegate_willDisplayInRect:1;
+        unsigned int _reserved:26;
+    } _DVTReplacementViewFlags;
+    BOOL _isGrouped;
+    NSMapTable *_subviewFrameChangeTokens;
+    void *_keepSelfAliveUntilCancellationRef;
+}
+
++ (void)initialize;
+@property BOOL isGrouped; // @synthesize isGrouped=_isGrouped;
+@property(nonatomic) Class controllerClass; // @synthesize controllerClass=_controllerClass;
+@property(nonatomic) int verticalContentViewResizingMode; // @synthesize verticalContentViewResizingMode=_verticalContentViewResizingMode;
+@property(nonatomic) int horizontalContentViewResizingMode; // @synthesize horizontalContentViewResizingMode=_horizontalContentViewResizingMode;
+- (void)discardEditing;
+- (BOOL)commitEditingForAction:(int)arg1 errors:(id)arg2;
+- (void)updateBoundControllerExtensionIdentifier;
+- (void)updateBoundControllerClass;
+@property(copy) NSString *controllerExtensionIdentifier;
+- (void)_clearCurrentController;
+- (void)_tearDownBinding:(id)arg1;
+- (void)_forwardBinding:(id)arg1 toObject:(id)arg2 withKeyPath:(id)arg3 options:(id)arg4;
+- (void)_tearDownBindings;
+- (void)_forwardBindings;
+- (void)layoutBottomUp;
+- (void)layoutTopDown;
+@property(retain) DVTViewController *installedViewController;
+- (void)_tearDownViewController;
+- (void)_setupViewController;
+- (void)_configureExtension;
+- (id)infoForBinding:(id)arg1;
+- (void)unbind:(id)arg1;
+- (void)bind:(id)arg1 toObject:(id)arg2 withKeyPath:(id)arg3 options:(id)arg4;
+- (id)_forwardedBindingInfo;
+- (void)_clearInfoForBinding:(id)arg1;
+- (void)_recordInfoForBinding:(id)arg1 toObject:(id)arg2 keyPath:(id)arg3 options:(id)arg4;
+- (void)primitiveInvalidate;
+- (void)_recursiveDisplayAllDirtyWithLockFocus:(BOOL)arg1 visRect:(struct CGRect)arg2;
+- (id)exposedBindings;
+- (void)_invalidateLayoutBecauseOfSubviewFrameChange:(id)arg1;
+- (void)willRemoveSubview:(id)arg1;
+- (void)didAddSubview:(id)arg1;
+- (id)initWithFrame:(struct CGRect)arg1;
+- (void)awakeFromNib;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
+- (void)_commonInit;
+//@property(retain, nonatomic) id <DVTReplacementViewDelegate> delegate;
+- (id)accessibilityAttributeValue:(id)arg1;
+- (BOOL)accessibilityIsIgnored;
+
+// Remaining properties
+@property(retain) DVTStackBacktrace *creationBacktrace;
+@property(readonly) DVTStackBacktrace *invalidationBacktrace;
+@property(readonly, nonatomic, getter=isValid) BOOL valid;
+
 @end
 
 @class DVTDelayedInvocation, DVTExtension, DVTReplacementView, DVTStateRepository, DVTStateToken, IDEViewController, NSString;

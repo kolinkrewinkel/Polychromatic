@@ -23,19 +23,21 @@ static IMP SMQOriginalSetupImplementation;
 
 - (void)smq_setupViewController
 {
-
     if ([self.controllerExtensionIdentifier isEqualToString:@"Xcode.PreferencePane.FontAndColor"])
     {
-//        [self _tearDownViewController];
         self.controllerClass = [SMQThemePreferencesViewController class];
 
         dispatch_async(dispatch_get_main_queue(), ^{
+            NSRect rect = self.installedViewController.view.bounds;
+            rect.size.height = [((SMQThemePreferencesViewController *)self.installedViewController) preferredContentHeight];
+            self.installedViewController.view.bounds = rect;
+
             SMQOriginalSetupImplementation(self, @selector(_setupViewController));
         });
-
     }
     else
     {
+
         SMQOriginalSetupImplementation(self, @selector(_setupViewController));
 
     }

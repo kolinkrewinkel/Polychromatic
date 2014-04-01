@@ -11,7 +11,7 @@
 
 @implementation SMQThemePreferencesViewController
 
-#pragma mark - NSViewController
+#pragma mark - NSObject
 
 - (id)init
 {
@@ -24,6 +24,16 @@
     return self;
 }
 
+#pragma mark - NSViewController
+
+- (void)loadView
+{
+    self.view = [[NSClassFromString(@"DVTControllerContentView") alloc] init];
+    [self.view setValue:self forKey:@"viewController"];
+}
+
+#pragma mark - Setters
+
 - (void)setRepresentedExtension:(DVTExtension *)extension
 {
     if (!self.representedExtension)
@@ -32,27 +42,23 @@
     }
 }
 
-- (void)loadView
-{
-    self.view = [[NSClassFromString(@"DVTControllerContentView") alloc] init];
-    [self.view setValue:self forKey:@"viewController"];
-}
-
 - (void)setView:(NSView *)view
 {
     [super setView:view];
 
     self.view.wantsLayer = YES;
-    self.view.layer.backgroundColor = [NSColor blueColor].CGColor;
 
-    self.view.layer.bounds = CGRectMake(0.f, 0.f, 300.f, 500.f);
-//    self.view.layer.
-
-    NSView *contentView = [[NSView alloc] initWithFrame:self.view.layer.bounds];
+    NSView *contentView = [[NSView alloc] initWithFrame:self.view.bounds];
     contentView.wantsLayer = YES;
-    contentView.layer.backgroundColor = [NSColor blueColor].CGColor;
 
     [self.view setValue:contentView forKey:@"contentView"];
+}
+
+#pragma mark - Sizing
+
+- (CGFloat)preferredContentHeight
+{
+    return 472.f;
 }
 
 @end

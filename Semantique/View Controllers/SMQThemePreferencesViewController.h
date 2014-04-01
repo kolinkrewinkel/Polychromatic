@@ -10,4 +10,8 @@
 
 @interface SMQThemePreferencesViewController : IDEViewController
 
+#pragma mark - Sizing
+
+- (CGFloat)preferredContentHeight;
+
 @end

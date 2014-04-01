@@ -26,27 +26,18 @@ static IMP SMQOriginalSetupImplementation;
 
     if ([self.controllerExtensionIdentifier isEqualToString:@"Xcode.PreferencePane.FontAndColor"])
     {
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//        [self _tearDownViewController];
-        self.controllerClass = [SMQThemePreferencesViewController class];
-//        });
-
         dispatch_async(dispatch_get_main_queue(), ^{
-            SMQOriginalSetupImplementation(self, @selector(_setupViewController));
-
+            self.controllerClass = [SMQThemePreferencesViewController class];
+//            self.controllerClass = [NSClassFromString(@"IDEAlertsPrefsPaneController") class];
         });
+        SMQOriginalSetupImplementation(self, @selector(_setupViewController));
+
     }
     else
     {
         SMQOriginalSetupImplementation(self, @selector(_setupViewController));
 
     }
-
-//    NSLog(@"%@", [self.installedViewController valueForKey:@"preferenceSetManager"]);
-
-
-
-    NSLog(@"%@", self.installedViewController);
 }
 
 @end

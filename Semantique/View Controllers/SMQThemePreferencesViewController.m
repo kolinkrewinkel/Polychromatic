@@ -13,14 +13,21 @@
 
 #pragma mark - NSViewController
 
+- (id)init
+{
+    if ((self = [super init]))
+    {
+        DVTExtension *extension = [[DVTExtension alloc] init];
+        [self setValue:extension forKey:@"representedExtension"];
+    }
+
+    return self;
+}
+
 - (void)loadView
 {
     self.view = [[NSClassFromString(@"DVTControllerContentView") alloc] init];
     [self.view setValue:self forKey:@"viewController"];
-
-    DVTExtension *extension = [[DVTExtension alloc] init];
-//    extension.plugIn = [Semantique sharedPlugin];
-
 }
 
 - (void)setView:(NSView *)view

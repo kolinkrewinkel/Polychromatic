@@ -19,44 +19,46 @@ static char *SMQThemePreferencesViewControllerName = "SMQThemePreferencesViewCon
 
 #pragma mark - NSObject
 
-+ (void)load
-{
-    originalWindowDidLoadImplementation = SMQPoseSwizzle(self, @selector(windowDidLoad), self, @selector(smq_windowDidLoad), YES);
-    originalReplacementViewWillInstallViewControllerImplementation = SMQPoseSwizzle(self, @selector(replacementView:willInstallViewController:), self, @selector(smq_replacementView:willInstallViewController:), YES);
-}
+//+ (void)load
+//{
+//    originalWindowDidLoadImplementation = SMQPoseSwizzle(self, @selector(windowDidLoad), self, @selector(smq_windowDidLoad), YES);
+//    originalReplacementViewWillInstallViewControllerImplementation = SMQPoseSwizzle(self, @selector(replacementView:didInstallViewController:), self, @selector(smq_replacementView:didInstallViewController:), YES);
+//}
 
 #pragma mark - Swizzled Methods
 
 - (void)smq_windowDidLoad
 {
-    originalWindowDidLoadImplementation(self, @selector(windowDidLoad));
+//    originalWindowDidLoadImplementation(self, @selector(windowDidLoad));
 }
 
-- (void)smq_replacementView:(DVTReplacementView *)replacementView willInstallViewController:(IDEViewController *)viewController
+- (void)smq_replacementView:(DVTReplacementView *)replacementView didInstallViewController:(IDEViewController *)viewController
 {
 
-    if ([self.window.toolbar.selectedItemIdentifier isEqualToString:@"Xcode.PreferencePane.FontAndColor"] && ![viewController isKindOfClass:[SMQThemePreferencesViewController class]])
-    {
-        SMQThemePreferencesViewController *newViewController = [[SMQThemePreferencesViewController alloc] init];
+//    if ([self.window.toolbar.selectedItemIdentifier isEqualToString:@"Xcode.PreferencePane.FontAndColor"] && ![viewController isKindOfClass:[SMQThemePreferencesViewController class]])
+//    {
+//        SMQThemePreferencesViewController *newViewController = [[SMQThemePreferencesViewController alloc] init];
 //
 //        [self smq_setReplacementThemePreferencesViewController:newViewController];
 //
 //        [viewController.view.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-//        newViewController.view = viewController.view;
-        replacementView.installedViewController = newViewController;
-
-        originalReplacementViewWillInstallViewControllerImplementation(self, @selector(replacementView:willInstallViewController:), replacementView, newViewController);
-
-    }
-    else
-    {
-        [self smq_setReplacementThemePreferencesViewController:nil];
-
-        originalReplacementViewWillInstallViewControllerImplementation(self, @selector(replacementView:willInstallViewController:), replacementView, viewController);
-
-    }
-
-
+//        NSView *view = [[NSClassFromString(@"DVTControllerContentView") alloc] initWithFrame:viewController.view.frame];
+//        newViewController.view = view;
+//
+//        [replacementView.installedViewController.view removeFromSuperview];
+//        [replacementView _tearDownViewController];
+//
+//        replacementView.installedViewController = newViewController;
+//    }
+//    else
+//    {
+//        [self smq_setReplacementThemePreferencesViewController:nil];
+//
+//        originalReplacementViewWillInstallViewControllerImplementation(self, @selector(replacementView:willInstallViewController:), replacementView, viewController);
+//
+//    }
+//
+//
 }
 
 #pragma mark - Setters

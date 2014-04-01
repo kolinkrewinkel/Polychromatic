@@ -28,15 +28,9 @@ static IMP SMQOriginalSetupImplementation;
     {
 //        [self _tearDownViewController];
         self.controllerClass = [SMQThemePreferencesViewController class];
+
         dispatch_async(dispatch_get_main_queue(), ^{
-
-                SMQOriginalSetupImplementation(self, @selector(_setupViewController));
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-
-            });
-
-//            self.controllerClass = [NSClassFromString(@"IDEAlertsPrefsPaneController") class];
+            SMQOriginalSetupImplementation(self, @selector(_setupViewController));
         });
 
     }

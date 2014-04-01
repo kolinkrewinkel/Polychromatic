@@ -12,9 +12,10 @@
 
 #pragma mark - NSViewController
 
-- (void)loadView
-{
-    
-}
+//- (void)loadView
+//{
+//    self.view.wantsLayer = YES;
+//    self.view.layer.backgroundColor = [NSColor blueColor].CGColor;
+//}
 
 @end

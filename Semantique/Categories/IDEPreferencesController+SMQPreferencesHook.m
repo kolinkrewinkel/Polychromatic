@@ -55,12 +55,12 @@ static char *SMQThemePreferencesViewControllerName = "SMQThemePreferencesViewCon
 
 - (void)smq_setReplacementThemePreferencesViewController:(SMQThemePreferencesViewController *)replacementViewController
 {
-    SMQThemePreferencesViewController *existingViewController = [self replacementThemePreferencesViewController];
-
-    if (existingViewController && !replacementViewController)
-    {
-        [existingViewController.view removeFromSuperview];
-    }
+//    SMQThemePreferencesViewController *existingViewController = [self replacementThemePreferencesViewController];
+//
+//    if (existingViewController && !replacementViewController)
+//    {
+//        [existingViewController.view removeFromSuperview];
+//    }
 
     objc_setAssociatedObject(self, SMQThemePreferencesViewControllerName, replacementViewController, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }

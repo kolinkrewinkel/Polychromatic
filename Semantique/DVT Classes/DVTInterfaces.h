@@ -447,7 +447,12 @@
 
 @interface DVTViewController : NSViewController
 @end
+
+@class DVTExtension;
 @interface IDEViewController : DVTViewController
+
+@property (nonatomic, retain) DVTExtension *representedExtension;
+
 @end
 
 @interface IDEEditorOpenSpecifier : NSObject

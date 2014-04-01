@@ -24,6 +24,14 @@
     return self;
 }
 
+- (void)setRepresentedExtension:(DVTExtension *)extension
+{
+    if (!self.representedExtension)
+    {
+        [super setRepresentedExtension:extension];
+    }
+}
+
 - (void)loadView
 {
     self.view = [[NSClassFromString(@"DVTControllerContentView") alloc] init];
@@ -37,7 +45,7 @@
     self.view.wantsLayer = YES;
     self.view.layer.backgroundColor = [NSColor blueColor].CGColor;
 
-    self.view.layer.bounds = CGRectMake(0.f, 0.f, 300.f, 300.f);
+    self.view.layer.bounds = CGRectMake(0.f, 0.f, 300.f, 500.f);
 //    self.view.layer.
 
     NSView *contentView = [[NSView alloc] initWithFrame:self.view.layer.bounds];

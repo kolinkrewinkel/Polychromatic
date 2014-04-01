@@ -32,6 +32,13 @@
     [self.view setValue:self forKey:@"viewController"];
 }
 
+#pragma mark - DVTViewController
+
+- (void)viewWillUninstall
+{
+
+}
+
 #pragma mark - Setters
 
 - (void)setRepresentedExtension:(DVTExtension *)extension

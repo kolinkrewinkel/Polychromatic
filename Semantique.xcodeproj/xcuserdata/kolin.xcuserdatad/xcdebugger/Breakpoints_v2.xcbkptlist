@@ -71,9 +71,9 @@
             timestampString = "418008556.985941"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
-            landmarkName = "-smq_setReplacementThemePreferencesViewController:"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "-smq_replacementView:willInstallViewController:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -84,11 +84,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Semantique/Categories/IDEPreferencesController+SMQPreferencesHook.m"
-            timestampString = "418008556.985941"
+            timestampString = "418009144.558301"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
             landmarkName = "-smq_replacementView:willInstallViewController:"
             landmarkType = "5">
          </BreakpointContent>

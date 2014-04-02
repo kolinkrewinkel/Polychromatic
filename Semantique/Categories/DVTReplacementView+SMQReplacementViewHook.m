@@ -33,6 +33,10 @@ static IMP SMQOriginalSetupImplementation;
             self.installedViewController.view.bounds = rect;
 
             SMQOriginalSetupImplementation(self, @selector(_setupViewController));
+
+            NSView *contentView = [self.installedViewController view];
+            contentView.translatesAutoresizingMaskIntoConstraints = YES;
+            contentView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
         });
     }
     else

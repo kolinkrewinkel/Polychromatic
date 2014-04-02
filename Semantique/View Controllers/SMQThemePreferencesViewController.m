@@ -24,12 +24,36 @@
     return self;
 }
 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    if ((self = [super initWithNibName:[self className] bundle:nibBundleOrNil]))
+    {
+
+    }
+
+    return self;
+}
+
 #pragma mark - NSViewController
 
 - (void)loadView
 {
-    self.view = [[NSClassFromString(@"DVTControllerContentView") alloc] init];
-    [self.view setValue:self forKey:@"viewController"];
+    [super loadView];
+
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"NSConstraintBasedLayoutVisualizeMutuallyExclusiveConstraints"];
+
+    self.view.translatesAutoresizingMaskIntoConstraints = NO;
+
+    self.view.layer.backgroundColor = [NSColor redColor].CGColor;
+
+    [self.view addConstraints:@[[NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.view.superview attribute:NSLayoutAttributeHeight multiplier:1.f constant:0.f], [NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view.superview attribute:NSLayoutAttributeWidth multiplier:1.f constant:0.f]]];
+
+//    NSView *val = [[NSView alloc] init];
+//    val.wantsLayer = YES;
+//    val.layer.backgroundColor = [NSColor redColor].CGColor;
+//
+//    [self.view setValue:val forKeyPath:@"contentView"];
+//    [self.view setValue:self forKey:@"viewController"];
 }
 
 #pragma mark - DVTViewController
@@ -43,12 +67,12 @@
 
 - (void)setupContentView
 {
-    NSView *contentView = [self.view valueForKey:@"contentView"];
-
-    NSView *tableView = [[NSView alloc] initWithFrame:NSMakeRect(0.f, 0.f, 100.f, 100.f)];
-    tableView.wantsLayer = YES;
-    tableView.layer.backgroundColor = [[NSColor redColor] colorWithAlphaComponent:0.1f].CGColor;
-    [contentView addSubview:tableView];
+//    NSView *contentView = [self.view valueForKey:@"contentView"];
+//
+//    NSView *tableView = [[NSView alloc] initWithFrame:NSMakeRect(0.f, 0.f, 100.f, 100.f)];
+//    tableView.wantsLayer = YES;
+//    tableView.layer.backgroundColor = [[NSColor redColor] colorWithAlphaComponent:0.1f].CGColor;
+//    [contentView addSubview:tableView];
 }
 
 #pragma mark - Setters
@@ -68,18 +92,18 @@
     self.view.wantsLayer = YES;
 //    self.view.bounds = CGRectMake(0.f, 0.f, 1.f, 1.f);
 
-    self.view.layer.backgroundColor = [[NSColor redColor] colorWithAlphaComponent:0.1f].CGColor;
+//    self.view.layer.backgroundColor = [[NSColor redColor] colorWithAlphaComponent:0.1f].CGColor;
 
 //    NSLayoutConstraint *width = [NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeWidth relatedBy:0 toItem:self.view.superview attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0];
 //    NSLayoutConstraint *height = [NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeHeight relatedBy:0 toItem:self.view.superview attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0];
 //
 //    [self.view addConstraints:@[width, height]];
 
-    NSView *contentView = [[NSView alloc] initWithFrame:self.view.bounds];
-    contentView.wantsLayer = YES;
-    contentView.layer.backgroundColor = [[NSColor redColor] colorWithAlphaComponent:0.1f].CGColor;
-
-    [self.view setValue:contentView forKey:@"contentView"];
+//    NSView *contentView = [[NSView alloc] initWithFrame:self.view.bounds];
+//    contentView.wantsLayer = YES;
+//    contentView.layer.backgroundColor = [[NSColor redColor] colorWithAlphaComponent:0.1f].CGColor;
+//
+//    [self.view setValue:contentView forKey:@"contentView"];
 
     [self setupContentView];
 }

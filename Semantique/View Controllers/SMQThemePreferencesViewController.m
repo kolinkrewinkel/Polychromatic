@@ -54,6 +54,26 @@
 {
     NSView *contentView = [self.view valueForKey:@"contentView"];
     contentView.frame = contentView.superview.frame;
+
+    self.themesTableView.dataSource = self;
+    self.themesTableView.delegate = self;
+}
+
+#pragma mark - NSTableViewDataSource
+
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
+{
+    return 30;
+}
+
+- (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
+{
+    return [tableView viewAtColumn:0 row:row makeIfNecessary:YES];
+}
+
+- (CGFloat)tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row
+{
+    return 37.f;
 }
 
 #pragma mark - Setters

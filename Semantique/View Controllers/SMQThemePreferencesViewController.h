@@ -8,7 +8,9 @@
 
 #import "DVTInterfaces.h"
 
-@interface SMQThemePreferencesViewController : IDEViewController
+@interface SMQThemePreferencesViewController : IDEViewController <NSTableViewDataSource, NSTableViewDelegate>
+
+@property (nonatomic, strong) IBOutlet NSTableView *themesTableView;
 
 #pragma mark - Sizing
 

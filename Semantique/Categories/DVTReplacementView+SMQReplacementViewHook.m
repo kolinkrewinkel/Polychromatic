@@ -28,13 +28,7 @@ static IMP SMQOriginalSetupImplementation;
         self.controllerClass = [SMQThemePreferencesViewController class];
 
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSRect rect = self.installedViewController.view.bounds;
-            rect.size.height = [((SMQThemePreferencesViewController *)self.installedViewController) preferredContentHeight];
-            self.installedViewController.view.bounds = rect;
-
-            NSView *contentView = [self.installedViewController view];
-            contentView.translatesAutoresizingMaskIntoConstraints = YES;
-            contentView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
+            self.installedViewController.view.frame = NSMakeRect(0.f, 0.f, [self window].frame.size.width, [((SMQThemePreferencesViewController *)self.installedViewController) preferredContentHeight]);
 
             SMQOriginalSetupImplementation(self, @selector(_setupViewController));
         });

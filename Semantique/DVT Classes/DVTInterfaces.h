@@ -1389,3 +1389,133 @@ extern NSString *IDEEditorDocumentDidChangeNotification;
 - (id)initWithFrame:(struct CGRect)arg1;
 
 @end
+
+@class DVTBorderedView, DVTObservingToken, DVTReplacementView, DVTTabChooserView, NSArray, NSArrayController, NSColor, NSFont, NSObjectController, NSTableView, NSView;
+
+@interface IDEFontAndColorPrefsPaneController : IDEViewController <NSTableViewDelegate>
+{
+    DVTReplacementView *preferenceSetReplacementView;
+    DVTBorderedView *_fontAndColorBorderView;
+    DVTTabChooserView *_tabChooserView;
+    NSTableView *_fontAndColorItemTable;
+    NSArrayController *_categoriesArrayController;
+    NSObjectController *_currentThemeObjectController;
+    DVTBorderedView *_generalColorView;
+    NSView *_sourceEditorGeneralView;
+    NSView *_consoleGeneralView;
+    NSArray *_fontAndColorItems;
+    DVTObservingToken *_selectedTabObserver;
+    DVTObservingToken *_backgroundColorObserver;
+    DVTObservingToken *_selectionIndexesObserver;
+}
+
++ (void)initialize;
+@property(readonly) NSArrayController *categoriesArrayController; // @synthesize categoriesArrayController=_categoriesArrayController;
+@property(retain) NSArray *fontAndColorItems; // @synthesize fontAndColorItems=_fontAndColorItems;
+- (void)changeFont:(id)arg1;
+- (void)chooseFont:(id)arg1;
+- (double)tableView:(id)arg1 heightOfRow:(long long)arg2;
+- (void)tableView:(id)arg1 willDisplayCell:(id)arg2 forTableColumn:(id)arg3 row:(long long)arg4;
+- (id)_theme;
+- (void)_sourceTextColorsChanged:(id)arg1;
+- (void)_updateBindingsBasedOnSelectedTab;
+- (void)_handleTabChanged;
+- (void)_initTabChooserView;
+- (void)viewWillUninstall;
+- (void)viewDidInstall;
+- (void)loadView;
+- (void)_updateFontPickerAndColorWell;
+@property(copy) NSFont *combinedSyntaxFont;
+@property(copy) NSColor *combinedSyntaxColor;
+- (void)primitiveInvalidate;
+
+@end
+
+@class DVTChoice, NSArray, NSMapTable, NSMutableArray, NSSearchField;
+
+@interface DVTTabChooserView : DVTBorderedView
+{
+    double *_currentChoiceXCoordinates;
+    NSSearchField *_searchField;
+    DVTChoice *_selectedChoice;
+    long long _pressedIndex;
+    long long _mouseDownIndex;
+    NSMutableArray *_choices;
+    NSMapTable *_accessibilityProxiesByChoice;
+    struct {
+        unsigned int hasSearchField:1;
+        unsigned int _reserved:7;
+    } _flags;
+//    id <DVTTabChooserViewDelegate> _delegate;
+    double _choicesOffset;
+}
+
++ (id)keyPathsForValuesAffectingSelectedChoice;
++ (void)initialize;
+@property double choicesOffset; // @synthesize choicesOffset=_choicesOffset;
+//@property __weak id <DVTTabChooserViewDelegate> delegate; // @synthesize delegate=_delegate;
+@property(retain, nonatomic) NSSearchField *searchField; // @synthesize searchField=_searchField;
+- (id)accessibilityHitTest:(struct CGPoint)arg1;
+- (BOOL)accessibilityIsAttributeSettable:(id)arg1;
+- (id)accessibilityAttributeValue:(id)arg1;
+- (id)accessibilityAttributeNames;
+- (BOOL)accessibilityIsIgnored;
+- (id)accessibilityProxyForChoice:(id)arg1;
+@property BOOL hasSearchField;
+- (void)installSearchField;
+- (struct CGRect)searchFieldFrame;
+- (void)mouseUp:(id)arg1;
+- (void)mouseDragged:(id)arg1;
+- (void)mouseDown:(id)arg1;
+- (BOOL)acceptsFirstMouse:(id)arg1;
+- (id)choiceForEvent:(id)arg1 index:(long long *)arg2;
+- (id)choiceForPoint:(struct CGPoint)arg1 index:(long long *)arg2;
+- (void)drawRect:(struct CGRect)arg1;
+- (void)drawChoiceAtIndex:(long long)arg1;
+- (void)drawOneChoice;
+- (id)attributedTitleForChoice:(id)arg1 forceActive:(BOOL)arg2;
+- (void)updateGeometryForDrawing;
+- (struct CGRect)rectForChoice:(id)arg1;
+- (struct CGRect)rectForChoiceAtIndex:(long long)arg1;
+@property(readonly) double minimumWidth;
+- (struct CGRect)totalChoicesRect;
+- (double)totalWidth;
+- (double)widthForChoiceAtIndex:(long long)arg1;
+- (double)widthForChoice:(id)arg1;
+- (void)updateBoundSelectedObjects;
+@property(retain) DVTChoice *selectedChoice; // @synthesize selectedChoice=_selectedChoice;
+@property(readonly) NSMutableArray *mutableChoices;
+- (void)updateBoundContent;
+@property(copy) NSArray *choices;
+- (id)choiceWithIdentifier:(id)arg1;
+- (id)choiceAtIndex:(long long)arg1;
+- (void)viewWillMoveToWindow:(id)arg1;
+- (void)dealloc;
+- (id)initWithCoder:(id)arg1;
+- (id)initWithFrame:(struct CGRect)arg1;
+- (void)commonInit;
+- (id)dvtExtraBindings;
+
+@end
+
+
+@interface DVTChoice : NSObject
+{
+    NSString *_title;
+    NSString *_toolTip;
+    NSImage *_image;
+    NSString *_identifier;
+    id _representedObject;
+    BOOL _enabled;
+}
+
+@property(getter=isEnabled) BOOL enabled; // @synthesize enabled=_enabled;
+@property(readonly) id representedObject; // @synthesize representedObject=_representedObject;
+@property(copy) NSString *identifier; // @synthesize identifier=_identifier;
+@property(readonly) NSImage *image; // @synthesize image=_image;
+@property(readonly) NSString *toolTip; // @synthesize toolTip=_toolTip;
+@property(readonly) NSString *title; // @synthesize title=_title;
+- (id)description;
+- (id)initWithTitle:(id)arg1 toolTip:(id)arg2 image:(id)arg3 representedObject:(id)arg4;
+
+@end

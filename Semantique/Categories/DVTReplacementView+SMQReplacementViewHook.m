@@ -18,7 +18,7 @@ static IMP SMQOriginalSetupImplementation;
 
 + (void)load
 {
-    SMQOriginalSetupImplementation = SMQPoseSwizzle(self, @selector(_setupViewController), self, @selector(smq_setupViewController), YES);
+//    SMQOriginalSetupImplementation = SMQPoseSwizzle(self, @selector(_setupViewController), self, @selector(smq_setupViewController), YES);
 }
 
 - (void)smq_setupViewController

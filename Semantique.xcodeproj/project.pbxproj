@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3302570318EE734F00FC14F1 /* IDEFontAndColorPrefsPaneController+SMQPrefsPaneHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 3302570218EE734F00FC14F1 /* IDEFontAndColorPrefsPaneController+SMQPrefsPaneHook.m */; };
 		33311ABE18EA38320009BC82 /* SMQThemePreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33311ABD18EA38320009BC82 /* SMQThemePreferencesViewController.m */; };
 		33378E8F18EA736000E3584B /* DVTReplacementView+SMQReplacementViewHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 33378E8E18EA736000E3584B /* DVTReplacementView+SMQReplacementViewHook.m */; };
 		33B3A3EE18CD36BE00AA64C8 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33B3A3ED18CD36BE00AA64C8 /* AppKit.framework */; };
@@ -26,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3302570118EE734F00FC14F1 /* IDEFontAndColorPrefsPaneController+SMQPrefsPaneHook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "IDEFontAndColorPrefsPaneController+SMQPrefsPaneHook.h"; path = "Categories/IDEFontAndColorPrefsPaneController+SMQPrefsPaneHook.h"; sourceTree = "<group>"; };
+		3302570218EE734F00FC14F1 /* IDEFontAndColorPrefsPaneController+SMQPrefsPaneHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "IDEFontAndColorPrefsPaneController+SMQPrefsPaneHook.m"; path = "Categories/IDEFontAndColorPrefsPaneController+SMQPrefsPaneHook.m"; sourceTree = "<group>"; };
 		33311ABC18EA38320009BC82 /* SMQThemePreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SMQThemePreferencesViewController.h; path = "View Controllers/SMQThemePreferencesViewController.h"; sourceTree = "<group>"; };
 		33311ABD18EA38320009BC82 /* SMQThemePreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SMQThemePreferencesViewController.m; path = "View Controllers/SMQThemePreferencesViewController.m"; sourceTree = "<group>"; };
 		33378E8D18EA736000E3584B /* DVTReplacementView+SMQReplacementViewHook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "DVTReplacementView+SMQReplacementViewHook.h"; path = "Categories/DVTReplacementView+SMQReplacementViewHook.h"; sourceTree = "<group>"; };
@@ -171,6 +174,8 @@
 		33F94F3018CFC4DE0092E74C /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				3302570118EE734F00FC14F1 /* IDEFontAndColorPrefsPaneController+SMQPrefsPaneHook.h */,
+				3302570218EE734F00FC14F1 /* IDEFontAndColorPrefsPaneController+SMQPrefsPaneHook.m */,
 				33378E8D18EA736000E3584B /* DVTReplacementView+SMQReplacementViewHook.h */,
 				33378E8E18EA736000E3584B /* DVTReplacementView+SMQReplacementViewHook.m */,
 				33F94F2D18CFC4D70092E74C /* DVTSourceModelItem+SMQIdentification.h */,
@@ -253,6 +258,7 @@
 				33F94F3318CFCBE20092E74C /* SMQVariableManager.m in Sources */,
 				33F94F2F18CFC4D70092E74C /* DVTSourceModelItem+SMQIdentification.m in Sources */,
 				33B3A3F918CD36BF00AA64C8 /* Semantique.m in Sources */,
+				3302570318EE734F00FC14F1 /* IDEFontAndColorPrefsPaneController+SMQPrefsPaneHook.m in Sources */,
 				33378E8F18EA736000E3584B /* DVTReplacementView+SMQReplacementViewHook.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

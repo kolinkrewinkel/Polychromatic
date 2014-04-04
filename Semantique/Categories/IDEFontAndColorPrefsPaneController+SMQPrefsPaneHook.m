@@ -8,6 +8,7 @@
 
 #import "IDEFontAndColorPrefsPaneController+SMQPrefsPaneHook.h"
 #import "SMQSwizzling.h"
+#import "SMQView.h"
 
 static IMP originalViewLoadImp;
 static IMP originalTabChangeImp;
@@ -50,12 +51,24 @@ static char *SMQVariableColorModifierViewIdentifier = "SMQVariableColorModifierV
     tabChooser.choices = choices;
 
     // Create the variable prefs view.
-    NSView *variablePrefsView = [[NSView alloc] initWithFrame:[self smq_fontAndColorItemTable].frame];
-    variablePrefsView.wantsLayer = YES;
+    SMQView *variablePrefsView = [[SMQView alloc] initWithFrame:[self smq_fontAndColorItemTable].frame];
     variablePrefsView.alphaValue = 0.f;
+    [variablePrefsView setAutoresizingMask:NSViewHeightSizable];
+
+    NSTextField *saturationLabel = [[NSTextField alloc] initWithFrame:NSMakeRect(20.f, 160.f, 80.f, 20.f)];
+    [saturationLabel setEditable:NO];
+    [saturationLabel setBezeled:NO];
+    [saturationLabel setSelectable:NO];
+    saturationLabel.stringValue = @"Saturation:";
+    saturationLabel.drawsBackground = NO;
+    [variablePrefsView addSubview:saturationLabel];
+
+    NSSlider *saturationSlider = [[NSSlider alloc] initWithFrame:NSMakeRect(95.f, 157.f, 180.f, 30.f)];
+    saturationSlider.numberOfTickMarks = 5;
+    saturationSlider.maxValue = 1;
+    [variablePrefsView addSubview:saturationSlider];
 
     [[self smq_fontAndColorItemTable].superview addSubview:variablePrefsView];
-
     [self smq_setVarPrefsView:variablePrefsView];
 }
 
@@ -75,7 +88,17 @@ static char *SMQVariableColorModifierViewIdentifier = "SMQVariableColorModifierV
 - (void)setVariablePrefsViewHidden:(BOOL)hidden
 {
     // Hide the font/color list view
-    [self smq_fontAndColorItemTable].alphaValue = hidden;
+    NSTableView *fontsTableView = [self smq_fontAndColorItemTable];
+
+    if (hidden && !fontsTableView.superview)
+    {
+        [[self smq_varPrefsView].superview addSubview:fontsTableView];
+    }
+    else if (!hidden && fontsTableView.superview)
+    {
+        [fontsTableView removeFromSuperview];
+    }
+
     [self smq_varPrefsView].alphaValue = !hidden;
 }
 
@@ -93,12 +116,12 @@ static char *SMQVariableColorModifierViewIdentifier = "SMQVariableColorModifierV
 
 #pragma mark - Associated Object Getters/Setters
 
-- (NSView *)smq_varPrefsView
+- (SMQView *)smq_varPrefsView
 {
     return objc_getAssociatedObject(self, SMQVariableColorModifierViewIdentifier);
 }
 
-- (void)smq_setVarPrefsView:(NSView *)varPrefsView
+- (void)smq_setVarPrefsView:(SMQView *)varPrefsView
 {
     objc_setAssociatedObject(self, SMQVariableColorModifierViewIdentifier, varPrefsView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }

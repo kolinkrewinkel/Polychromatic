@@ -32,6 +32,12 @@ static char *SMQVariableColorModifierViewIdentifier = "SMQVariableColorModifierV
     // Load the original view.
     originalViewLoadImp(self, @selector(loadView));
 
+    [self configureTabChooserView];
+    [self setupVariablesPane];
+}
+
+- (void)configureTabChooserView
+{
     // This is the view that acts as a tab/replacement view.
     DVTTabChooserView *tabChooser = [self smq_tabChooserView];
 
@@ -49,8 +55,10 @@ static char *SMQVariableColorModifierViewIdentifier = "SMQVariableColorModifierV
     [consoleChoice setValue:@"LLDB Output" forKey:@"title"];
 
     tabChooser.choices = choices;
+}
 
-    // Create the variable prefs view.
+- (void)setupVariablesPane
+{
     SMQView *variablePrefsView = [[SMQView alloc] initWithFrame:[self smq_fontAndColorItemTable].frame];
     variablePrefsView.alphaValue = 0.f;
     [variablePrefsView setAutoresizingMask:NSViewHeightSizable];

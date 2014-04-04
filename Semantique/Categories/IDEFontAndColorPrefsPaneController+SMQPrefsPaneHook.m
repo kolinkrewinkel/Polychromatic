@@ -71,10 +71,23 @@ static char *SMQVariableColorModifierViewIdentifier = "SMQVariableColorModifierV
     saturationLabel.drawsBackground = NO;
     [variablePrefsView addSubview:saturationLabel];
 
-    NSSlider *saturationSlider = [[NSSlider alloc] initWithFrame:NSMakeRect(95.f, 157.f, 180.f, 30.f)];
+    NSSlider *saturationSlider = [[NSSlider alloc] initWithFrame:NSMakeRect(95.f, 159.f, 180.f, 30.f)];
     saturationSlider.numberOfTickMarks = 5;
     saturationSlider.maxValue = 1;
     [variablePrefsView addSubview:saturationSlider];
+
+    NSTextField *brightnessLabel = [[NSTextField alloc] initWithFrame:NSMakeRect(20.f, 200.f, 80.f, 20.f)];
+    [brightnessLabel setEditable:NO];
+    [brightnessLabel setBezeled:NO];
+    [brightnessLabel setSelectable:NO];
+    brightnessLabel.stringValue = @"Brightness:";
+    brightnessLabel.drawsBackground = NO;
+    [variablePrefsView addSubview:brightnessLabel];
+
+    NSSlider *brightnessSlider = [[NSSlider alloc] initWithFrame:NSMakeRect(95.f, 199.f, 180.f, 30.f)];
+    brightnessSlider.numberOfTickMarks = 5;
+    brightnessSlider.maxValue = 1;
+    [variablePrefsView addSubview:brightnessSlider];
 
     [[self smq_fontAndColorItemTable].superview addSubview:variablePrefsView];
     [self smq_setVarPrefsView:variablePrefsView];
@@ -108,6 +121,32 @@ static char *SMQVariableColorModifierViewIdentifier = "SMQVariableColorModifierV
     }
 
     [self smq_varPrefsView].alphaValue = !hidden;
+
+    NSMutableArray *colorWells = [[NSMutableArray alloc] init];
+    [self addSubviewsOfView:self.view withClass:[NSColorWell class] inArray:colorWells excludingView:fontsTableView.superview.superview.superview];
+
+    for (NSColorWell *colorWell in colorWells)
+    {
+        
+    }
+}
+
+- (void)addSubviewsOfView:(NSView *)view withClass:(Class)class inArray:(NSMutableArray *)array excludingView:(NSView *)excludingView
+{
+    if (view == excludingView)
+    {
+        return;
+    }
+
+    for (NSView *subview in view.subviews)
+    {
+        if ([subview isKindOfClass:class])
+        {
+            [array addObject:subview];
+        }
+
+        [self addSubviewsOfView:subview withClass:class inArray:array excludingView:excludingView];
+    }
 }
 
 #pragma mark - Convenience

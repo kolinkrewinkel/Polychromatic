@@ -35,9 +35,7 @@ static IMP SMQOriginalSetupImplementation;
     }
     else
     {
-
         SMQOriginalSetupImplementation(self, @selector(_setupViewController));
-
     }
 }
 

@@ -1315,3 +1315,77 @@ extern NSString *IDEEditorDocumentDidChangeNotification;
 @property(readonly, nonatomic, getter=isValid) BOOL valid;
 
 @end
+
+@interface DVTBorderedView : DVTLayoutView_ML
+{
+    NSColor *_topBorderColor;
+    NSColor *_bottomBorderColor;
+    NSColor *_leftBorderColor;
+    NSColor *_rightBorderColor;
+    NSColor *_topInactiveBorderColor;
+    NSColor *_bottomInactiveBorderColor;
+    NSColor *_leftInactiveBorderColor;
+    NSColor *_rightInactiveBorderColor;
+    NSColor *_shadowColor;
+    NSColor *_backgroundColor;
+    NSColor *_inactiveBackgroundColor;
+    NSGradient *_backgroundGradient;
+    NSGradient *_inactiveBackgroundGradient;
+    NSView *_contentView;
+    int _verticalContentViewResizingMode;
+    int _horizontalContentViewResizingMode;
+    int _borderSides;
+    int _shadowSides;
+//    id <DVTCancellable> _windowActivationObservation;
+//    int _highlightSides;
+//    id <DVTPainter> _backgroundPainter;
+}
+
+//@property(retain) id <DVTPainter> backgroundPainter; // @synthesize backgroundPainter=_backgroundPainter;
+@property(nonatomic) int highlightSides; // @synthesize highlightSides=_highlightSides;
+@property(nonatomic) int verticalContentViewResizingMode; // @synthesize verticalContentViewResizingMode=_verticalContentViewResizingMode;
+@property(copy, nonatomic) NSColor *topInactiveBorderColor; // @synthesize topInactiveBorderColor=_topInactiveBorderColor;
+@property(copy, nonatomic) NSColor *topBorderColor; // @synthesize topBorderColor=_topBorderColor;
+@property int shadowSides; // @synthesize shadowSides=_shadowSides;
+@property(copy) NSColor *shadowColor; // @synthesize shadowColor=_shadowColor;
+@property(copy, nonatomic) NSColor *rightInactiveBorderColor; // @synthesize rightInactiveBorderColor=_rightInactiveBorderColor;
+@property(copy, nonatomic) NSColor *rightBorderColor; // @synthesize rightBorderColor=_rightBorderColor;
+@property(copy, nonatomic) NSColor *leftInactiveBorderColor; // @synthesize leftInactiveBorderColor=_leftInactiveBorderColor;
+@property(copy, nonatomic) NSColor *leftBorderColor; // @synthesize leftBorderColor=_leftBorderColor;
+@property(copy, nonatomic) NSGradient *inactiveBackgroundGradient; // @synthesize inactiveBackgroundGradient=_inactiveBackgroundGradient;
+@property(copy, nonatomic) NSColor *inactiveBackgroundColor; // @synthesize inactiveBackgroundColor=_inactiveBackgroundColor;
+@property(nonatomic) int horizontalContentViewResizingMode; // @synthesize horizontalContentViewResizingMode=_horizontalContentViewResizingMode;
+@property(nonatomic) NSView *contentView; // @synthesize contentView=_contentView;
+@property(copy, nonatomic) NSColor *bottomInactiveBorderColor; // @synthesize bottomInactiveBorderColor=_bottomInactiveBorderColor;
+@property(copy, nonatomic) NSColor *bottomBorderColor; // @synthesize bottomBorderColor=_bottomBorderColor;
+@property(nonatomic) int borderSides; // @synthesize borderSides=_borderSides;
+@property(copy, nonatomic) NSGradient *backgroundGradient; // @synthesize backgroundGradient=_backgroundGradient;
+@property(copy, nonatomic) NSColor *backgroundColor; // @synthesize backgroundColor=_backgroundColor;
+- (void)window:(id)arg1 didChangeActivationState:(long long)arg2;
+- (void)viewWillMoveToWindow:(id)arg1;
+- (void)drawRect:(struct CGRect)arg1;
+- (void)drawBorderInRect:(struct CGRect)arg1;
+- (void)drawHighlightInRect:(struct CGRect)arg1;
+- (void)drawBackgroundInRect:(struct CGRect)arg1;
+- (BOOL)_isInactive;
+- (void)layoutBottomUp;
+- (void)layoutTopDown;
+- (void)_contentViewFrameDidChange:(id)arg1;
+- (struct CGSize)frameSizeForContentSize:(struct CGSize)arg1;
+- (struct CGSize)boundSizeForContentSize:(struct CGSize)arg1;
+@property(readonly) struct CGRect contentRect;
+- (struct CGRect)_contentRectExcludingShadow;
+//- (CDStruct_bf6d4a14)_contentInset;
+//- (CDStruct_bf6d4a14)_borderInset;
+//- (CDStruct_bf6d4a14)_shadowInset;
+- (BOOL)isShowingShadow;
+- (void)setAllInactiveBordersToColor:(id)arg1;
+- (void)setAllBordersToColor:(id)arg1;
+- (void)setShadowSide:(int)arg1;
+- (void)_setBorderSides:(int)arg1;
+- (void)dealloc;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
+- (id)initWithFrame:(struct CGRect)arg1;
+
+@end

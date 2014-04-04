@@ -12,6 +12,9 @@
 
 @property (nonatomic, strong) IBOutlet NSTableView *themesTableView;
 
+@property (nonatomic, strong) IBOutlet NSScrollView *themeDetailsScrollView;
+@property (nonatomic, strong) IBOutlet NSView *themeDetailsView;
+
 #pragma mark - Sizing
 
 - (CGFloat)preferredContentHeight;

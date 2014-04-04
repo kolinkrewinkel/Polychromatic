@@ -6,6 +6,8 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="SMQThemePreferencesViewController">
             <connections>
+                <outlet property="themeDetailsScrollView" destination="J67-Sl-UGX" id="hTi-E3-dbo"/>
+                <outlet property="themeDetailsView" destination="uMc-DG-mNV" id="Xpg-d2-1aw"/>
                 <outlet property="themesTableView" destination="Pq4-Zn-7On" id="QxE-wv-tFR"/>
                 <outlet property="view" destination="c22-O7-iKe" id="Thq-yl-KG0"/>
             </connections>
@@ -78,6 +80,94 @@
                             </scroller>
                             <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="6BG-O7-Iha">
                                 <rect key="frame" x="224" y="17" width="15" height="102"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </scroller>
+                        </scrollView>
+                        <scrollView autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" horizontalScrollElasticity="none" id="J67-Sl-UGX">
+                            <rect key="frame" x="184" y="20" width="335" height="326"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <clipView key="contentView" id="8pu-BN-hcZ">
+                                <rect key="frame" x="1" y="1" width="333" height="324"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <view id="02T-zz-UQC">
+                                        <rect key="frame" x="0.0" y="0.0" width="333" height="324"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <subviews>
+                                            <box autoresizesSubviews="NO" verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="Yrr-nj-Fr7">
+                                                <rect key="frame" x="20" y="301" width="293" height="5"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                                                <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <font key="titleFont" metaFont="system"/>
+                                            </box>
+                                            <box autoresizesSubviews="NO" title="Variables" borderType="none" id="uMc-DG-mNV">
+                                                <rect key="frame" x="7" y="155" width="298" height="140"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <view key="contentView">
+                                                    <rect key="frame" x="1" y="0.0" width="296" height="125"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <subviews>
+                                                        <slider verticalHuggingPriority="750" id="t2K-mG-OYv">
+                                                            <rect key="frame" x="124" y="87" width="96" height="27"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                            <sliderCell key="cell" alignment="left" maxValue="1" doubleValue="0.59999999999999998" tickMarkPosition="below" numberOfTickMarks="5" sliderType="linear" id="nUo-cG-hcZ"/>
+                                                        </slider>
+                                                        <colorWell bordered="NO" enabled="NO" id="Gp5-8L-k8j">
+                                                            <rect key="frame" x="126" y="4" width="44" height="23"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                            <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </colorWell>
+                                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="H37-HG-H9t">
+                                                            <rect key="frame" x="27" y="96" width="89" height="17"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="Saturation:" usesSingleLineMode="YES" id="L9v-6T-YjJ">
+                                                                <font key="font" metaFont="system"/>
+                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                            </textFieldCell>
+                                                        </textField>
+                                                        <slider verticalHuggingPriority="750" id="CrS-pW-LWy">
+                                                            <rect key="frame" x="124" y="46" width="96" height="27"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                            <sliderCell key="cell" alignment="left" maxValue="1" doubleValue="0.90000000000000002" tickMarkPosition="below" numberOfTickMarks="5" sliderType="linear" id="CR4-25-kKE"/>
+                                                        </slider>
+                                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="0gT-Ks-25w">
+                                                            <rect key="frame" x="27" y="54" width="89" height="17"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="Brightness:" usesSingleLineMode="YES" id="cyx-DT-rUS">
+                                                                <font key="font" metaFont="system"/>
+                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                            </textFieldCell>
+                                                        </textField>
+                                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="q80-Dp-wtg">
+                                                            <rect key="frame" x="27" y="9" width="89" height="17"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="Sample:" usesSingleLineMode="YES" id="NJQ-Lf-Gsd">
+                                                                <font key="font" metaFont="system"/>
+                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                            </textFieldCell>
+                                                        </textField>
+                                                    </subviews>
+                                                </view>
+                                                <size key="contentViewMargins" width="1" height="0.0"/>
+                                                <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                                                <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <font key="titleFont" size="11" name="LucidaGrande"/>
+                                            </box>
+                                        </subviews>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </clipView>
+                            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="Les-kH-LPw">
+                                <rect key="frame" x="-100" y="-100" width="333" height="16"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </scroller>
+                            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="bZs-Zy-Wec">
+                                <rect key="frame" x="318" y="1" width="16" height="324"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </scroller>
                         </scrollView>

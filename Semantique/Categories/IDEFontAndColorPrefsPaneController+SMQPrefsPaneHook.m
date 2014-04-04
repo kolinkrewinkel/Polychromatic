@@ -49,21 +49,20 @@ static char *SMQVariableColorModifierViewIdentifier = "SMQVariableColorModifierV
     [choices addObject:[[DVTChoice alloc] initWithTitle:@"Variables" toolTip:@"Variables" image:nil representedObject:nil]];
 
     DVTChoice *sourceCodeEditorChoice = choices[0];
-    [sourceCodeEditorChoice setValue:@"Type Coloring" forKey:@"title"];
+    [sourceCodeEditorChoice setValue:@"Types" forKey:@"title"];
 
     DVTChoice *consoleChoice = choices[1];
-    [consoleChoice setValue:@"LLDB Output" forKey:@"title"];
+    [consoleChoice setValue:@"LLDB" forKey:@"title"];
 
     tabChooser.choices = choices;
 }
 
 - (void)setupVariablesPane
 {
-    SMQView *variablePrefsView = [[SMQView alloc] initWithFrame:[self smq_fontAndColorItemTable].frame];
-    variablePrefsView.alphaValue = 0.f;
+    SMQView *variablePrefsView = [[SMQView alloc] initWithFrame:CGRectMake(0.f, 0.f, [self smq_fontAndColorItemTable].frame.size.width, 285.f)];
     [variablePrefsView setAutoresizingMask:NSViewHeightSizable];
 
-    NSTextField *saturationLabel = [[NSTextField alloc] initWithFrame:NSMakeRect(40.f, 175.f, 80.f, 20.f)];
+    NSTextField *saturationLabel = [[NSTextField alloc] initWithFrame:NSMakeRect(40.f, 40.f, 80.f, 20.f)];
     [saturationLabel setEditable:NO];
     [saturationLabel setBezeled:NO];
     [saturationLabel setSelectable:NO];
@@ -71,14 +70,14 @@ static char *SMQVariableColorModifierViewIdentifier = "SMQVariableColorModifierV
     saturationLabel.drawsBackground = NO;
     [variablePrefsView addSubview:saturationLabel];
 
-    NSSlider *saturationSlider = [[NSSlider alloc] initWithFrame:NSMakeRect(110.f, 174.f, 180.f, 30.f)];
+    NSSlider *saturationSlider = [[NSSlider alloc] initWithFrame:NSMakeRect(110.f, 39.f, 260.f, 30.f)];
     [saturationSlider setAction:@selector(saturationChanged:)];
     [saturationSlider setTarget:self];
     saturationSlider.numberOfTickMarks = 5;
     saturationSlider.maxValue = 1;
     [variablePrefsView addSubview:saturationSlider];
 
-    NSTextField *brightnessLabel = [[NSTextField alloc] initWithFrame:NSMakeRect(40.f, 215.f, 80.f, 20.f)];
+    NSTextField *brightnessLabel = [[NSTextField alloc] initWithFrame:NSMakeRect(40.f, 80.f, 80.f, 20.f)];
     [brightnessLabel setEditable:NO];
     [brightnessLabel setBezeled:NO];
     [brightnessLabel setSelectable:NO];
@@ -86,14 +85,14 @@ static char *SMQVariableColorModifierViewIdentifier = "SMQVariableColorModifierV
     brightnessLabel.drawsBackground = NO;
     [variablePrefsView addSubview:brightnessLabel];
 
-    NSSlider *brightnessSlider = [[NSSlider alloc] initWithFrame:NSMakeRect(110.f, 214.f, 180.f, 30.f)];
+    NSSlider *brightnessSlider = [[NSSlider alloc] initWithFrame:NSMakeRect(110.f, 79.f, 260.f, 30.f)];
     [brightnessSlider setAction:@selector(brightnessChanged:)];
     [brightnessSlider setTarget:self];
     brightnessSlider.numberOfTickMarks = 5;
     brightnessSlider.maxValue = 1;
     [variablePrefsView addSubview:brightnessSlider];
 
-    NSTextField *descriptionLabel = [[NSTextField alloc] initWithFrame:NSMakeRect(40.f, 260.f, 400.f, 160.f)];
+    NSTextField *descriptionLabel = [[NSTextField alloc] initWithFrame:NSMakeRect(40.f, 125.f, 400.f, 160.f)];
     [descriptionLabel setEditable:NO];
     [descriptionLabel setBezeled:NO];
     [descriptionLabel setSelectable:NO];
@@ -102,7 +101,6 @@ static char *SMQVariableColorModifierViewIdentifier = "SMQVariableColorModifierV
     descriptionLabel.drawsBackground = YES;
     [variablePrefsView addSubview:descriptionLabel];
 
-    [[self smq_fontAndColorItemTable].superview addSubview:variablePrefsView];
     [self smq_setVarPrefsView:variablePrefsView];
 }
 
@@ -131,11 +129,13 @@ static char *SMQVariableColorModifierViewIdentifier = "SMQVariableColorModifierV
             [self restoreColorWell:colorWell];
         }
 
-        [[self smq_varPrefsView].superview addSubview:fontsTableView];
+        NSScrollView *scrollView = (NSScrollView *)[self smq_varPrefsView].superview.superview;
+        scrollView.documentView = fontsTableView;
     }
     else if (!hidden && fontsTableView.superview)
     {
-        [fontsTableView removeFromSuperview];
+        NSScrollView *scrollView = (NSScrollView *)fontsTableView.superview.superview;
+        scrollView.documentView = [self smq_varPrefsView];
 
         for (NSColorWell *colorWell in [self colorWells])
         {
@@ -144,8 +144,6 @@ static char *SMQVariableColorModifierViewIdentifier = "SMQVariableColorModifierV
 
         [self adjustColorWellSamples];
     }
-
-    [self smq_varPrefsView].alphaValue = !hidden;
 }
 
 - (void)addSubviewsOfView:(NSView *)view withClass:(Class)class inArray:(NSMutableArray *)array excludingView:(NSView *)excludingView

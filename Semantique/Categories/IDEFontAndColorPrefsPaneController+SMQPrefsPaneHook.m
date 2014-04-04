@@ -62,43 +62,42 @@ static char *SMQVariableColorModifierViewIdentifier = "SMQVariableColorModifierV
     SMQView *variablePrefsView = [[SMQView alloc] initWithFrame:CGRectMake(0.f, 0.f, [self smq_fontAndColorItemTable].frame.size.width, 285.f)];
     [variablePrefsView setAutoresizingMask:NSViewHeightSizable];
 
-    NSTextField *saturationLabel = [[NSTextField alloc] initWithFrame:NSMakeRect(40.f, 40.f, 80.f, 20.f)];
+    NSTextField *saturationLabel = [[NSTextField alloc] initWithFrame:NSMakeRect(40.f, 30.f, 80.f, 20.f)];
     [saturationLabel setEditable:NO];
     [saturationLabel setBezeled:NO];
     [saturationLabel setSelectable:NO];
     saturationLabel.stringValue = @"Saturation:";
-    saturationLabel.drawsBackground = NO;
+    saturationLabel.wantsLayer = YES;
     [variablePrefsView addSubview:saturationLabel];
 
-    NSSlider *saturationSlider = [[NSSlider alloc] initWithFrame:NSMakeRect(110.f, 39.f, 260.f, 30.f)];
+    NSSlider *saturationSlider = [[NSSlider alloc] initWithFrame:NSMakeRect(115.f, 27.f, variablePrefsView.frame.size.width - (115.f * 2.f), 30.f)];
     [saturationSlider setAction:@selector(saturationChanged:)];
     [saturationSlider setTarget:self];
-    saturationSlider.numberOfTickMarks = 5;
+    saturationSlider.numberOfTickMarks = 2;
     saturationSlider.maxValue = 1;
     [variablePrefsView addSubview:saturationSlider];
 
-    NSTextField *brightnessLabel = [[NSTextField alloc] initWithFrame:NSMakeRect(40.f, 80.f, 80.f, 20.f)];
+    NSTextField *brightnessLabel = [[NSTextField alloc] initWithFrame:NSMakeRect(40.f, 70.f, 80.f, 20.f)];
     [brightnessLabel setEditable:NO];
     [brightnessLabel setBezeled:NO];
     [brightnessLabel setSelectable:NO];
     brightnessLabel.stringValue = @"Brightness:";
-    brightnessLabel.drawsBackground = NO;
+    brightnessLabel.wantsLayer = YES;
     [variablePrefsView addSubview:brightnessLabel];
 
-    NSSlider *brightnessSlider = [[NSSlider alloc] initWithFrame:NSMakeRect(110.f, 79.f, 260.f, 30.f)];
+    NSSlider *brightnessSlider = [[NSSlider alloc] initWithFrame:NSMakeRect(115.f, 67.f, variablePrefsView.frame.size.width - (115.f * 2.f), 30.f)];
     [brightnessSlider setAction:@selector(brightnessChanged:)];
     [brightnessSlider setTarget:self];
-    brightnessSlider.numberOfTickMarks = 5;
+    brightnessSlider.numberOfTickMarks = 2;
     brightnessSlider.maxValue = 1;
     [variablePrefsView addSubview:brightnessSlider];
 
-    NSTextField *descriptionLabel = [[NSTextField alloc] initWithFrame:NSMakeRect(40.f, 125.f, 400.f, 160.f)];
+    NSTextField *descriptionLabel = [[NSTextField alloc] initWithFrame:NSMakeRect(40.f, 115.f, 400.f, 160.f)];
     [descriptionLabel setEditable:NO];
     [descriptionLabel setBezeled:NO];
     [descriptionLabel setSelectable:NO];
     descriptionLabel.textColor = [NSColor darkGrayColor];
     descriptionLabel.stringValue = @"Local variables, properties, and ivars, as well as statics and arguments are colored.\n\nThey are assigned a  color by adding them to a sorted set. Essentially, they are given a transient position on the spectrum, and the saturation and brightness levels are pre-defined to maintain a sense of consistency.\n\nBy doing this, a clash of neons versus pastels does not occur while the hue itself can shift.";
-    descriptionLabel.drawsBackground = YES;
     [variablePrefsView addSubview:descriptionLabel];
 
     [self smq_setVarPrefsView:variablePrefsView];

@@ -72,6 +72,8 @@ static char *SMQVariableColorModifierViewIdentifier = "SMQVariableColorModifierV
     [variablePrefsView addSubview:saturationLabel];
 
     NSSlider *saturationSlider = [[NSSlider alloc] initWithFrame:NSMakeRect(95.f, 159.f, 180.f, 30.f)];
+    [saturationSlider setAction:@selector(saturationChanged:)];
+    [saturationSlider setTarget:self];
     saturationSlider.numberOfTickMarks = 5;
     saturationSlider.maxValue = 1;
     [variablePrefsView addSubview:saturationSlider];
@@ -85,6 +87,8 @@ static char *SMQVariableColorModifierViewIdentifier = "SMQVariableColorModifierV
     [variablePrefsView addSubview:brightnessLabel];
 
     NSSlider *brightnessSlider = [[NSSlider alloc] initWithFrame:NSMakeRect(95.f, 199.f, 180.f, 30.f)];
+    [brightnessSlider setAction:@selector(brightnessChanged:)];
+    [brightnessSlider setTarget:self];
     brightnessSlider.numberOfTickMarks = 5;
     brightnessSlider.maxValue = 1;
     [variablePrefsView addSubview:brightnessSlider];
@@ -113,22 +117,26 @@ static char *SMQVariableColorModifierViewIdentifier = "SMQVariableColorModifierV
 
     if (hidden && !fontsTableView.superview)
     {
+        for (NSColorWell *colorWell in [self colorWells])
+        {
+            [self restoreColorWell:colorWell];
+        }
+
         [[self smq_varPrefsView].superview addSubview:fontsTableView];
     }
     else if (!hidden && fontsTableView.superview)
     {
         [fontsTableView removeFromSuperview];
+
+        for (NSColorWell *colorWell in [self colorWells])
+        {
+            [self preserveColorWell:colorWell];
+        }
+
+        [self adjustColorWellSamples];
     }
 
     [self smq_varPrefsView].alphaValue = !hidden;
-
-    NSMutableArray *colorWells = [[NSMutableArray alloc] init];
-    [self addSubviewsOfView:self.view withClass:[NSColorWell class] inArray:colorWells excludingView:fontsTableView.superview.superview.superview];
-
-    for (NSColorWell *colorWell in colorWells)
-    {
-        
-    }
 }
 
 - (void)addSubviewsOfView:(NSView *)view withClass:(Class)class inArray:(NSMutableArray *)array excludingView:(NSView *)excludingView
@@ -147,6 +155,67 @@ static char *SMQVariableColorModifierViewIdentifier = "SMQVariableColorModifierV
 
         [self addSubviewsOfView:subview withClass:class inArray:array excludingView:excludingView];
     }
+}
+
+- (NSArray *)colorWells
+{
+    NSMutableArray *colorWells = [[NSMutableArray alloc] init];
+    [self addSubviewsOfView:self.view withClass:[NSColorWell class] inArray:colorWells excludingView:[self smq_varPrefsView].superview.superview.superview];
+
+    return colorWells;
+}
+
+- (void)adjustColorWellSamples
+{
+    NSArray *colorWells = [self colorWells];
+
+    NSUInteger index = 0;
+    for (NSColorWell *colorWell in colorWells)
+    {
+        CGFloat hue = (CGFloat)index/colorWells.count;
+        [colorWell setColor:[NSColor colorWithCalibratedHue:hue saturation:self.smq_Saturation brightness:self.smq_Brightness alpha:1.f]];
+
+        index++;
+
+        NSView *superview = colorWell.superview;
+        NSTextField *label = [superview.subviews lastObject];
+        label.stringValue = [NSString stringWithFormat:@"Sample %lu", index];
+    }
+}
+
+- (void)preserveColorWell:(NSColorWell *)colorWell
+{
+    NSView *superview = colorWell.superview;
+    NSTextField *label = [superview.subviews lastObject];
+
+    objc_setAssociatedObject(colorWell, "smq_prevColor", colorWell.color, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(colorWell, "smq_prevTitle", label.stringValue, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+
+- (void)restoreColorWell:(NSColorWell *)colorWell
+{
+    NSView *superview = colorWell.superview;
+    NSTextField *label = [superview.subviews lastObject];
+
+    colorWell.color = objc_getAssociatedObject(colorWell, "smq_prevColor");
+    label.stringValue = objc_getAssociatedObject(colorWell, "smq_prevTitle");
+
+    objc_setAssociatedObject(colorWell, "smq_prevColor", nil, OBJC_ASSOCIATION_ASSIGN);
+    objc_setAssociatedObject(colorWell, "smq_prevTitle", nil, OBJC_ASSOCIATION_ASSIGN);
+}
+
+- (void)saturationChanged:(NSSlider *)slider
+{
+    [self smq_setSaturation:slider.floatValue];
+
+    [self adjustColorWellSamples];
+}
+
+- (void)brightnessChanged:(NSSlider *)slider
+{
+    [self smq_setBrightness:slider.floatValue];
+
+    [self adjustColorWellSamples];
 }
 
 #pragma mark - Convenience
@@ -171,6 +240,26 @@ static char *SMQVariableColorModifierViewIdentifier = "SMQVariableColorModifierV
 - (void)smq_setVarPrefsView:(SMQView *)varPrefsView
 {
     objc_setAssociatedObject(self, SMQVariableColorModifierViewIdentifier, varPrefsView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (CGFloat)smq_Saturation
+{
+    return [objc_getAssociatedObject(self, "smq_Saturation") floatValue];
+}
+
+- (void)smq_setSaturation:(CGFloat)saturation
+{
+    objc_setAssociatedObject(self, "smq_Saturation", @(saturation), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (CGFloat)smq_Brightness
+{
+    return [objc_getAssociatedObject(self, "smq_Brightness") floatValue];
+}
+
+- (void)smq_setBrightness:(CGFloat)brightness
+{
+    objc_setAssociatedObject(self, "smq_Brightness", @(brightness), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 @end

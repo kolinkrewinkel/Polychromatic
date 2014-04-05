@@ -7,9 +7,6 @@
 //
 
 #import "Semantique.h"
-#import "SMQSwizzling.h"
-#import "DVTTextStorage+SMQHighlightingHook.h"
-#import "SMQVariableManager.h"
 
 @interface Semantique()
 
@@ -22,6 +19,7 @@
 + (void)pluginDidLoad:(NSBundle *)plugin
 {
     NSString *currentApplicationName = [[NSBundle mainBundle] infoDictionary][@"CFBundleName"];
+
     if ([currentApplicationName isEqual:@"Xcode"])
     {
         [self sharedPluginWithBundle:plugin];
@@ -47,16 +45,12 @@
 
 - (id)initWithBundle:(NSBundle *)plugin
 {
-    if (self = [super init]) {
+    if ((self = [super init]))
+    {
         self.bundle = plugin;
     }
 
     return self;
-}
-
-- (void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

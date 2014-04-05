@@ -1519,3 +1519,13 @@ extern NSString *IDEEditorDocumentDidChangeNotification;
 - (id)initWithTitle:(id)arg1 toolTip:(id)arg2 image:(id)arg3 representedObject:(id)arg4;
 
 @end
+
+@interface IDEFontAndColorFontTransformer : NSValueTransformer
+{
+}
+
++ (BOOL)allowsReverseTransformation;
++ (Class)transformedValueClass;
+- (id)transformedValue:(id)arg1;
+
+@end

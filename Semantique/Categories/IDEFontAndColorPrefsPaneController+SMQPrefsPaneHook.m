@@ -9,9 +9,11 @@
 #import "IDEFontAndColorPrefsPaneController+SMQPrefsPaneHook.h"
 #import "SMQSwizzling.h"
 #import "SMQView.h"
+#import "DVTFontAndColorTheme+SMQDataInjection.h"
 
 static IMP originalViewLoadImp;
 static IMP originalTabChangeImp;
+static IMP originalFontPickerImp;
 
 static char *SMQVariableColorModifierViewIdentifier = "SMQVariableColorModifierViewIdentifier";
 
@@ -23,6 +25,7 @@ static char *SMQVariableColorModifierViewIdentifier = "SMQVariableColorModifierV
 {
     originalViewLoadImp = SMQPoseSwizzle([IDEFontAndColorPrefsPaneController class], @selector(loadView), self, @selector(smq_loadView), YES);
     originalTabChangeImp = SMQPoseSwizzle([IDEFontAndColorPrefsPaneController class], @selector(_handleTabChanged), self, @selector(smq_handleTabChanged), YES);
+    originalFontPickerImp = SMQPoseSwizzle(self, @selector(_updateFontPickerAndColorWell), self, @selector(smq_updateFontPickerAndColorWell), YES);
 }
 
 #pragma mark - View Methods
@@ -57,6 +60,22 @@ static char *SMQVariableColorModifierViewIdentifier = "SMQVariableColorModifierV
     tabChooser.choices = choices;
 }
 
+- (void)smq_updateFontPickerAndColorWell
+{
+    originalFontPickerImp(self, @selector(_updateFontPickerAndColorWell));
+
+    [self saturationSlider].floatValue = [[self theme] smq_saturation];
+    [self smq_setSaturation:[[self theme] smq_saturation]];
+
+    [self brightnessSlider].floatValue = [[self theme] smq_brightness];
+    [self smq_setBrightness:[[self theme] smq_brightness]];
+
+    if ([self smq_varPrefsView].superview)
+    {
+        [self adjustColorWellSamples];
+    }
+}
+
 - (void)setupVariablesPane
 {
     SMQView *variablePrefsView = [[SMQView alloc] initWithFrame:CGRectMake(0.f, 0.f, [self smq_fontAndColorItemTable].frame.size.width, 285.f)];
@@ -76,6 +95,7 @@ static char *SMQVariableColorModifierViewIdentifier = "SMQVariableColorModifierV
     saturationSlider.numberOfTickMarks = 2;
     saturationSlider.maxValue = 1;
     [variablePrefsView addSubview:saturationSlider];
+    [self smq_setSaturationSlider:saturationSlider];
 
     NSTextField *brightnessLabel = [[NSTextField alloc] initWithFrame:NSMakeRect(40.f, 70.f, 80.f, 20.f)];
     [brightnessLabel setEditable:NO];
@@ -91,6 +111,7 @@ static char *SMQVariableColorModifierViewIdentifier = "SMQVariableColorModifierV
     brightnessSlider.numberOfTickMarks = 2;
     brightnessSlider.maxValue = 1;
     [variablePrefsView addSubview:brightnessSlider];
+    [self smq_setBrightnessSlider:brightnessSlider];
 
     NSTextField *descriptionLabel = [[NSTextField alloc] initWithFrame:NSMakeRect(40.f, 115.f, 400.f, 160.f)];
     [descriptionLabel setEditable:NO];
@@ -214,12 +235,18 @@ static char *SMQVariableColorModifierViewIdentifier = "SMQVariableColorModifierV
 {
     [self smq_setSaturation:slider.floatValue];
 
+    [[self theme] smq_setSaturation:slider.floatValue];
+    [self theme].contentNeedsSaving = YES;
+    
     [self adjustColorWellSamples];
 }
 
 - (void)brightnessChanged:(NSSlider *)slider
 {
     [self smq_setBrightness:slider.floatValue];
+
+    [[self theme] smq_setBrightness:slider.floatValue];
+    [self theme].contentNeedsSaving = YES;
 
     [self adjustColorWellSamples];
 }
@@ -229,6 +256,11 @@ static char *SMQVariableColorModifierViewIdentifier = "SMQVariableColorModifierV
 - (DVTTabChooserView *)smq_tabChooserView
 {
     return [self valueForKey:@"_tabChooserView"];
+}
+
+- (DVTFontAndColorTheme *)theme
+{
+    return [[self valueForKey:@"_currentThemeObjectController"] content];
 }
 
 - (NSTableView *)smq_fontAndColorItemTable
@@ -266,6 +298,26 @@ static char *SMQVariableColorModifierViewIdentifier = "SMQVariableColorModifierV
 - (void)smq_setBrightness:(CGFloat)brightness
 {
     objc_setAssociatedObject(self, "smq_Brightness", @(brightness), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (NSSlider *)saturationSlider
+{
+    return objc_getAssociatedObject(self, "smq_saturationSlider");
+}
+
+- (void)smq_setSaturationSlider:(NSSlider *)slider
+{
+    objc_setAssociatedObject(self, "smq_saturationSlider", slider, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (NSSlider *)brightnessSlider
+{
+    return objc_getAssociatedObject(self, "smq_brightnessSlider");
+}
+
+- (void)smq_setBrightnessSlider:(NSSlider *)slider
+{
+    objc_setAssociatedObject(self, "smq_brightnessSlider", slider, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 @end

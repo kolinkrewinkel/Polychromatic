@@ -9,6 +9,8 @@
 #import "SMQVariableManager.h"
 #import "DVTInterfaces.h"
 
+#import "DVTFontAndColorTheme+SMQDataInjection.h"
+
 static NSString *const IDEIndexDidIndexWorkspaceNotification = @"IDEIndexDidIndexWorkspaceNotification";
 
 @interface SMQVariableManager ()
@@ -72,7 +74,7 @@ static NSString *const IDEIndexDidIndexWorkspaceNotification = @"IDEIndexDidInde
     NSUInteger index = [variables indexOfObject:variable];
     CGFloat hueValue = (CGFloat)index/variables.count;
 
-    return [NSColor colorWithCalibratedHue:hueValue saturation:0.55f brightness:0.8f alpha:1.f];
+    return [NSColor colorWithCalibratedHue:hueValue saturation:[[DVTFontAndColorTheme currentTheme] smq_saturation] brightness:[[DVTFontAndColorTheme currentTheme] smq_brightness] alpha:1.f];
 }
 
 - (void)indexDidIndexWorkspaceNotification:(NSNotification *)notification

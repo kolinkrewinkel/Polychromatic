@@ -22,7 +22,8 @@
 + (void)pluginDidLoad:(NSBundle *)plugin
 {
     NSString *currentApplicationName = [[NSBundle mainBundle] infoDictionary][@"CFBundleName"];
-    if ([currentApplicationName isEqual:@"Xcode"]) {
+    if ([currentApplicationName isEqual:@"Xcode"])
+    {
         [self sharedPluginWithBundle:plugin];
     }
 }
@@ -47,12 +48,7 @@
 - (id)initWithBundle:(NSBundle *)plugin
 {
     if (self = [super init]) {
-        // reference to plugin's bundle, for resource acccess
         self.bundle = plugin;
-
-        NSLog(@"Plugin loaded.");
-
-        [SMQVariableManager sharedManager];
     }
 
     return self;

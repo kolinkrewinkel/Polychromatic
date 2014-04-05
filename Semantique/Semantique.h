@@ -8,12 +8,8 @@
 
 #import <AppKit/AppKit.h>
 
-@class BBUIndexHelper;
-
 @interface Semantique : NSObject
 
 + (instancetype)sharedPlugin;
-
-@property (nonatomic, strong) BBUIndexHelper* indexHelper;
 
 @end

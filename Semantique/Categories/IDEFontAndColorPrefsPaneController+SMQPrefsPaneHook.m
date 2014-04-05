@@ -122,6 +122,8 @@ static char *SMQVariableColorModifierViewIdentifier = "SMQVariableColorModifierV
     [variablePrefsView addSubview:descriptionLabel];
 
     [self smq_setVarPrefsView:variablePrefsView];
+
+    [self _updateFontPickerAndColorWell];
 }
 
 - (void)smq_handleTabChanged

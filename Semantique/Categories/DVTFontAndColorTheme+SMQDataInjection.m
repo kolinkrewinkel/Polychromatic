@@ -10,12 +10,43 @@
 #import "SMQSwizzling.h"
 
 static IMP originalDataRepImp;
+static IMP originalDataLoadImp;
 
 @implementation DVTFontAndColorTheme (SMQDataInjection)
 
 + (void)load
 {
     originalDataRepImp = SMQPoseSwizzle(self, @selector(dataRepresentationWithError:), self, @selector(smq_dataRepresentationWithError:), YES);
+    originalDataLoadImp = SMQPoseSwizzle(self, @selector(_loadFontsAndColors), self, @selector(smq_loadFontsAndColors), YES);
+}
+
+- (BOOL)smq_loadFontsAndColors
+{
+    BOOL result = (BOOL)originalDataLoadImp(self, @selector(_loadFontsAndColors));
+
+    // Unfortunately, this has to be loaded twice.
+    NSData *data = nil;
+
+    if (self.isBuiltIn)
+    {
+        data = [NSData dataWithContentsOfFile:[[self valueForKey:@"_dataURL"] absoluteString]];
+    }
+    else
+    {
+        data = [NSData dataWithContentsOfFile:[NSString stringWithFormat:@"%@/Library/Developer/Xcode/UserData/FontAndColorThemes/%@", NSHomeDirectory(), self.name]];
+    }
+
+    if (data)
+    {
+        NSPropertyListFormat format = 0;
+        NSError *error = nil;
+        NSMutableDictionary *dict = [NSPropertyListSerialization propertyListWithData:data options:NSPropertyListMutableContainersAndLeaves format:&format error:&error];
+
+        [self smq_setBrightness:[dict[@"SMQVarBrightness"] floatValue]];
+        [self smq_setSaturation:[dict[@"SMQVarSaturation"] floatValue]];
+    }
+
+    return result;
 }
 
 - (id)smq_dataRepresentationWithError:(NSError **)arg1
@@ -26,6 +57,7 @@ static IMP originalDataRepImp;
     {
         NSPropertyListFormat format = 0;
         NSString *error = nil;
+
         NSMutableDictionary *dict = [NSPropertyListSerialization propertyListWithData:data options:NSPropertyListMutableContainersAndLeaves format:&format error:arg1];
 
         CGFloat saturation = [self smq_saturation];

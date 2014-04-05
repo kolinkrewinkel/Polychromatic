@@ -39,38 +39,15 @@ static IMP originalColorAtCharacterIndexImplementation;
 
     NSColor *color = [NSColor whiteColor];
 
-    if ([item smq_isComment])
-    {
-        color = [NSColor colorWithCalibratedWhite:0.45f alpha:1.f];
-    }
-    else if ([item smq_isPreprocessor])
-    {
-        color = [NSColor colorWithCalibratedWhite:0.4f alpha:1.f];
-    }
-    else if ([item smq_isKeyword])
-    {
-        color = [NSColor colorWithCalibratedWhite:0.5f alpha:1.000];
-    }
-    else if ([item smq_isString])
-    {
-        color = [NSColor colorWithCalibratedWhite:0.7f alpha:1.000];
-    }
-    else if ([item smq_isSystemFunction] || [item smq_isUserFunction])
-    {
-        color = [NSColor colorWithCalibratedWhite:0.6f alpha:1.f];
-    }
-    else if ([item smq_isSystemClass] || [item smq_isUserClass])
-    {
-        color = [NSColor colorWithCalibratedWhite:0.85f alpha:1.f];
-    }
-    else if ([item smq_isIdentifier] && ![[DVTSourceNodeTypes nodeTypeNameForId:item.parent.nodeType] isEqualToString:@"xcode.syntax.name.partial"] && workspaceIndex)
+    if ([item smq_isIdentifier] && ![[DVTSourceNodeTypes nodeTypeNameForId:item.parent.nodeType] isEqualToString:@"xcode.syntax.name.partial"] && workspaceIndex)
     {
         // Have as the last option. Otherwise, it'll apply to others and yeah... descendence.
         color = [[SMQVariableManager sharedManager] colorForVariable:string inWorkspace:workspace];
     }
-    else if ([item smq_isPlain])
+    else
     {
-        color = [NSColor colorWithCalibratedWhite:0.6f alpha:1.000];
+        DVTFontAndColorTheme *currentTheme = [DVTFontAndColorTheme currentTheme];
+        color = [currentTheme colorForNodeType:item.nodeType];
     }
 
     return color;

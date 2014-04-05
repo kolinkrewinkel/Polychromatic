@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3302570318EE734F00FC14F1 /* IDEFontAndColorPrefsPaneController+SMQPrefsPaneHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 3302570218EE734F00FC14F1 /* IDEFontAndColorPrefsPaneController+SMQPrefsPaneHook.m */; };
-		33311ABE18EA38320009BC82 /* SMQThemePreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33311ABD18EA38320009BC82 /* SMQThemePreferencesViewController.m */; };
 		3338E1A518EF740E00C76084 /* SMQView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3338E1A418EF740E00C76084 /* SMQView.m */; };
 		3338E1AB18EF7F9A00C76084 /* DVTFontAndColorTheme+SMQDataInjection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3338E1AA18EF7F9A00C76084 /* DVTFontAndColorTheme+SMQDataInjection.m */; };
 		33B3A3EE18CD36BE00AA64C8 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33B3A3ED18CD36BE00AA64C8 /* AppKit.framework */; };
@@ -20,7 +19,6 @@
 		33E48D2518D3F51200FCC557 /* IDEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33E48D2418D3F51200FCC557 /* IDEKit.framework */; };
 		33E48D2818D3F52400FCC557 /* DVTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33E48D2618D3F52400FCC557 /* DVTFoundation.framework */; };
 		33E48D2918D3F52400FCC557 /* DVTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33E48D2718D3F52400FCC557 /* DVTKit.framework */; };
-		33F29B2918EBAB3B0041B9FE /* SMQThemePreferencesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33F29B2818EBAB3B0041B9FE /* SMQThemePreferencesViewController.xib */; };
 		33F94F2918CEE2040092E74C /* DVTTextStorage+SMQHighlightingHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 33F94F2818CEE2040092E74C /* DVTTextStorage+SMQHighlightingHook.m */; };
 		33F94F2F18CFC4D70092E74C /* DVTSourceModelItem+SMQIdentification.m in Sources */ = {isa = PBXBuildFile; fileRef = 33F94F2E18CFC4D70092E74C /* DVTSourceModelItem+SMQIdentification.m */; };
 		33F94F3318CFCBE20092E74C /* SMQVariableManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 33F94F3218CFCBE20092E74C /* SMQVariableManager.m */; };
@@ -29,8 +27,6 @@
 /* Begin PBXFileReference section */
 		3302570118EE734F00FC14F1 /* IDEFontAndColorPrefsPaneController+SMQPrefsPaneHook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "IDEFontAndColorPrefsPaneController+SMQPrefsPaneHook.h"; path = "Categories/IDEFontAndColorPrefsPaneController+SMQPrefsPaneHook.h"; sourceTree = "<group>"; };
 		3302570218EE734F00FC14F1 /* IDEFontAndColorPrefsPaneController+SMQPrefsPaneHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "IDEFontAndColorPrefsPaneController+SMQPrefsPaneHook.m"; path = "Categories/IDEFontAndColorPrefsPaneController+SMQPrefsPaneHook.m"; sourceTree = "<group>"; };
-		33311ABC18EA38320009BC82 /* SMQThemePreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SMQThemePreferencesViewController.h; path = "View Controllers/SMQThemePreferencesViewController.h"; sourceTree = "<group>"; };
-		33311ABD18EA38320009BC82 /* SMQThemePreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SMQThemePreferencesViewController.m; path = "View Controllers/SMQThemePreferencesViewController.m"; sourceTree = "<group>"; };
 		3338E1A118EF740300C76084 /* DVTInterfaces.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTInterfaces.h; sourceTree = "<group>"; };
 		3338E1A318EF740E00C76084 /* SMQView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMQView.h; sourceTree = "<group>"; };
 		3338E1A418EF740E00C76084 /* SMQView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMQView.m; sourceTree = "<group>"; };
@@ -52,7 +48,6 @@
 		33E48D2418D3F51200FCC557 /* IDEKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEKit.framework; path = ../../../../Applications/Xcode.app/Contents/Frameworks/IDEKit.framework; sourceTree = "<group>"; };
 		33E48D2618D3F52400FCC557 /* DVTFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTFoundation.framework; path = ../../../../Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework; sourceTree = "<group>"; };
 		33E48D2718D3F52400FCC557 /* DVTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTKit.framework; path = ../../../../Applications/Xcode.app/Contents/SharedFrameworks/DVTKit.framework; sourceTree = "<group>"; };
-		33F29B2818EBAB3B0041B9FE /* SMQThemePreferencesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SMQThemePreferencesViewController.xib; path = "View Controllers/SMQThemePreferencesViewController.xib"; sourceTree = "<group>"; };
 		33F94F1F18CED7650092E74C /* DVTFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTFoundation.framework; path = "../../../../Applications/Xcode51-Beta5.app/Contents/SharedFrameworks/DVTFoundation.framework"; sourceTree = "<group>"; };
 		33F94F2118CED77A0092E74C /* IDEKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEKit.framework; path = "../../../../Applications/Xcode51-Beta5.app/Contents/Frameworks/IDEKit.framework"; sourceTree = "<group>"; };
 		33F94F2218CED77A0092E74C /* IDEFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEFoundation.framework; path = "../../../../Applications/Xcode51-Beta5.app/Contents/Frameworks/IDEFoundation.framework"; sourceTree = "<group>"; };
@@ -82,16 +77,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		33311ABF18EA38350009BC82 /* View Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				33311ABC18EA38320009BC82 /* SMQThemePreferencesViewController.h */,
-				33311ABD18EA38320009BC82 /* SMQThemePreferencesViewController.m */,
-				33F29B2818EBAB3B0041B9FE /* SMQThemePreferencesViewController.xib */,
-			);
-			name = "View Controllers";
-			sourceTree = "<group>";
-		};
 		3338E1A018EF740300C76084 /* Developer Kits */ = {
 			isa = PBXGroup;
 			children = (
@@ -154,7 +139,6 @@
 				3338E1A018EF740300C76084 /* Developer Kits */,
 				33B3A3F218CD36BE00AA64C8 /* Supporting Files */,
 				33B3A40418CD375300AA64C8 /* Utilities */,
-				33311ABF18EA38350009BC82 /* View Controllers */,
 				3338E1A218EF740E00C76084 /* Views */,
 			);
 			path = Semantique;
@@ -248,7 +232,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				33B3A3F618CD36BE00AA64C8 /* InfoPlist.strings in Resources */,
-				33F29B2918EBAB3B0041B9FE /* SMQThemePreferencesViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,7 +245,6 @@
 				3338E1A518EF740E00C76084 /* SMQView.m in Sources */,
 				33F94F2918CEE2040092E74C /* DVTTextStorage+SMQHighlightingHook.m in Sources */,
 				33B3A41818CD3B5100AA64C8 /* SMQSwizzling.c in Sources */,
-				33311ABE18EA38320009BC82 /* SMQThemePreferencesViewController.m in Sources */,
 				3338E1AB18EF7F9A00C76084 /* DVTFontAndColorTheme+SMQDataInjection.m in Sources */,
 				33F94F3318CFCBE20092E74C /* SMQVariableManager.m in Sources */,
 				33F94F2F18CFC4D70092E74C /* DVTSourceModelItem+SMQIdentification.m in Sources */,

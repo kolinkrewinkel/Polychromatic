@@ -1,26 +1,26 @@
 //
-//  DVTTextStorage+SMQHighlightingHook.m
+//  DVTTextStorage+PLYHighlightingHook.m
 //  Polychromatic
 //
 //  Created by Kolin Krewinkel on 3/10/14.
 //  Copyright (c) 2014 Kolin Krewinkel. All rights reserved.
 //
 
-#import "DVTTextStorage+SMQHighlightingHook.h"
-#import "SMQSwizzling.h"
-#import "DVTSourceModelItem+SMQIdentification.h"
-#import "SMQVariableManager.h"
+#import "DVTTextStorage+PLYHighlightingHook.h"
+#import "PLYSwizzling.h"
+#import "DVTSourceModelItem+PLYIdentification.h"
+#import "PLYVariableManager.h"
 
 static IMP originalColorAtCharacterIndexImplementation;
 
-@implementation DVTTextStorage (SMQHighlightingHook)
+@implementation DVTTextStorage (PLYHighlightingHook)
 
 + (void)initialize
 {
-    originalColorAtCharacterIndexImplementation = SMQPoseSwizzle([DVTTextStorage class], NSSelectorFromString(@"colorAtCharacterIndex:effectiveRange:context:"), self, @selector(smq_colorAtCharacterIndex:effectiveRange:context:), YES);
+    originalColorAtCharacterIndexImplementation = PLYPoseSwizzle([DVTTextStorage class], NSSelectorFromString(@"colorAtCharacterIndex:effectiveRange:context:"), self, @selector(PLY_colorAtCharacterIndex:effectiveRange:context:), YES);
 }
 
-- (NSColor *)smq_colorAtCharacterIndex:(unsigned long long)index effectiveRange:(NSRangePointer)effectiveRange context:(NSDictionary *)context
+- (NSColor *)PLY_colorAtCharacterIndex:(unsigned long long)index effectiveRange:(NSRangePointer)effectiveRange context:(NSDictionary *)context
 {
     /* Basically, Xcode calls you a given range. It seems to start with the entirety and spiral its way inward. Once given a range, its broken down by the colorAt: method. It replaces the range pointer passed, which Xcode then applies changes, and adapts the numerical changes.  So, the next thing it asks about is whatever is just beyond whatever the replaced range is. It also takes the previous length (assuming it can fit in the total text range, at which point it defaults to the max value before subtracting), and subtracts the new range length from it to determine the next passed length.     */
 
@@ -39,10 +39,10 @@ static IMP originalColorAtCharacterIndexImplementation;
 
     NSColor *color = [NSColor whiteColor];
 
-    if ([item smq_isIdentifier] && ![[DVTSourceNodeTypes nodeTypeNameForId:item.parent.nodeType] isEqualToString:@"xcode.syntax.name.partial"] && workspaceIndex)
+    if ([item PLY_isIdentifier] && ![[DVTSourceNodeTypes nodeTypeNameForId:item.parent.nodeType] isEqualToString:@"xcode.syntax.name.partial"] && workspaceIndex)
     {
         // Have as the last option. Otherwise, it'll apply to others and yeah... descendence.
-        color = [[SMQVariableManager sharedManager] colorForVariable:string inWorkspace:workspace];
+        color = [[PLYVariableManager sharedManager] colorForVariable:string inWorkspace:workspace];
     }
     else
     {

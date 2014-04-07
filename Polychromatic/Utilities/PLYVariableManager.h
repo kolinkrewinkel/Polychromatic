@@ -1,5 +1,5 @@
 //
-//  SMQVariableManager.h
+//  PLYVariableManager.h
 //  Polychromatic
 //
 //  Created by Kolin Krewinkel on 3/11/14.
@@ -9,7 +9,7 @@
 #import <AppKit/AppKit.h>
 
 @class IDEWorkspace;
-@interface SMQVariableManager : NSObject
+@interface PLYVariableManager : NSObject
 
 + (instancetype)sharedManager;
 

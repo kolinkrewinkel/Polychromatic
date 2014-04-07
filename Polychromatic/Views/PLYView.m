@@ -1,17 +1,17 @@
 //
-//  SMQView.m
+//  PLYView.m
 //  Polychromatic
 //
 //  Created by Kolin Krewinkel on 4/3/14.
 //  Copyright (c) 2014 Kolin Krewinkel. All rights reserved.
 //
 
-// SMQ-GODDAMN-VIEW
+// PLY-GODDAMN-VIEW
 // This is so stupid-unnecessary why did i ever leave iOS
 
-#import "SMQView.h"
+#import "PLYView.h"
 
-@implementation SMQView
+@implementation PLYView
 
 #pragma mark - Initialization
 

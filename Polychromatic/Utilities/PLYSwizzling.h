@@ -1,5 +1,5 @@
 //
-//  SMQSwizzling.h
+//  PLYSwizzling.h
 //  Polychromatic
 //
 //  Created by Kolin Krewinkel on 3/9/14.
@@ -8,5 +8,5 @@
 
 #import <objc/runtime.h>
 
-IMP SMQPoseSwizzle(Class originalClass, SEL originalSelector, Class posingClass, SEL replacementSelector, BOOL instanceMethod);
+IMP PLYPoseSwizzle(Class originalClass, SEL originalSelector, Class posingClass, SEL replacementSelector, BOOL instanceMethod);
 

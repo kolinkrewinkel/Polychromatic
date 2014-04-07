@@ -1,25 +1,25 @@
 //
-//  SMQVariableManager.m
+//  PLYVariableManager.m
 //  Polychromatic
 //
 //  Created by Kolin Krewinkel on 3/11/14.
 //  Copyright (c) 2014 Kolin Krewinkel. All rights reserved.
 //
 
-#import "SMQVariableManager.h"
+#import "PLYVariableManager.h"
 #import "DVTInterfaces.h"
 
-#import "DVTFontAndColorTheme+SMQDataInjection.h"
+#import "DVTFontAndColorTheme+PLYDataInjection.h"
 
 static NSString *const IDEIndexDidIndexWorkspaceNotification = @"IDEIndexDidIndexWorkspaceNotification";
 
-@interface SMQVariableManager ()
+@interface PLYVariableManager ()
 
 @property (nonatomic, strong) NSMutableDictionary *workspaces;
 
 @end
 
-@implementation SMQVariableManager
+@implementation PLYVariableManager
 
 #pragma mark - Singleton
 
@@ -74,7 +74,7 @@ static NSString *const IDEIndexDidIndexWorkspaceNotification = @"IDEIndexDidInde
     NSUInteger index = [variables indexOfObject:variable];
     CGFloat hueValue = (CGFloat)index/variables.count;
 
-    return [NSColor colorWithCalibratedHue:hueValue saturation:[[DVTFontAndColorTheme currentTheme] smq_saturation] brightness:[[DVTFontAndColorTheme currentTheme] smq_brightness] alpha:1.f];
+    return [NSColor colorWithCalibratedHue:hueValue saturation:[[DVTFontAndColorTheme currentTheme] PLY_saturation] brightness:[[DVTFontAndColorTheme currentTheme] PLY_brightness] alpha:1.f];
 }
 
 - (void)indexDidIndexWorkspaceNotification:(NSNotification *)notification

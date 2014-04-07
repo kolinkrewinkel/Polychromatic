@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "33B3A3E918CD36BE00AA64C8"
-               BuildableName = "Semantique.xcplugin"
+               BuildableName = "Polychromatic.xcplugin"
                BlueprintName = "Polychromatic"
                ReferencedContainer = "container:Polychromatic.xcodeproj">
             </BuildableReference>

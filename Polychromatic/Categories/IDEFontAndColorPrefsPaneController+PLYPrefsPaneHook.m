@@ -1,36 +1,36 @@
 //
-//  IDEFontAndColorPrefsPaneController+SMQPrefsPaneHook.m
+//  IDEFontAndColorPrefsPaneController+PLYPrefsPaneHook.m
 //  Polychromatic
 //
 //  Created by Kolin Krewinkel on 4/3/14.
 //  Copyright (c) 2014 Kolin Krewinkel. All rights reserved.
 //
 
-#import "IDEFontAndColorPrefsPaneController+SMQPrefsPaneHook.h"
-#import "SMQSwizzling.h"
-#import "SMQView.h"
-#import "DVTFontAndColorTheme+SMQDataInjection.h"
+#import "IDEFontAndColorPrefsPaneController+PLYPrefsPaneHook.h"
+#import "PLYSwizzling.h"
+#import "PLYView.h"
+#import "DVTFontAndColorTheme+PLYDataInjection.h"
 
 static IMP originalViewLoadImp;
 static IMP originalTabChangeImp;
 static IMP originalFontPickerImp;
 
-static char *SMQVariableColorModifierViewIdentifier = "SMQVariableColorModifierViewIdentifier";
+static char *PLYVariableColorModifierViewIdentifier = "PLYVariableColorModifierViewIdentifier";
 
-@implementation IDEFontAndColorPrefsPaneController (SMQPrefsPaneHook)
+@implementation IDEFontAndColorPrefsPaneController (PLYPrefsPaneHook)
 
 #pragma mark - Swizzling
 
 + (void)load
 {
-    originalViewLoadImp = SMQPoseSwizzle([IDEFontAndColorPrefsPaneController class], @selector(loadView), self, @selector(smq_loadView), YES);
-    originalTabChangeImp = SMQPoseSwizzle([IDEFontAndColorPrefsPaneController class], @selector(_handleTabChanged), self, @selector(smq_handleTabChanged), YES);
-    originalFontPickerImp = SMQPoseSwizzle(self, @selector(_updateFontPickerAndColorWell), self, @selector(smq_updateFontPickerAndColorWell), YES);
+    originalViewLoadImp = PLYPoseSwizzle([IDEFontAndColorPrefsPaneController class], @selector(loadView), self, @selector(PLY_loadView), YES);
+    originalTabChangeImp = PLYPoseSwizzle([IDEFontAndColorPrefsPaneController class], @selector(_handleTabChanged), self, @selector(PLY_handleTabChanged), YES);
+    originalFontPickerImp = PLYPoseSwizzle(self, @selector(_updateFontPickerAndColorWell), self, @selector(PLY_updateFontPickerAndColorWell), YES);
 }
 
 #pragma mark - View Methods
 
-- (void)smq_loadView
+- (void)PLY_loadView
 {
     // Load the original view.
     originalViewLoadImp(self, @selector(loadView));
@@ -42,7 +42,7 @@ static char *SMQVariableColorModifierViewIdentifier = "SMQVariableColorModifierV
 - (void)configureTabChooserView
 {
     // This is the view that acts as a tab/replacement view.
-    DVTTabChooserView *tabChooser = [self smq_tabChooserView];
+    DVTTabChooserView *tabChooser = [self PLY_tabChooserView];
 
     // Customize the choices in two stages:
     // First, add the variables object (for changing saturation and brightness and whatnot)
@@ -60,17 +60,17 @@ static char *SMQVariableColorModifierViewIdentifier = "SMQVariableColorModifierV
     tabChooser.choices = choices;
 }
 
-- (void)smq_updateFontPickerAndColorWell
+- (void)PLY_updateFontPickerAndColorWell
 {
     originalFontPickerImp(self, @selector(_updateFontPickerAndColorWell));
 
-    [self saturationSlider].floatValue = [[self theme] smq_saturation];
-    [self smq_setSaturation:[[self theme] smq_saturation]];
+    [self saturationSlider].floatValue = [[self theme] PLY_saturation];
+    [self PLY_setSaturation:[[self theme] PLY_saturation]];
 
-    [self brightnessSlider].floatValue = [[self theme] smq_brightness];
-    [self smq_setBrightness:[[self theme] smq_brightness]];
+    [self brightnessSlider].floatValue = [[self theme] PLY_brightness];
+    [self PLY_setBrightness:[[self theme] PLY_brightness]];
 
-    if ([self smq_varPrefsView].superview)
+    if ([self PLY_varPrefsView].superview)
     {
         [self adjustColorWellSamples];
     }
@@ -78,7 +78,7 @@ static char *SMQVariableColorModifierViewIdentifier = "SMQVariableColorModifierV
 
 - (void)setupVariablesPane
 {
-    SMQView *variablePrefsView = [[SMQView alloc] initWithFrame:CGRectMake(0.f, 0.f, [self smq_fontAndColorItemTable].frame.size.width, 285.f)];
+    PLYView *variablePrefsView = [[PLYView alloc] initWithFrame:CGRectMake(0.f, 0.f, [self PLY_fontAndColorItemTable].frame.size.width, 285.f)];
     [variablePrefsView setAutoresizingMask:NSViewHeightSizable];
 
     NSTextField *saturationLabel = [[NSTextField alloc] initWithFrame:NSMakeRect(40.f, 30.f, 80.f, 20.f)];
@@ -95,7 +95,7 @@ static char *SMQVariableColorModifierViewIdentifier = "SMQVariableColorModifierV
     saturationSlider.numberOfTickMarks = 2;
     saturationSlider.maxValue = 1;
     [variablePrefsView addSubview:saturationSlider];
-    [self smq_setSaturationSlider:saturationSlider];
+    [self PLY_setSaturationSlider:saturationSlider];
 
     NSTextField *brightnessLabel = [[NSTextField alloc] initWithFrame:NSMakeRect(40.f, 70.f, 80.f, 20.f)];
     [brightnessLabel setEditable:NO];
@@ -111,7 +111,7 @@ static char *SMQVariableColorModifierViewIdentifier = "SMQVariableColorModifierV
     brightnessSlider.numberOfTickMarks = 2;
     brightnessSlider.maxValue = 1;
     [variablePrefsView addSubview:brightnessSlider];
-    [self smq_setBrightnessSlider:brightnessSlider];
+    [self PLY_setBrightnessSlider:brightnessSlider];
 
     NSTextField *descriptionLabel = [[NSTextField alloc] initWithFrame:NSMakeRect(40.f, 115.f, 400.f, 160.f)];
     [descriptionLabel setEditable:NO];
@@ -121,14 +121,14 @@ static char *SMQVariableColorModifierViewIdentifier = "SMQVariableColorModifierV
     descriptionLabel.stringValue = @"Local variables, properties, and ivars, as well as statics and arguments are colored.\n\nThey are assigned a  color by adding them to a sorted set. Essentially, they are given a transient position on the spectrum, and the saturation and brightness levels are pre-defined to maintain a sense of consistency.\n\nBy doing this, a clash of neons versus pastels does not occur while the hue itself can shift.";
     [variablePrefsView addSubview:descriptionLabel];
 
-    [self smq_setVarPrefsView:variablePrefsView];
+    [self PLY_setVarPrefsView:variablePrefsView];
 
     [self _updateFontPickerAndColorWell];
 }
 
-- (void)smq_handleTabChanged
+- (void)PLY_handleTabChanged
 {
-    if ([[self smq_tabChooserView].choices indexOfObject:[self smq_tabChooserView].selectedChoice] < 2)
+    if ([[self PLY_tabChooserView].choices indexOfObject:[self PLY_tabChooserView].selectedChoice] < 2)
     {
         [self setVariablePrefsViewHidden:YES];
         originalTabChangeImp(self, @selector(_handleTabChanged));
@@ -142,7 +142,7 @@ static char *SMQVariableColorModifierViewIdentifier = "SMQVariableColorModifierV
 - (void)setVariablePrefsViewHidden:(BOOL)hidden
 {
     // Hide the font/color list view
-    NSTableView *fontsTableView = [self smq_fontAndColorItemTable];
+    NSTableView *fontsTableView = [self PLY_fontAndColorItemTable];
 
     if (hidden && !fontsTableView.superview)
     {
@@ -151,13 +151,13 @@ static char *SMQVariableColorModifierViewIdentifier = "SMQVariableColorModifierV
             [self restoreColorWell:colorWell];
         }
 
-        NSScrollView *scrollView = (NSScrollView *)[self smq_varPrefsView].superview.superview;
+        NSScrollView *scrollView = (NSScrollView *)[self PLY_varPrefsView].superview.superview;
         scrollView.documentView = fontsTableView;
     }
     else if (!hidden && fontsTableView.superview)
     {
         NSScrollView *scrollView = (NSScrollView *)fontsTableView.superview.superview;
-        scrollView.documentView = [self smq_varPrefsView];
+        scrollView.documentView = [self PLY_varPrefsView];
 
         for (NSColorWell *colorWell in [self colorWells])
         {
@@ -189,7 +189,7 @@ static char *SMQVariableColorModifierViewIdentifier = "SMQVariableColorModifierV
 - (NSArray *)colorWells
 {
     NSMutableArray *colorWells = [[NSMutableArray alloc] init];
-    [self addSubviewsOfView:self.view withClass:[NSColorWell class] inArray:colorWells excludingView:[self smq_varPrefsView].superview.superview.superview];
+    [self addSubviewsOfView:self.view withClass:[NSColorWell class] inArray:colorWells excludingView:[self PLY_varPrefsView].superview.superview.superview];
 
     return colorWells;
 }
@@ -202,7 +202,7 @@ static char *SMQVariableColorModifierViewIdentifier = "SMQVariableColorModifierV
     for (NSColorWell *colorWell in colorWells)
     {
         CGFloat hue = (CGFloat)index/colorWells.count;
-        [colorWell setColor:[NSColor colorWithCalibratedHue:hue saturation:self.smq_Saturation brightness:self.smq_Brightness alpha:1.f]];
+        [colorWell setColor:[NSColor colorWithCalibratedHue:hue saturation:self.PLY_Saturation brightness:self.PLY_Brightness alpha:1.f]];
 
         index++;
 
@@ -217,8 +217,8 @@ static char *SMQVariableColorModifierViewIdentifier = "SMQVariableColorModifierV
     NSView *superview = colorWell.superview;
     NSTextField *label = [superview.subviews lastObject];
 
-    objc_setAssociatedObject(colorWell, "smq_prevColor", colorWell.color, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    objc_setAssociatedObject(colorWell, "smq_prevTitle", label.stringValue, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    objc_setAssociatedObject(colorWell, "PLY_prevColor", colorWell.color, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(colorWell, "PLY_prevTitle", label.stringValue, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
 - (void)restoreColorWell:(NSColorWell *)colorWell
@@ -226,18 +226,18 @@ static char *SMQVariableColorModifierViewIdentifier = "SMQVariableColorModifierV
     NSView *superview = colorWell.superview;
     NSTextField *label = [superview.subviews lastObject];
 
-    colorWell.color = objc_getAssociatedObject(colorWell, "smq_prevColor");
-    label.stringValue = objc_getAssociatedObject(colorWell, "smq_prevTitle");
+    colorWell.color = objc_getAssociatedObject(colorWell, "PLY_prevColor");
+    label.stringValue = objc_getAssociatedObject(colorWell, "PLY_prevTitle");
 
-    objc_setAssociatedObject(colorWell, "smq_prevColor", nil, OBJC_ASSOCIATION_ASSIGN);
-    objc_setAssociatedObject(colorWell, "smq_prevTitle", nil, OBJC_ASSOCIATION_ASSIGN);
+    objc_setAssociatedObject(colorWell, "PLY_prevColor", nil, OBJC_ASSOCIATION_ASSIGN);
+    objc_setAssociatedObject(colorWell, "PLY_prevTitle", nil, OBJC_ASSOCIATION_ASSIGN);
 }
 
 - (void)saturationChanged:(NSSlider *)slider
 {
-    [self smq_setSaturation:slider.floatValue];
+    [self PLY_setSaturation:slider.floatValue];
 
-    [[self theme] smq_setSaturation:slider.floatValue];
+    [[self theme] PLY_setSaturation:slider.floatValue];
     [self theme].contentNeedsSaving = YES;
     
     [self adjustColorWellSamples];
@@ -245,9 +245,9 @@ static char *SMQVariableColorModifierViewIdentifier = "SMQVariableColorModifierV
 
 - (void)brightnessChanged:(NSSlider *)slider
 {
-    [self smq_setBrightness:slider.floatValue];
+    [self PLY_setBrightness:slider.floatValue];
 
-    [[self theme] smq_setBrightness:slider.floatValue];
+    [[self theme] PLY_setBrightness:slider.floatValue];
     [self theme].contentNeedsSaving = YES;
 
     [self adjustColorWellSamples];
@@ -255,7 +255,7 @@ static char *SMQVariableColorModifierViewIdentifier = "SMQVariableColorModifierV
 
 #pragma mark - Convenience
 
-- (DVTTabChooserView *)smq_tabChooserView
+- (DVTTabChooserView *)PLY_tabChooserView
 {
     return [self valueForKey:@"_tabChooserView"];
 }
@@ -265,61 +265,61 @@ static char *SMQVariableColorModifierViewIdentifier = "SMQVariableColorModifierV
     return [[self valueForKey:@"_currentThemeObjectController"] content];
 }
 
-- (NSTableView *)smq_fontAndColorItemTable
+- (NSTableView *)PLY_fontAndColorItemTable
 {
     return [self valueForKey:@"_fontAndColorItemTable"];
 }
 
 #pragma mark - Associated Object Getters/Setters
 
-- (SMQView *)smq_varPrefsView
+- (PLYView *)PLY_varPrefsView
 {
-    return objc_getAssociatedObject(self, SMQVariableColorModifierViewIdentifier);
+    return objc_getAssociatedObject(self, PLYVariableColorModifierViewIdentifier);
 }
 
-- (void)smq_setVarPrefsView:(SMQView *)varPrefsView
+- (void)PLY_setVarPrefsView:(PLYView *)varPrefsView
 {
-    objc_setAssociatedObject(self, SMQVariableColorModifierViewIdentifier, varPrefsView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, PLYVariableColorModifierViewIdentifier, varPrefsView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (CGFloat)smq_Saturation
+- (CGFloat)PLY_Saturation
 {
-    return [objc_getAssociatedObject(self, "smq_Saturation") floatValue];
+    return [objc_getAssociatedObject(self, "PLY_Saturation") floatValue];
 }
 
-- (void)smq_setSaturation:(CGFloat)saturation
+- (void)PLY_setSaturation:(CGFloat)saturation
 {
-    objc_setAssociatedObject(self, "smq_Saturation", @(saturation), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, "PLY_Saturation", @(saturation), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (CGFloat)smq_Brightness
+- (CGFloat)PLY_Brightness
 {
-    return [objc_getAssociatedObject(self, "smq_Brightness") floatValue];
+    return [objc_getAssociatedObject(self, "PLY_Brightness") floatValue];
 }
 
-- (void)smq_setBrightness:(CGFloat)brightness
+- (void)PLY_setBrightness:(CGFloat)brightness
 {
-    objc_setAssociatedObject(self, "smq_Brightness", @(brightness), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, "PLY_Brightness", @(brightness), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (NSSlider *)saturationSlider
 {
-    return objc_getAssociatedObject(self, "smq_saturationSlider");
+    return objc_getAssociatedObject(self, "PLY_saturationSlider");
 }
 
-- (void)smq_setSaturationSlider:(NSSlider *)slider
+- (void)PLY_setSaturationSlider:(NSSlider *)slider
 {
-    objc_setAssociatedObject(self, "smq_saturationSlider", slider, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, "PLY_saturationSlider", slider, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (NSSlider *)brightnessSlider
 {
-    return objc_getAssociatedObject(self, "smq_brightnessSlider");
+    return objc_getAssociatedObject(self, "PLY_brightnessSlider");
 }
 
-- (void)smq_setBrightnessSlider:(NSSlider *)slider
+- (void)PLY_setBrightnessSlider:(NSSlider *)slider
 {
-    objc_setAssociatedObject(self, "smq_brightnessSlider", slider, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, "PLY_brightnessSlider", slider, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 @end

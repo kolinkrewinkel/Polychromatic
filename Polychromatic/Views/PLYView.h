@@ -1,5 +1,5 @@
 //
-//  SMQView.h
+//  PLYView.h
 //  Polychromatic
 //
 //  Created by Kolin Krewinkel on 4/3/14.
@@ -8,6 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface SMQView : NSView
+@interface PLYView : NSView
 
 @end

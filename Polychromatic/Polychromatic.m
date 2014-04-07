@@ -62,11 +62,11 @@
             [[editorMenuItem submenu] insertItem:[NSMenuItem separatorItem] atIndex:startingIndex + 2];
         });
 
-        BOOL hasCompletedFirstRun = [[NSUserDefaults standardUserDefaults] boolForKey:@"SMQHasCompletedFirstRun"];
+        BOOL hasCompletedFirstRun = [[NSUserDefaults standardUserDefaults] boolForKey:@"PLYHasCompletedFirstRun"];
         if (!hasCompletedFirstRun)
         {
             [self showInstallWindow:self];
-            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"SMQHasCompletedFirstRun"];
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"PLYHasCompletedFirstRun"];
         }
     }
 

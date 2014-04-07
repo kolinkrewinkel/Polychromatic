@@ -138,9 +138,9 @@
 		<key>xcode.syntax.url</key>
 		<string>Menlo-Regular - 13.0</string>
 	</dict>
-	<key>SMQVarBrightness</key>
+	<key>PLYVarBrightness</key>
 	<real>0.5584028959274292</real>
-	<key>SMQVarSaturation</key>
+	<key>PLYVarSaturation</key>
 	<real>0.86007481813430786</real>
 </dict>
 </plist>

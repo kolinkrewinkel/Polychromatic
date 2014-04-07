@@ -1,5 +1,5 @@
 //
-//  IDEFontAndColorPrefsPaneController+SMQPrefsPaneHook.h
+//  IDEFontAndColorPrefsPaneController+PLYPrefsPaneHook.h
 //  Polychromatic
 //
 //  Created by Kolin Krewinkel on 4/3/14.
@@ -8,6 +8,6 @@
 
 #import "DVTInterfaces.h"
 
-@interface IDEFontAndColorPrefsPaneController (SMQPrefsPaneHook)
+@interface IDEFontAndColorPrefsPaneController (PLYPrefsPaneHook)
 
 @end

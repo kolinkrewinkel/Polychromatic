@@ -366,7 +366,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Semantique/Polychromatic-Prefix.pch";
-				INFOPLIST_FILE = "Semantique/Polychromatic-Info.plist";
+				INFOPLIST_FILE = "Polychromatic/Polychromatic-Info.plist";
 				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -391,7 +391,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Semantique/Polychromatic-Prefix.pch";
-				INFOPLIST_FILE = "Semantique/Polychromatic-Info.plist";
+				INFOPLIST_FILE = "Polychromatic/Polychromatic-Info.plist";
 				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

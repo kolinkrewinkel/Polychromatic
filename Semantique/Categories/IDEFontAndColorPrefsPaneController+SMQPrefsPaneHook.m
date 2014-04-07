@@ -217,6 +217,8 @@ static char *SMQVariableColorModifierViewIdentifier = "SMQVariableColorModifierV
     NSView *superview = colorWell.superview;
     NSTextField *label = [superview.subviews lastObject];
 
+    [colorWell setEnabled:NO];
+
     objc_setAssociatedObject(colorWell, "smq_prevColor", colorWell.color, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     objc_setAssociatedObject(colorWell, "smq_prevTitle", label.stringValue, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
@@ -231,6 +233,8 @@ static char *SMQVariableColorModifierViewIdentifier = "SMQVariableColorModifierV
 
     objc_setAssociatedObject(colorWell, "smq_prevColor", nil, OBJC_ASSOCIATION_ASSIGN);
     objc_setAssociatedObject(colorWell, "smq_prevTitle", nil, OBJC_ASSOCIATION_ASSIGN);
+
+    [colorWell setEnabled:YES];
 }
 
 - (void)saturationChanged:(NSSlider *)slider

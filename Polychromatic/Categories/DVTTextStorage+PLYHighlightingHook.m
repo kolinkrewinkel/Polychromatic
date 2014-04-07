@@ -33,7 +33,7 @@ static IMP originalColorAtCharacterIndexImplementation;
         return originalColorAtCharacterIndexImplementation(self, @selector(colorAtCharacterIndex:effectiveRange:context:), index, effectiveRange, context);
     }
 
-    originalColorAtCharacterIndexImplementation(self, @selector(colorAtCharacterIndex:effectiveRange:context:), index, effectiveRange, context);
+    NSColor *color = originalColorAtCharacterIndexImplementation(self, @selector(colorAtCharacterIndex:effectiveRange:context:), index, effectiveRange, context);
     NSRange newRange = *effectiveRange;
 
     DVTSourceModelItem *item = [self.sourceModelService sourceModelItemAtCharacterIndex:newRange.location];
@@ -44,23 +44,9 @@ static IMP originalColorAtCharacterIndexImplementation;
 
     /* It's possible for us to simply use the source model, but we may want to express fine-grain control based on the node. Plus, we already have the item onhand. */
 
-    NSColor *color = [NSColor whiteColor];
-    DVTFontAndColorTheme *currentTheme = [DVTFontAndColorTheme currentTheme];
-
-    if ([item ply_isIdentifier])
+    if ([item ply_isIdentifier] && ![[DVTSourceNodeTypes nodeTypeNameForId:item.parent.nodeType] isEqualToString:@"xcode.syntax.name.partial"] && workspaceIndex)
     {
-        if (![[DVTSourceNodeTypes nodeTypeNameForId:item.parent.nodeType] isEqualToString:@"xcode.syntax.name.partial"] && workspaceIndex)
-        {
-            color = [[PLYVariableManager sharedManager] colorForVariable:string inWorkspace:workspace];
-        }
-        else
-        {
-            color = currentTheme.sourcePlainTextColor;
-        }
-    }
-    else
-    {
-        color = [currentTheme colorForNodeType:item.nodeType];
+        color = [[PLYVariableManager sharedManager] colorForVariable:string inWorkspace:workspace];
     }
 
     return color;

@@ -45,15 +45,21 @@ static IMP originalColorAtCharacterIndexImplementation;
     /* It's possible for us to simply use the source model, but we may want to express fine-grain control based on the node. Plus, we already have the item onhand. */
 
     NSColor *color = [NSColor whiteColor];
+    DVTFontAndColorTheme *currentTheme = [DVTFontAndColorTheme currentTheme];
 
-    if ([item ply_isIdentifier] && ![[DVTSourceNodeTypes nodeTypeNameForId:item.parent.nodeType] isEqualToString:@"xcode.syntax.name.partial"] && workspaceIndex)
+    if ([item ply_isIdentifier])
     {
-        // Have as the last option. Otherwise, it'll apply to others and yeah... descendence.
-        color = [[PLYVariableManager sharedManager] colorForVariable:string inWorkspace:workspace];
+        if (![[DVTSourceNodeTypes nodeTypeNameForId:item.parent.nodeType] isEqualToString:@"xcode.syntax.name.partial"] && workspaceIndex)
+        {
+            color = [[PLYVariableManager sharedManager] colorForVariable:string inWorkspace:workspace];
+        }
+        else
+        {
+            color = currentTheme.sourcePlainTextColor;
+        }
     }
     else
     {
-        DVTFontAndColorTheme *currentTheme = [DVTFontAndColorTheme currentTheme];
         color = [currentTheme colorForNodeType:item.nodeType];
     }
 

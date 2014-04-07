@@ -35,14 +35,19 @@ static char *PLYVariableColorModifierViewIdentifier = "PLYVariableColorModifierV
     // Load the original view.
     originalViewLoadImp(self, @selector(loadView));
 
-    [self configureTabChooserView];
+    [self ply_configureTabChooserView];
     [self setupVariablesPane];
 }
 
-- (void)configureTabChooserView
+- (void)ply_configureTabChooserView
 {
     // This is the view that acts as a tab/replacement view.
     DVTTabChooserView *tabChooser = [self ply_tabChooserView];
+
+    if (tabChooser.choices.count == 3)
+    {
+        return;
+    }
 
     // Customize the choices in two stages:
     // First, add the variables object (for changing saturation and brightness and whatnot)

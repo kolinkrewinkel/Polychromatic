@@ -36,14 +36,14 @@
 		3338E1AA18EF7F9A00C76084 /* DVTFontAndColorTheme+SMQDataInjection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "DVTFontAndColorTheme+SMQDataInjection.m"; path = "Categories/DVTFontAndColorTheme+SMQDataInjection.m"; sourceTree = "<group>"; };
 		334178D618EFD644004AAF67 /* CSSEdit Tribute.dvtcolortheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "CSSEdit Tribute.dvtcolortheme"; sourceTree = "<group>"; };
 		339A936918EFD0AD00381C8A /* Carbon.dvtcolortheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Carbon.dvtcolortheme; sourceTree = "<group>"; };
-		33B3A3EA18CD36BE00AA64C8 /* Semantique.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Semantique.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		33B3A3EA18CD36BE00AA64C8 /* Polychromatic.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Polychromatic.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		33B3A3ED18CD36BE00AA64C8 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		33B3A3EF18CD36BE00AA64C8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		33B3A3F318CD36BE00AA64C8 /* Semantique-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Semantique-Info.plist"; sourceTree = "<group>"; };
+		33B3A3F318CD36BE00AA64C8 /* Polychromatic-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Polychromatic-Info.plist"; sourceTree = "<group>"; };
 		33B3A3F518CD36BE00AA64C8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		33B3A3F718CD36BE00AA64C8 /* Semantique.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Semantique.h; sourceTree = "<group>"; };
 		33B3A3F818CD36BE00AA64C8 /* Semantique.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Semantique.m; sourceTree = "<group>"; };
-		33B3A3FA18CD36BF00AA64C8 /* Semantique-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Semantique-Prefix.pch"; sourceTree = "<group>"; };
+		33B3A3FA18CD36BF00AA64C8 /* Polychromatic-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Polychromatic-Prefix.pch"; sourceTree = "<group>"; };
 		33B3A40C18CD38DF00AA64C8 /* SMQSwizzling.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SMQSwizzling.c; sourceTree = "<group>"; };
 		33B3A40D18CD38DF00AA64C8 /* SMQSwizzling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMQSwizzling.h; sourceTree = "<group>"; };
 		33E48D1E18D3F4D700FCC557 /* IDEKit */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = IDEKit; path = ../../../../Applications/Xcode.app/Contents/Frameworks/IDEKit.framework/Versions/A/IDEKit; sourceTree = "<group>"; };
@@ -119,7 +119,7 @@
 		33B3A3EB18CD36BE00AA64C8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				33B3A3EA18CD36BE00AA64C8 /* Semantique.xcplugin */,
+				33B3A3EA18CD36BE00AA64C8 /* Polychromatic.xcplugin */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -162,8 +162,8 @@
 			isa = PBXGroup;
 			children = (
 				33B3A3F418CD36BE00AA64C8 /* InfoPlist.strings */,
-				33B3A3F318CD36BE00AA64C8 /* Semantique-Info.plist */,
-				33B3A3FA18CD36BF00AA64C8 /* Semantique-Prefix.pch */,
+				33B3A3F318CD36BE00AA64C8 /* Polychromatic-Info.plist */,
+				33B3A3FA18CD36BF00AA64C8 /* Polychromatic-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -197,9 +197,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		33B3A3E918CD36BE00AA64C8 /* Semantique */ = {
+		33B3A3E918CD36BE00AA64C8 /* Polychromatic */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 33B3A3FD18CD36BF00AA64C8 /* Build configuration list for PBXNativeTarget "Semantique" */;
+			buildConfigurationList = 33B3A3FD18CD36BF00AA64C8 /* Build configuration list for PBXNativeTarget "Polychromatic" */;
 			buildPhases = (
 				33B3A3E618CD36BE00AA64C8 /* Sources */,
 				33B3A3E718CD36BE00AA64C8 /* Frameworks */,
@@ -209,9 +209,9 @@
 			);
 			dependencies = (
 			);
-			name = Semantique;
+			name = Polychromatic;
 			productName = Semantique;
-			productReference = 33B3A3EA18CD36BE00AA64C8 /* Semantique.xcplugin */;
+			productReference = 33B3A3EA18CD36BE00AA64C8 /* Polychromatic.xcplugin */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -223,7 +223,7 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Kolin Krewinkel";
 			};
-			buildConfigurationList = 33B3A3E518CD36BE00AA64C8 /* Build configuration list for PBXProject "Semantique" */;
+			buildConfigurationList = 33B3A3E518CD36BE00AA64C8 /* Build configuration list for PBXProject "Polychromatic" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -235,7 +235,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				33B3A3E918CD36BE00AA64C8 /* Semantique */,
+				33B3A3E918CD36BE00AA64C8 /* Polychromatic */,
 			);
 		};
 /* End PBXProject section */
@@ -365,15 +365,15 @@
 					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/SharedFrameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Semantique/Semantique-Prefix.pch";
-				INFOPLIST_FILE = "Semantique/Semantique-Info.plist";
+				GCC_PREFIX_HEADER = "Semantique/Polychromatic-Prefix.pch";
+				INFOPLIST_FILE = "Semantique/Polychromatic-Info.plist";
 				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Frameworks/IDEKit.framework/Versions/A",
 					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Frameworks/IDEFoundation.framework/Versions/A",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Polychromatic;
 				WRAPPER_EXTENSION = xcplugin;
 			};
 			name = Debug;
@@ -390,15 +390,15 @@
 					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/SharedFrameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Semantique/Semantique-Prefix.pch";
-				INFOPLIST_FILE = "Semantique/Semantique-Info.plist";
+				GCC_PREFIX_HEADER = "Semantique/Polychromatic-Prefix.pch";
+				INFOPLIST_FILE = "Semantique/Polychromatic-Info.plist";
 				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Frameworks/IDEKit.framework/Versions/A",
 					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Frameworks/IDEFoundation.framework/Versions/A",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Polychromatic;
 				WRAPPER_EXTENSION = xcplugin;
 			};
 			name = Release;
@@ -406,7 +406,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		33B3A3E518CD36BE00AA64C8 /* Build configuration list for PBXProject "Semantique" */ = {
+		33B3A3E518CD36BE00AA64C8 /* Build configuration list for PBXProject "Polychromatic" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				33B3A3FB18CD36BF00AA64C8 /* Debug */,
@@ -415,7 +415,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		33B3A3FD18CD36BF00AA64C8 /* Build configuration list for PBXNativeTarget "Semantique" */ = {
+		33B3A3FD18CD36BF00AA64C8 /* Build configuration list for PBXNativeTarget "Polychromatic" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				33B3A3FE18CD36BF00AA64C8 /* Debug */,

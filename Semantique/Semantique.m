@@ -1,20 +1,20 @@
 //
-//  Semantique.m
-//  Semantique
+//  Polychromatic.m
+//  Polychromatic
 //
 //  Created by Kolin Krewinkel on 3/9/14.
 //  Copyright (c) 2014 Kolin Krewinkel. All rights reserved.
 //
 
-#import "Semantique.h"
+#import "Polychromatic.h"
 
-@interface Semantique()
+@interface Polychromatic()
 
 @property (nonatomic, strong) NSBundle *bundle;
 
 @end
 
-@implementation Semantique
+@implementation Polychromatic
 
 + (void)pluginDidLoad:(NSBundle *)plugin
 {
@@ -55,7 +55,7 @@
 
             [[editorMenuItem submenu] insertItem:[NSMenuItem separatorItem] atIndex:startingIndex];
 
-            NSMenuItem *installItem = [[NSMenuItem alloc] initWithTitle:@"Install Semantique Templates" action:@selector(showInstallWindow:) keyEquivalent:@"I"];
+            NSMenuItem *installItem = [[NSMenuItem alloc] initWithTitle:@"Install Polychromatic Templates" action:@selector(showInstallWindow:) keyEquivalent:@"I"];
             installItem.target = self;
             [[editorMenuItem submenu] insertItem:installItem atIndex:startingIndex + 1];
 
@@ -75,7 +75,7 @@
 
 - (void)showInstallWindow:(id)sender
 {
-    NSAlert *alert = [NSAlert alertWithMessageText:@"Semantique" defaultButton:@"Install Themes" alternateButton:@"Dismiss" otherButton:nil informativeTextWithFormat:@"This plugin is intended for use with monochromatic colors for all types except vibrant variables (local and instance variables, as well as properties.)\n\nTasteful sample themes are provided to demo the concept. Installing them as a basis is recommended."];
+    NSAlert *alert = [NSAlert alertWithMessageText:@"Polychromatic" defaultButton:@"Install Themes" alternateButton:@"Dismiss" otherButton:nil informativeTextWithFormat:@"This plugin is intended for use with monochromatic colors for all types except vibrant variables (local and instance variables, as well as properties.)\n\nTasteful sample themes are provided to demo the concept. Installing them as a basis is recommended."];
 
     if ([alert runModal] == 1)
     {
@@ -91,7 +91,7 @@
         }
 
         [themes enumerateObjectsUsingBlock:^(NSString *themePath, NSUInteger idx, BOOL *stop) {
-            NSString *replacementName = [themePath.lastPathComponent stringByReplacingOccurrencesOfString:@".dvtcolortheme" withString:@" (Semantique).dvtcolortheme"];
+            NSString *replacementName = [themePath.lastPathComponent stringByReplacingOccurrencesOfString:@".dvtcolortheme" withString:@" (Polychromatic).dvtcolortheme"];
             [[NSFileManager defaultManager] copyItemAtPath:[NSString stringWithFormat:@"%@/%@", basePath, themePath] toPath:[NSString stringWithFormat:@"%@/Library/Developer/Xcode/UserData/FontAndColorThemes/%@", NSHomeDirectory(), replacementName] error:&error];
         }];
     }

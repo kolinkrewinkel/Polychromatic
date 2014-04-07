@@ -23,14 +23,14 @@ static char *PLYVariableColorModifierViewIdentifier = "PLYVariableColorModifierV
 
 + (void)load
 {
-    originalViewLoadImp = PLYPoseSwizzle([IDEFontAndColorPrefsPaneController class], @selector(loadView), self, @selector(PLY_loadView), YES);
-    originalTabChangeImp = PLYPoseSwizzle([IDEFontAndColorPrefsPaneController class], @selector(_handleTabChanged), self, @selector(PLY_handleTabChanged), YES);
-    originalFontPickerImp = PLYPoseSwizzle(self, @selector(_updateFontPickerAndColorWell), self, @selector(PLY_updateFontPickerAndColorWell), YES);
+    originalViewLoadImp = PLYPoseSwizzle([IDEFontAndColorPrefsPaneController class], @selector(loadView), self, @selector(ply_loadView), YES);
+    originalTabChangeImp = PLYPoseSwizzle([IDEFontAndColorPrefsPaneController class], @selector(_handleTabChanged), self, @selector(ply_handleTabChanged), YES);
+    originalFontPickerImp = PLYPoseSwizzle(self, @selector(_updateFontPickerAndColorWell), self, @selector(ply_updateFontPickerAndColorWell), YES);
 }
 
 #pragma mark - View Methods
 
-- (void)PLY_loadView
+- (void)ply_loadView
 {
     // Load the original view.
     originalViewLoadImp(self, @selector(loadView));
@@ -42,7 +42,7 @@ static char *PLYVariableColorModifierViewIdentifier = "PLYVariableColorModifierV
 - (void)configureTabChooserView
 {
     // This is the view that acts as a tab/replacement view.
-    DVTTabChooserView *tabChooser = [self PLY_tabChooserView];
+    DVTTabChooserView *tabChooser = [self ply_tabChooserView];
 
     // Customize the choices in two stages:
     // First, add the variables object (for changing saturation and brightness and whatnot)
@@ -60,17 +60,17 @@ static char *PLYVariableColorModifierViewIdentifier = "PLYVariableColorModifierV
     tabChooser.choices = choices;
 }
 
-- (void)PLY_updateFontPickerAndColorWell
+- (void)ply_updateFontPickerAndColorWell
 {
     originalFontPickerImp(self, @selector(_updateFontPickerAndColorWell));
 
-    [self saturationSlider].floatValue = [[self theme] PLY_saturation];
-    [self PLY_setSaturation:[[self theme] PLY_saturation]];
+    [self saturationSlider].floatValue = [[self theme] ply_saturation];
+    [self ply_setSaturation:[[self theme] ply_saturation]];
 
-    [self brightnessSlider].floatValue = [[self theme] PLY_brightness];
-    [self PLY_setBrightness:[[self theme] PLY_brightness]];
+    [self brightnessSlider].floatValue = [[self theme] ply_brightness];
+    [self ply_setBrightness:[[self theme] ply_brightness]];
 
-    if ([self PLY_varPrefsView].superview)
+    if ([self ply_varPrefsView].superview)
     {
         [self adjustColorWellSamples];
     }
@@ -78,7 +78,7 @@ static char *PLYVariableColorModifierViewIdentifier = "PLYVariableColorModifierV
 
 - (void)setupVariablesPane
 {
-    PLYView *variablePrefsView = [[PLYView alloc] initWithFrame:CGRectMake(0.f, 0.f, [self PLY_fontAndColorItemTable].frame.size.width, 285.f)];
+    PLYView *variablePrefsView = [[PLYView alloc] initWithFrame:CGRectMake(0.f, 0.f, [self ply_fontAndColorItemTable].frame.size.width, 285.f)];
     [variablePrefsView setAutoresizingMask:NSViewHeightSizable];
 
     NSTextField *saturationLabel = [[NSTextField alloc] initWithFrame:NSMakeRect(40.f, 30.f, 80.f, 20.f)];
@@ -95,7 +95,7 @@ static char *PLYVariableColorModifierViewIdentifier = "PLYVariableColorModifierV
     saturationSlider.numberOfTickMarks = 2;
     saturationSlider.maxValue = 1;
     [variablePrefsView addSubview:saturationSlider];
-    [self PLY_setSaturationSlider:saturationSlider];
+    [self ply_setSaturationSlider:saturationSlider];
 
     NSTextField *brightnessLabel = [[NSTextField alloc] initWithFrame:NSMakeRect(40.f, 70.f, 80.f, 20.f)];
     [brightnessLabel setEditable:NO];
@@ -111,7 +111,7 @@ static char *PLYVariableColorModifierViewIdentifier = "PLYVariableColorModifierV
     brightnessSlider.numberOfTickMarks = 2;
     brightnessSlider.maxValue = 1;
     [variablePrefsView addSubview:brightnessSlider];
-    [self PLY_setBrightnessSlider:brightnessSlider];
+    [self ply_setBrightnessSlider:brightnessSlider];
 
     NSTextField *descriptionLabel = [[NSTextField alloc] initWithFrame:NSMakeRect(40.f, 115.f, 400.f, 160.f)];
     [descriptionLabel setEditable:NO];
@@ -121,14 +121,14 @@ static char *PLYVariableColorModifierViewIdentifier = "PLYVariableColorModifierV
     descriptionLabel.stringValue = @"Local variables, properties, and ivars, as well as statics and arguments are colored.\n\nThey are assigned a  color by adding them to a sorted set. Essentially, they are given a transient position on the spectrum, and the saturation and brightness levels are pre-defined to maintain a sense of consistency.\n\nBy doing this, a clash of neons versus pastels does not occur while the hue itself can shift.";
     [variablePrefsView addSubview:descriptionLabel];
 
-    [self PLY_setVarPrefsView:variablePrefsView];
+    [self ply_setVarPrefsView:variablePrefsView];
 
     [self _updateFontPickerAndColorWell];
 }
 
-- (void)PLY_handleTabChanged
+- (void)ply_handleTabChanged
 {
-    if ([[self PLY_tabChooserView].choices indexOfObject:[self PLY_tabChooserView].selectedChoice] < 2)
+    if ([[self ply_tabChooserView].choices indexOfObject:[self ply_tabChooserView].selectedChoice] < 2)
     {
         [self setVariablePrefsViewHidden:YES];
         originalTabChangeImp(self, @selector(_handleTabChanged));
@@ -142,7 +142,7 @@ static char *PLYVariableColorModifierViewIdentifier = "PLYVariableColorModifierV
 - (void)setVariablePrefsViewHidden:(BOOL)hidden
 {
     // Hide the font/color list view
-    NSTableView *fontsTableView = [self PLY_fontAndColorItemTable];
+    NSTableView *fontsTableView = [self ply_fontAndColorItemTable];
 
     if (hidden && !fontsTableView.superview)
     {
@@ -151,13 +151,13 @@ static char *PLYVariableColorModifierViewIdentifier = "PLYVariableColorModifierV
             [self restoreColorWell:colorWell];
         }
 
-        NSScrollView *scrollView = (NSScrollView *)[self PLY_varPrefsView].superview.superview;
+        NSScrollView *scrollView = (NSScrollView *)[self ply_varPrefsView].superview.superview;
         scrollView.documentView = fontsTableView;
     }
     else if (!hidden && fontsTableView.superview)
     {
         NSScrollView *scrollView = (NSScrollView *)fontsTableView.superview.superview;
-        scrollView.documentView = [self PLY_varPrefsView];
+        scrollView.documentView = [self ply_varPrefsView];
 
         for (NSColorWell *colorWell in [self colorWells])
         {
@@ -189,7 +189,7 @@ static char *PLYVariableColorModifierViewIdentifier = "PLYVariableColorModifierV
 - (NSArray *)colorWells
 {
     NSMutableArray *colorWells = [[NSMutableArray alloc] init];
-    [self addSubviewsOfView:self.view withClass:[NSColorWell class] inArray:colorWells excludingView:[self PLY_varPrefsView].superview.superview.superview];
+    [self addSubviewsOfView:self.view withClass:[NSColorWell class] inArray:colorWells excludingView:[self ply_varPrefsView].superview.superview.superview];
 
     return colorWells;
 }
@@ -202,7 +202,7 @@ static char *PLYVariableColorModifierViewIdentifier = "PLYVariableColorModifierV
     for (NSColorWell *colorWell in colorWells)
     {
         CGFloat hue = (CGFloat)index/colorWells.count;
-        [colorWell setColor:[NSColor colorWithCalibratedHue:hue saturation:self.PLY_Saturation brightness:self.PLY_Brightness alpha:1.f]];
+        [colorWell setColor:[NSColor colorWithCalibratedHue:hue saturation:self.ply_Saturation brightness:self.ply_Brightness alpha:1.f]];
 
         index++;
 
@@ -217,8 +217,8 @@ static char *PLYVariableColorModifierViewIdentifier = "PLYVariableColorModifierV
     NSView *superview = colorWell.superview;
     NSTextField *label = [superview.subviews lastObject];
 
-    objc_setAssociatedObject(colorWell, "PLY_prevColor", colorWell.color, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    objc_setAssociatedObject(colorWell, "PLY_prevTitle", label.stringValue, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    objc_setAssociatedObject(colorWell, "ply_prevColor", colorWell.color, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(colorWell, "ply_prevTitle", label.stringValue, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
 - (void)restoreColorWell:(NSColorWell *)colorWell
@@ -226,18 +226,18 @@ static char *PLYVariableColorModifierViewIdentifier = "PLYVariableColorModifierV
     NSView *superview = colorWell.superview;
     NSTextField *label = [superview.subviews lastObject];
 
-    colorWell.color = objc_getAssociatedObject(colorWell, "PLY_prevColor");
-    label.stringValue = objc_getAssociatedObject(colorWell, "PLY_prevTitle");
+    colorWell.color = objc_getAssociatedObject(colorWell, "ply_prevColor");
+    label.stringValue = objc_getAssociatedObject(colorWell, "ply_prevTitle");
 
-    objc_setAssociatedObject(colorWell, "PLY_prevColor", nil, OBJC_ASSOCIATION_ASSIGN);
-    objc_setAssociatedObject(colorWell, "PLY_prevTitle", nil, OBJC_ASSOCIATION_ASSIGN);
+    objc_setAssociatedObject(colorWell, "ply_prevColor", nil, OBJC_ASSOCIATION_ASSIGN);
+    objc_setAssociatedObject(colorWell, "ply_prevTitle", nil, OBJC_ASSOCIATION_ASSIGN);
 }
 
 - (void)saturationChanged:(NSSlider *)slider
 {
-    [self PLY_setSaturation:slider.floatValue];
+    [self ply_setSaturation:slider.floatValue];
 
-    [[self theme] PLY_setSaturation:slider.floatValue];
+    [[self theme] ply_setSaturation:slider.floatValue];
     [self theme].contentNeedsSaving = YES;
     
     [self adjustColorWellSamples];
@@ -245,9 +245,9 @@ static char *PLYVariableColorModifierViewIdentifier = "PLYVariableColorModifierV
 
 - (void)brightnessChanged:(NSSlider *)slider
 {
-    [self PLY_setBrightness:slider.floatValue];
+    [self ply_setBrightness:slider.floatValue];
 
-    [[self theme] PLY_setBrightness:slider.floatValue];
+    [[self theme] ply_setBrightness:slider.floatValue];
     [self theme].contentNeedsSaving = YES;
 
     [self adjustColorWellSamples];
@@ -255,7 +255,7 @@ static char *PLYVariableColorModifierViewIdentifier = "PLYVariableColorModifierV
 
 #pragma mark - Convenience
 
-- (DVTTabChooserView *)PLY_tabChooserView
+- (DVTTabChooserView *)ply_tabChooserView
 {
     return [self valueForKey:@"_tabChooserView"];
 }
@@ -265,61 +265,61 @@ static char *PLYVariableColorModifierViewIdentifier = "PLYVariableColorModifierV
     return [[self valueForKey:@"_currentThemeObjectController"] content];
 }
 
-- (NSTableView *)PLY_fontAndColorItemTable
+- (NSTableView *)ply_fontAndColorItemTable
 {
     return [self valueForKey:@"_fontAndColorItemTable"];
 }
 
 #pragma mark - Associated Object Getters/Setters
 
-- (PLYView *)PLY_varPrefsView
+- (PLYView *)ply_varPrefsView
 {
     return objc_getAssociatedObject(self, PLYVariableColorModifierViewIdentifier);
 }
 
-- (void)PLY_setVarPrefsView:(PLYView *)varPrefsView
+- (void)ply_setVarPrefsView:(PLYView *)varPrefsView
 {
     objc_setAssociatedObject(self, PLYVariableColorModifierViewIdentifier, varPrefsView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (CGFloat)PLY_Saturation
+- (CGFloat)ply_Saturation
 {
-    return [objc_getAssociatedObject(self, "PLY_Saturation") floatValue];
+    return [objc_getAssociatedObject(self, "ply_Saturation") floatValue];
 }
 
-- (void)PLY_setSaturation:(CGFloat)saturation
+- (void)ply_setSaturation:(CGFloat)saturation
 {
-    objc_setAssociatedObject(self, "PLY_Saturation", @(saturation), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, "ply_Saturation", @(saturation), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (CGFloat)PLY_Brightness
+- (CGFloat)ply_Brightness
 {
-    return [objc_getAssociatedObject(self, "PLY_Brightness") floatValue];
+    return [objc_getAssociatedObject(self, "ply_Brightness") floatValue];
 }
 
-- (void)PLY_setBrightness:(CGFloat)brightness
+- (void)ply_setBrightness:(CGFloat)brightness
 {
-    objc_setAssociatedObject(self, "PLY_Brightness", @(brightness), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, "ply_Brightness", @(brightness), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (NSSlider *)saturationSlider
 {
-    return objc_getAssociatedObject(self, "PLY_saturationSlider");
+    return objc_getAssociatedObject(self, "ply_saturationSlider");
 }
 
-- (void)PLY_setSaturationSlider:(NSSlider *)slider
+- (void)ply_setSaturationSlider:(NSSlider *)slider
 {
-    objc_setAssociatedObject(self, "PLY_saturationSlider", slider, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, "ply_saturationSlider", slider, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (NSSlider *)brightnessSlider
 {
-    return objc_getAssociatedObject(self, "PLY_brightnessSlider");
+    return objc_getAssociatedObject(self, "ply_brightnessSlider");
 }
 
-- (void)PLY_setBrightnessSlider:(NSSlider *)slider
+- (void)ply_setBrightnessSlider:(NSSlider *)slider
 {
-    objc_setAssociatedObject(self, "PLY_brightnessSlider", slider, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, "ply_brightnessSlider", slider, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 @end

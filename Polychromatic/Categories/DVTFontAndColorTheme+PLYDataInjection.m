@@ -16,11 +16,11 @@ static IMP originalDataLoadImp;
 
 + (void)load
 {
-    originalDataRepImp = PLYPoseSwizzle(self, @selector(dataRepresentationWithError:), self, @selector(PLY_dataRepresentationWithError:), YES);
-    originalDataLoadImp = PLYPoseSwizzle(self, @selector(_loadFontsAndColors), self, @selector(PLY_loadFontsAndColors), YES);
+    originalDataRepImp = PLYPoseSwizzle(self, @selector(dataRepresentationWithError:), self, @selector(ply_dataRepresentationWithError:), YES);
+    originalDataLoadImp = PLYPoseSwizzle(self, @selector(_loadFontsAndColors), self, @selector(ply_loadFontsAndColors), YES);
 }
 
-- (BOOL)PLY_loadFontsAndColors
+- (BOOL)ply_loadFontsAndColors
 {
     BOOL result = (BOOL)originalDataLoadImp(self, @selector(_loadFontsAndColors));
 
@@ -42,14 +42,14 @@ static IMP originalDataLoadImp;
         NSError *error = nil;
         NSMutableDictionary *dict = [NSPropertyListSerialization propertyListWithData:data options:NSPropertyListMutableContainersAndLeaves format:&format error:&error];
 
-        [self PLY_setBrightness:[dict[@"PLYVarBrightness"] floatValue]];
-        [self PLY_setSaturation:[dict[@"PLYVarSaturation"] floatValue]];
+        [self ply_setBrightness:[dict[@"PLYVarBrightness"] floatValue]];
+        [self ply_setSaturation:[dict[@"PLYVarSaturation"] floatValue]];
     }
 
     return result;
 }
 
-- (id)PLY_dataRepresentationWithError:(NSError **)arg1
+- (id)ply_dataRepresentationWithError:(NSError **)arg1
 {
     NSData *data = originalDataRepImp(self, @selector(dataRepresentationWithError:), arg1);
 
@@ -60,8 +60,8 @@ static IMP originalDataLoadImp;
 
         NSMutableDictionary *dict = [NSPropertyListSerialization propertyListWithData:data options:NSPropertyListMutableContainersAndLeaves format:&format error:arg1];
 
-        CGFloat saturation = [self PLY_saturation];
-        CGFloat brightness = [self PLY_brightness];
+        CGFloat saturation = [self ply_saturation];
+        CGFloat brightness = [self ply_brightness];
 
         if (saturation == 0.f)
         {
@@ -82,24 +82,24 @@ static IMP originalDataLoadImp;
     return data;
 }
 
-- (void)PLY_setSaturation:(CGFloat)saturation
+- (void)ply_setSaturation:(CGFloat)saturation
 {
-    objc_setAssociatedObject(self, "PLY_saturation", @(saturation), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, "ply_saturation", @(saturation), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (CGFloat)PLY_saturation
+- (CGFloat)ply_saturation
 {
-    return [objc_getAssociatedObject(self, "PLY_saturation") floatValue];
+    return [objc_getAssociatedObject(self, "ply_saturation") floatValue];
 }
 
-- (void)PLY_setBrightness:(CGFloat)brightness
+- (void)ply_setBrightness:(CGFloat)brightness
 {
-    objc_setAssociatedObject(self, "PLY_brightness", @(brightness), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, "ply_brightness", @(brightness), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (CGFloat)PLY_brightness
+- (CGFloat)ply_brightness
 {
-    return [objc_getAssociatedObject(self, "PLY_brightness") floatValue];
+    return [objc_getAssociatedObject(self, "ply_brightness") floatValue];
 }
 
 @end

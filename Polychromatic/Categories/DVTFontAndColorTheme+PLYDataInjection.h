@@ -10,10 +10,10 @@
 
 @interface DVTFontAndColorTheme (PLYDataInjection)
 
-- (void)PLY_setSaturation:(CGFloat)saturation;
-- (CGFloat)PLY_saturation;
+- (void)ply_setSaturation:(CGFloat)saturation;
+- (CGFloat)ply_saturation;
 
-- (void)PLY_setBrightness:(CGFloat)brightness;
-- (CGFloat)PLY_brightness;
+- (void)ply_setBrightness:(CGFloat)brightness;
+- (CGFloat)ply_brightness;
 
 @end

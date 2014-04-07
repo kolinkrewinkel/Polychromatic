@@ -10,16 +10,16 @@
 
 @interface DVTSourceModelItem (PLYIdentification)
 
-- (BOOL)PLY_isComment;
-- (BOOL)PLY_isIdentifier;
-- (BOOL)PLY_isKeyword;
-- (BOOL)PLY_isMethod;
-- (BOOL)PLY_isPlain;
-- (BOOL)PLY_isPreprocessor;
-- (BOOL)PLY_isString;
-- (BOOL)PLY_isSystemClass;
-- (BOOL)PLY_isSystemFunction;
-- (BOOL)PLY_isUserClass;
-- (BOOL)PLY_isUserFunction;
+- (BOOL)ply_isComment;
+- (BOOL)ply_isIdentifier;
+- (BOOL)ply_isKeyword;
+- (BOOL)ply_isMethod;
+- (BOOL)ply_isPlain;
+- (BOOL)ply_isPreprocessor;
+- (BOOL)ply_isString;
+- (BOOL)ply_isSystemClass;
+- (BOOL)ply_isSystemFunction;
+- (BOOL)ply_isUserClass;
+- (BOOL)ply_isUserFunction;
 
 @end

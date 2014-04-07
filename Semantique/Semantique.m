@@ -52,7 +52,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             NSMenuItem *editorMenuItem = [[NSApp mainMenu] itemWithTitle:@"Xcode"];
             NSUInteger startingIndex = 7;
-            
+
             [[editorMenuItem submenu] insertItem:[NSMenuItem separatorItem] atIndex:startingIndex];
 
             NSMenuItem *installItem = [[NSMenuItem alloc] initWithTitle:@"Install Semantique Templates" action:@selector(showInstallWindow:) keyEquivalent:@"I"];
@@ -76,7 +76,6 @@
 - (void)showInstallWindow:(id)sender
 {
     NSAlert *alert = [NSAlert alertWithMessageText:@"Semantique" defaultButton:@"Install Themes" alternateButton:@"Dismiss" otherButton:nil informativeTextWithFormat:@"This plugin is intended for use with monochromatic colors for all types except vibrant variables (local and instance variables, as well as properties.)\n\nTasteful sample themes are provided to demo the concept. Installing them as a basis is recommended."];
-    [alert setAlertStyle:NSInformationalAlertStyle];
 
     if ([alert runModal] == 1)
     {

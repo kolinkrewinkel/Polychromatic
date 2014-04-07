@@ -8,7 +8,6 @@
 
 #import "DVTTextStorage+PLYHighlightingHook.h"
 #import "PLYSwizzling.h"
-#import "DVTSourceModelItem+PLYIdentification.h"
 #import "PLYVariableManager.h"
 
 static IMP originalColorAtCharacterIndexImplementation;

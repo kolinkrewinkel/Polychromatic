@@ -11,6 +11,7 @@
 		3338E1A518EF740E00C76084 /* PLYView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3338E1A418EF740E00C76084 /* PLYView.m */; };
 		3338E1AB18EF7F9A00C76084 /* DVTFontAndColorTheme+PLYDataInjection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3338E1AA18EF7F9A00C76084 /* DVTFontAndColorTheme+PLYDataInjection.m */; };
 		334178D718EFD644004AAF67 /* CSSEdit Tribute.dvtcolortheme in Resources */ = {isa = PBXBuildFile; fileRef = 334178D618EFD644004AAF67 /* CSSEdit Tribute.dvtcolortheme */; };
+		33516A9518F25074005CB0A8 /* DVTSourceModelItem+PLYIdentification.m in Sources */ = {isa = PBXBuildFile; fileRef = 33516A9418F25074005CB0A8 /* DVTSourceModelItem+PLYIdentification.m */; };
 		339A936A18EFD0AD00381C8A /* Carbon.dvtcolortheme in Resources */ = {isa = PBXBuildFile; fileRef = 339A936918EFD0AD00381C8A /* Carbon.dvtcolortheme */; };
 		33B3A3EE18CD36BE00AA64C8 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33B3A3ED18CD36BE00AA64C8 /* AppKit.framework */; };
 		33B3A3F018CD36BE00AA64C8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33B3A3EF18CD36BE00AA64C8 /* Foundation.framework */; };
@@ -22,7 +23,6 @@
 		33E48D2818D3F52400FCC557 /* DVTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33E48D2618D3F52400FCC557 /* DVTFoundation.framework */; };
 		33E48D2918D3F52400FCC557 /* DVTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33E48D2718D3F52400FCC557 /* DVTKit.framework */; };
 		33F94F2918CEE2040092E74C /* DVTTextStorage+PLYHighlightingHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 33F94F2818CEE2040092E74C /* DVTTextStorage+PLYHighlightingHook.m */; };
-		33F94F2F18CFC4D70092E74C /* DVTSourceModelItem+PLYIdentification.m in Sources */ = {isa = PBXBuildFile; fileRef = 33F94F2E18CFC4D70092E74C /* DVTSourceModelItem+PLYIdentification.m */; };
 		33F94F3318CFCBE20092E74C /* PLYVariableManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 33F94F3218CFCBE20092E74C /* PLYVariableManager.m */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +35,8 @@
 		3338E1A918EF7F9A00C76084 /* DVTFontAndColorTheme+PLYDataInjection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "DVTFontAndColorTheme+PLYDataInjection.h"; path = "Categories/DVTFontAndColorTheme+PLYDataInjection.h"; sourceTree = "<group>"; };
 		3338E1AA18EF7F9A00C76084 /* DVTFontAndColorTheme+PLYDataInjection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "DVTFontAndColorTheme+PLYDataInjection.m"; path = "Categories/DVTFontAndColorTheme+PLYDataInjection.m"; sourceTree = "<group>"; };
 		334178D618EFD644004AAF67 /* CSSEdit Tribute.dvtcolortheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "CSSEdit Tribute.dvtcolortheme"; sourceTree = "<group>"; };
+		33516A9318F25074005CB0A8 /* DVTSourceModelItem+PLYIdentification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVTSourceModelItem+PLYIdentification.h"; sourceTree = "<group>"; };
+		33516A9418F25074005CB0A8 /* DVTSourceModelItem+PLYIdentification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DVTSourceModelItem+PLYIdentification.m"; sourceTree = "<group>"; };
 		339A936918EFD0AD00381C8A /* Carbon.dvtcolortheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Carbon.dvtcolortheme; sourceTree = "<group>"; };
 		33B3A3EA18CD36BE00AA64C8 /* Polychromatic.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Polychromatic.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		33B3A3ED18CD36BE00AA64C8 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -58,8 +60,6 @@
 		33F94F2518CED78B0092E74C /* DVTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTKit.framework; path = "../../../../Applications/Xcode51-Beta5.app/Contents/SharedFrameworks/DVTKit.framework"; sourceTree = "<group>"; };
 		33F94F2718CEE2040092E74C /* DVTTextStorage+PLYHighlightingHook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "DVTTextStorage+PLYHighlightingHook.h"; path = "Categories/DVTTextStorage+PLYHighlightingHook.h"; sourceTree = "<group>"; };
 		33F94F2818CEE2040092E74C /* DVTTextStorage+PLYHighlightingHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "DVTTextStorage+PLYHighlightingHook.m"; path = "Categories/DVTTextStorage+PLYHighlightingHook.m"; sourceTree = "<group>"; };
-		33F94F2D18CFC4D70092E74C /* DVTSourceModelItem+PLYIdentification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "DVTSourceModelItem+PLYIdentification.h"; path = "Categories/DVTSourceModelItem+PLYIdentification.h"; sourceTree = "<group>"; };
-		33F94F2E18CFC4D70092E74C /* DVTSourceModelItem+PLYIdentification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "DVTSourceModelItem+PLYIdentification.m"; path = "Categories/DVTSourceModelItem+PLYIdentification.m"; sourceTree = "<group>"; };
 		33F94F3118CFCBE20092E74C /* PLYVariableManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLYVariableManager.h; sourceTree = "<group>"; };
 		33F94F3218CFCBE20092E74C /* PLYVariableManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLYVariableManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -146,11 +146,11 @@
 		33B3A3F118CD36BE00AA64C8 /* Polychromatic */ = {
 			isa = PBXGroup;
 			children = (
+				33B3A3F718CD36BE00AA64C8 /* Polychromatic.h */,
+				33B3A3F818CD36BE00AA64C8 /* Polychromatic.m */,
 				339A936818EFD0AD00381C8A /* Bundled Themes */,
 				33F94F3018CFC4DE0092E74C /* Categories */,
 				3338E1A018EF740300C76084 /* Developer Kits */,
-				33B3A3F718CD36BE00AA64C8 /* Polychromatic.h */,
-				33B3A3F818CD36BE00AA64C8 /* Polychromatic.m */,
 				33B3A3F218CD36BE00AA64C8 /* Supporting Files */,
 				33B3A40418CD375300AA64C8 /* Utilities */,
 				3338E1A218EF740E00C76084 /* Views */,
@@ -184,8 +184,8 @@
 			children = (
 				3338E1A918EF7F9A00C76084 /* DVTFontAndColorTheme+PLYDataInjection.h */,
 				3338E1AA18EF7F9A00C76084 /* DVTFontAndColorTheme+PLYDataInjection.m */,
-				33F94F2D18CFC4D70092E74C /* DVTSourceModelItem+PLYIdentification.h */,
-				33F94F2E18CFC4D70092E74C /* DVTSourceModelItem+PLYIdentification.m */,
+				33516A9318F25074005CB0A8 /* DVTSourceModelItem+PLYIdentification.h */,
+				33516A9418F25074005CB0A8 /* DVTSourceModelItem+PLYIdentification.m */,
 				33F94F2718CEE2040092E74C /* DVTTextStorage+PLYHighlightingHook.h */,
 				33F94F2818CEE2040092E74C /* DVTTextStorage+PLYHighlightingHook.m */,
 				3302570118EE734F00FC14F1 /* IDEFontAndColorPrefsPaneController+PLYPrefsPaneHook.h */,
@@ -260,10 +260,10 @@
 			files = (
 				3338E1A518EF740E00C76084 /* PLYView.m in Sources */,
 				33F94F2918CEE2040092E74C /* DVTTextStorage+PLYHighlightingHook.m in Sources */,
+				33516A9518F25074005CB0A8 /* DVTSourceModelItem+PLYIdentification.m in Sources */,
 				33B3A41818CD3B5100AA64C8 /* PLYSwizzling.c in Sources */,
 				3338E1AB18EF7F9A00C76084 /* DVTFontAndColorTheme+PLYDataInjection.m in Sources */,
 				33F94F3318CFCBE20092E74C /* PLYVariableManager.m in Sources */,
-				33F94F2F18CFC4D70092E74C /* DVTSourceModelItem+PLYIdentification.m in Sources */,
 				33B3A3F918CD36BF00AA64C8 /* Polychromatic.m in Sources */,
 				3302570318EE734F00FC14F1 /* IDEFontAndColorPrefsPaneController+PLYPrefsPaneHook.m in Sources */,
 			);
@@ -365,7 +365,7 @@
 					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/SharedFrameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Semantique/Polychromatic-Prefix.pch";
+				GCC_PREFIX_HEADER = "Polychromatic/Polychromatic-Prefix.pch";
 				INFOPLIST_FILE = "Polychromatic/Polychromatic-Info.plist";
 				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
 				LIBRARY_SEARCH_PATHS = (
@@ -390,7 +390,7 @@
 					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/SharedFrameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Semantique/Polychromatic-Prefix.pch";
+				GCC_PREFIX_HEADER = "Polychromatic/Polychromatic-Prefix.pch";
 				INFOPLIST_FILE = "Polychromatic/Polychromatic-Info.plist";
 				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
 				LIBRARY_SEARCH_PATHS = (

@@ -7,8 +7,11 @@
 //
 
 #import "DVTTextStorage+PLYHighlightingHook.h"
+
+#import "Polychromatic.h"
 #import "PLYSwizzling.h"
 #import "PLYVariableManager.h"
+#import "DVTSourceModelItem+PLYIdentification.h"
 
 static IMP originalColorAtCharacterIndexImplementation;
 
@@ -24,6 +27,11 @@ static IMP originalColorAtCharacterIndexImplementation;
     /* Basically, Xcode calls you a given range. It seems to start with the entirety and spiral its way inward. Once given a range, its broken down by the colorAt: method. It replaces the range pointer passed, which Xcode then applies changes, and adapts the numerical changes.  So, the next thing it asks about is whatever is just beyond whatever the replaced range is. It also takes the previous length (assuming it can fit in the total text range, at which point it defaults to the max value before subtracting), and subtracts the new range length from it to determine the next passed length.     */
 
     /* We should probably be doing the "effectiveRange" finding, but for now we'll let Xcode solve it out for us. */
+
+    if (![[Polychromatic sharedPlugin] pluginEnabled])
+    {
+        return originalColorAtCharacterIndexImplementation(self, @selector(colorAtCharacterIndex:effectiveRange:context:), index, effectiveRange, context);
+    }
 
     originalColorAtCharacterIndexImplementation(self, @selector(colorAtCharacterIndex:effectiveRange:context:), index, effectiveRange, context);
     NSRange newRange = *effectiveRange;

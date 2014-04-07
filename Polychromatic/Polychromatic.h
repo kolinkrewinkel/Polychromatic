@@ -12,4 +12,6 @@
 
 + (instancetype)sharedPlugin;
 
+- (BOOL)pluginEnabled;
+
 @end

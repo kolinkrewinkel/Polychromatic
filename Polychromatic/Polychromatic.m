@@ -12,6 +12,8 @@
 
 @property (nonatomic, strong) NSBundle *bundle;
 
+@property (nonatomic, strong) NSMenuItem *enableItem;
+
 @end
 
 @implementation Polychromatic
@@ -49,18 +51,7 @@
     {
         self.bundle = bundle;
 
-        dispatch_async(dispatch_get_main_queue(), ^{
-            NSMenuItem *editorMenuItem = [[NSApp mainMenu] itemWithTitle:@"Xcode"];
-            NSUInteger startingIndex = 7;
-
-            [[editorMenuItem submenu] insertItem:[NSMenuItem separatorItem] atIndex:startingIndex];
-
-            NSMenuItem *installItem = [[NSMenuItem alloc] initWithTitle:@"Install Polychromatic Templates" action:@selector(showInstallWindow:) keyEquivalent:@"I"];
-            installItem.target = self;
-            [[editorMenuItem submenu] insertItem:installItem atIndex:startingIndex + 1];
-
-            [[editorMenuItem submenu] insertItem:[NSMenuItem separatorItem] atIndex:startingIndex + 2];
-        });
+        [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"PLYHasCompletedFirstRun": @NO, @"PLYPluginEnabled": @YES}];
 
         BOOL hasCompletedFirstRun = [[NSUserDefaults standardUserDefaults] boolForKey:@"PLYHasCompletedFirstRun"];
         if (!hasCompletedFirstRun)
@@ -68,6 +59,11 @@
             [self showInstallWindow:self];
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"PLYHasCompletedFirstRun"];
         }
+
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(modifyEditorMenu:)
+                                                     name:NSMenuDidChangeItemNotification
+                                                   object:nil];
     }
 
     return self;
@@ -95,6 +91,54 @@
             [[NSFileManager defaultManager] copyItemAtPath:[NSString stringWithFormat:@"%@/%@", basePath, themePath] toPath:[NSString stringWithFormat:@"%@/Library/Developer/Xcode/UserData/FontAndColorThemes/%@", NSHomeDirectory(), replacementName] error:&error];
         }];
     }
+}
+
+- (void)toggleEnabled:(id)sender
+{
+    BOOL newValue = ![[NSUserDefaults standardUserDefaults] boolForKey:@"PLYPluginEnabled"];
+    [[NSUserDefaults standardUserDefaults] setBool:newValue forKey:@"PLYPluginEnabled"];
+
+    [self.enableItem setState:newValue ? NSOnState : NSOffState];
+}
+
+- (void)modifyEditorMenu:(id)sender
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSMenuItem *editorMenuItem = [[NSApp mainMenu] itemWithTitle:@"Editor"];
+
+        if ([editorMenuItem.submenu itemWithTitle:@"Polychromatic"])
+        {
+            return;
+        }
+
+        NSMenu *polychromaticMenu = [[NSMenu alloc] initWithTitle:@"Polychromatic"];
+        NSMenuItem *menuItem = [[NSMenuItem alloc] init];
+        menuItem.title = @"Polychromatic";
+
+        NSMenuItem *installItem = [[NSMenuItem alloc] initWithTitle:@"Install Sample Themes" action:@selector(showInstallWindow:) keyEquivalent:@"I"];
+        installItem.target = self;
+        [polychromaticMenu addItem:installItem];
+
+        self.enableItem = [[NSMenuItem alloc] initWithTitle:@"Enabled" action:@selector(toggleEnabled:) keyEquivalent:@"E"];
+
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:@"PLYPluginEnabled"])
+        {
+            [self.enableItem setState:NSOnState];
+        }
+
+        self.enableItem.target = self;
+        [polychromaticMenu addItem:self.enableItem];
+
+
+        menuItem.submenu = polychromaticMenu;
+        [editorMenuItem.submenu addItem:[NSMenuItem separatorItem]];
+        [editorMenuItem.submenu addItem:menuItem];
+    });
+}
+
+- (BOOL)pluginEnabled
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"PLYPluginEnabled"];
 }
 
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem

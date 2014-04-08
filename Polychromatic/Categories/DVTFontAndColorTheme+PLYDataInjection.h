@@ -10,6 +10,9 @@
 
 @interface DVTFontAndColorTheme (PLYDataInjection)
 
+- (void)ply_setEnabled:(BOOL)enabled;
+- (BOOL)ply_enabled;
+
 - (void)ply_setSaturation:(CGFloat)saturation;
 - (CGFloat)ply_saturation;
 

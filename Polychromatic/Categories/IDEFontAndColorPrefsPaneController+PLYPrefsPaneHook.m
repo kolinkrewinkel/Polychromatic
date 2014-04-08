@@ -69,6 +69,9 @@ static char *PLYVariableColorModifierViewIdentifier = "PLYVariableColorModifierV
 {
     originalFontPickerImp(self, @selector(_updateFontPickerAndColorWell));
 
+    [self enabledSwitch].state = [[self theme] ply_enabled];
+    [self ply_setEnabled:[[self theme] ply_enabled]];
+
     [self saturationSlider].floatValue = [[self theme] ply_saturation];
     [self ply_setSaturation:[[self theme] ply_saturation]];
 
@@ -78,15 +81,32 @@ static char *PLYVariableColorModifierViewIdentifier = "PLYVariableColorModifierV
     if ([self ply_varPrefsView].superview)
     {
         [self adjustColorWellSamples];
+        [self adjustControlsToEnabledState];
     }
 }
 
 - (void)setupVariablesPane
 {
-    PLYView *variablePrefsView = [[PLYView alloc] initWithFrame:CGRectMake(0.f, 0.f, [self ply_fontAndColorItemTable].frame.size.width, 285.f)];
+    PLYView *variablePrefsView = [[PLYView alloc] initWithFrame:CGRectMake(0.f, 0.f, [self ply_fontAndColorItemTable].frame.size.width, 305.f)];
     [variablePrefsView setAutoresizingMask:NSViewHeightSizable];
 
-    NSTextField *saturationLabel = [[NSTextField alloc] initWithFrame:NSMakeRect(40.f, 30.f, 80.f, 20.f)];
+    NSTextField *polychromaticLabel= [[NSTextField alloc] initWithFrame:NSMakeRect(40.f, 30.f, 95.f, 20.f)];
+    [polychromaticLabel setEditable:NO];
+    [polychromaticLabel setBezeled:NO];
+    [polychromaticLabel setSelectable:NO];
+    polychromaticLabel.stringValue = @"Polychromatic:";
+    polychromaticLabel.wantsLayer = YES;
+    [variablePrefsView addSubview:polychromaticLabel];
+
+    NSButton *polychromaticSwitch = [[NSButton alloc] initWithFrame:NSMakeRect(135.f, 28.f, 80.f, 20.f)];
+    [polychromaticSwitch setButtonType:NSSwitchButton];
+    [polychromaticSwitch setTarget:self];
+    [polychromaticSwitch setAction:@selector(enabledChanged:)];
+    polychromaticSwitch.title = @"Enabled";
+    [variablePrefsView addSubview:polychromaticSwitch];
+    [self ply_setEnabledSwitch:polychromaticSwitch];
+
+    NSTextField *saturationLabel = [[NSTextField alloc] initWithFrame:NSMakeRect(40.f, 60.f, 80.f, 20.f)];
     [saturationLabel setEditable:NO];
     [saturationLabel setBezeled:NO];
     [saturationLabel setSelectable:NO];
@@ -94,7 +114,7 @@ static char *PLYVariableColorModifierViewIdentifier = "PLYVariableColorModifierV
     saturationLabel.wantsLayer = YES;
     [variablePrefsView addSubview:saturationLabel];
 
-    NSSlider *saturationSlider = [[NSSlider alloc] initWithFrame:NSMakeRect(115.f, 27.f, variablePrefsView.frame.size.width - (115.f * 2.f), 30.f)];
+    NSSlider *saturationSlider = [[NSSlider alloc] initWithFrame:NSMakeRect(115.f, 57.f, variablePrefsView.frame.size.width - (115.f * 2.f), 30.f)];
     [saturationSlider setAction:@selector(saturationChanged:)];
     [saturationSlider setTarget:self];
     saturationSlider.numberOfTickMarks = 2;
@@ -102,7 +122,7 @@ static char *PLYVariableColorModifierViewIdentifier = "PLYVariableColorModifierV
     [variablePrefsView addSubview:saturationSlider];
     [self ply_setSaturationSlider:saturationSlider];
 
-    NSTextField *brightnessLabel = [[NSTextField alloc] initWithFrame:NSMakeRect(40.f, 70.f, 80.f, 20.f)];
+    NSTextField *brightnessLabel = [[NSTextField alloc] initWithFrame:NSMakeRect(40.f, 90.f, 80.f, 20.f)];
     [brightnessLabel setEditable:NO];
     [brightnessLabel setBezeled:NO];
     [brightnessLabel setSelectable:NO];
@@ -110,7 +130,7 @@ static char *PLYVariableColorModifierViewIdentifier = "PLYVariableColorModifierV
     brightnessLabel.wantsLayer = YES;
     [variablePrefsView addSubview:brightnessLabel];
 
-    NSSlider *brightnessSlider = [[NSSlider alloc] initWithFrame:NSMakeRect(115.f, 67.f, variablePrefsView.frame.size.width - (115.f * 2.f), 30.f)];
+    NSSlider *brightnessSlider = [[NSSlider alloc] initWithFrame:NSMakeRect(115.f, 87.f, variablePrefsView.frame.size.width - (115.f * 2.f), 30.f)];
     [brightnessSlider setAction:@selector(brightnessChanged:)];
     [brightnessSlider setTarget:self];
     brightnessSlider.numberOfTickMarks = 2;
@@ -118,7 +138,7 @@ static char *PLYVariableColorModifierViewIdentifier = "PLYVariableColorModifierV
     [variablePrefsView addSubview:brightnessSlider];
     [self ply_setBrightnessSlider:brightnessSlider];
 
-    NSTextField *descriptionLabel = [[NSTextField alloc] initWithFrame:NSMakeRect(40.f, 115.f, 400.f, 160.f)];
+    NSTextField *descriptionLabel = [[NSTextField alloc] initWithFrame:NSMakeRect(40.f, 125.f, 400.f, 160.f)];
     [descriptionLabel setEditable:NO];
     [descriptionLabel setBezeled:NO];
     [descriptionLabel setSelectable:NO];
@@ -170,6 +190,7 @@ static char *PLYVariableColorModifierViewIdentifier = "PLYVariableColorModifierV
         }
 
         [self adjustColorWellSamples];
+        [self adjustControlsToEnabledState];
     }
 }
 
@@ -242,6 +263,24 @@ static char *PLYVariableColorModifierViewIdentifier = "PLYVariableColorModifierV
     [colorWell setEnabled:YES];
 }
 
+- (void)adjustControlsToEnabledState
+{
+    [[self brightnessSlider] setEnabled:[self ply_Enabled]];
+    [[self saturationSlider] setEnabled:[self ply_Enabled]];
+}
+
+- (void)enabledChanged:(NSButton *)button
+{
+    BOOL enabled = (button.state ? YES : NO);
+
+    [self ply_setEnabled:enabled];
+
+    [[self theme] ply_setEnabled:enabled];
+    [self theme].contentNeedsSaving = YES;
+
+    [self adjustControlsToEnabledState];
+}
+
 - (void)saturationChanged:(NSSlider *)slider
 {
     [self ply_setSaturation:slider.floatValue];
@@ -291,6 +330,16 @@ static char *PLYVariableColorModifierViewIdentifier = "PLYVariableColorModifierV
     objc_setAssociatedObject(self, PLYVariableColorModifierViewIdentifier, varPrefsView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
+- (BOOL)ply_Enabled
+{
+    return [objc_getAssociatedObject(self, "ply_Enabled") boolValue];
+}
+
+- (void)ply_setEnabled:(BOOL)enabled
+{
+    objc_setAssociatedObject(self, "ply_Enabled", @(enabled), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
 - (CGFloat)ply_Saturation
 {
     return [objc_getAssociatedObject(self, "ply_Saturation") floatValue];
@@ -309,6 +358,16 @@ static char *PLYVariableColorModifierViewIdentifier = "PLYVariableColorModifierV
 - (void)ply_setBrightness:(CGFloat)brightness
 {
     objc_setAssociatedObject(self, "ply_Brightness", @(brightness), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (NSButton *)enabledSwitch;
+{
+    return objc_getAssociatedObject(self, "ply_enabledSwitch");
+}
+
+- (void)ply_setEnabledSwitch:(NSButton *)enabledSwitch
+{
+    objc_setAssociatedObject(self, "ply_enabledSwitch", enabledSwitch, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (NSSlider *)saturationSlider

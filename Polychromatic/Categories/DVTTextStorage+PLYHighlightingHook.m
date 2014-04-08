@@ -12,6 +12,7 @@
 #import "PLYSwizzling.h"
 #import "PLYVariableManager.h"
 #import "DVTSourceModelItem+PLYIdentification.h"
+#import "DVTFontAndColorTheme+PLYDataInjection.h"
 
 static IMP originalColorAtCharacterIndexImplementation;
 
@@ -28,7 +29,7 @@ static IMP originalColorAtCharacterIndexImplementation;
 
     /* We should probably be doing the "effectiveRange" finding, but for now we'll let Xcode solve it out for us. */
 
-    if (![[Polychromatic sharedPlugin] pluginEnabled])
+    if (![[DVTFontAndColorTheme currentTheme] ply_enabled] || ![[Polychromatic sharedPlugin] pluginEnabled])
     {
         return originalColorAtCharacterIndexImplementation(self, @selector(colorAtCharacterIndex:effectiveRange:context:), index, effectiveRange, context);
     }

@@ -98,15 +98,15 @@ static char *PLYVariableColorModifierViewIdentifier = "PLYVariableColorModifierV
     polychromaticLabel.wantsLayer = YES;
     [variablePrefsView addSubview:polychromaticLabel];
 
-    NSButton *polychromaticSwitch = [[NSButton alloc] initWithFrame:NSMakeRect(135.f, 28.f, 80.f, 20.f)];
+    NSButton *polychromaticSwitch = [[NSButton alloc] initWithFrame:NSMakeRect(135.f, 29.f, 150.f, 20.f)];
     [polychromaticSwitch setButtonType:NSSwitchButton];
     [polychromaticSwitch setTarget:self];
     [polychromaticSwitch setAction:@selector(enabledChanged:)];
-    polychromaticSwitch.title = @"Enabled";
+    polychromaticSwitch.title = @"Enable Polychromatic";
     [variablePrefsView addSubview:polychromaticSwitch];
     [self ply_setEnabledSwitch:polychromaticSwitch];
 
-    NSTextField *saturationLabel = [[NSTextField alloc] initWithFrame:NSMakeRect(40.f, 60.f, 80.f, 20.f)];
+    NSTextField *saturationLabel = [[NSTextField alloc] initWithFrame:NSMakeRect(40.f, 70.f, 80.f, 20.f)];
     [saturationLabel setEditable:NO];
     [saturationLabel setBezeled:NO];
     [saturationLabel setSelectable:NO];
@@ -114,7 +114,7 @@ static char *PLYVariableColorModifierViewIdentifier = "PLYVariableColorModifierV
     saturationLabel.wantsLayer = YES;
     [variablePrefsView addSubview:saturationLabel];
 
-    NSSlider *saturationSlider = [[NSSlider alloc] initWithFrame:NSMakeRect(115.f, 57.f, variablePrefsView.frame.size.width - (115.f * 2.f), 30.f)];
+    NSSlider *saturationSlider = [[NSSlider alloc] initWithFrame:NSMakeRect(115.f, 67.f, variablePrefsView.frame.size.width - (115.f * 2.f), 30.f)];
     [saturationSlider setAction:@selector(saturationChanged:)];
     [saturationSlider setTarget:self];
     saturationSlider.numberOfTickMarks = 2;
@@ -122,7 +122,7 @@ static char *PLYVariableColorModifierViewIdentifier = "PLYVariableColorModifierV
     [variablePrefsView addSubview:saturationSlider];
     [self ply_setSaturationSlider:saturationSlider];
 
-    NSTextField *brightnessLabel = [[NSTextField alloc] initWithFrame:NSMakeRect(40.f, 90.f, 80.f, 20.f)];
+    NSTextField *brightnessLabel = [[NSTextField alloc] initWithFrame:NSMakeRect(40.f, 110.f, 80.f, 20.f)];
     [brightnessLabel setEditable:NO];
     [brightnessLabel setBezeled:NO];
     [brightnessLabel setSelectable:NO];
@@ -130,7 +130,7 @@ static char *PLYVariableColorModifierViewIdentifier = "PLYVariableColorModifierV
     brightnessLabel.wantsLayer = YES;
     [variablePrefsView addSubview:brightnessLabel];
 
-    NSSlider *brightnessSlider = [[NSSlider alloc] initWithFrame:NSMakeRect(115.f, 87.f, variablePrefsView.frame.size.width - (115.f * 2.f), 30.f)];
+    NSSlider *brightnessSlider = [[NSSlider alloc] initWithFrame:NSMakeRect(115.f, 107.f, variablePrefsView.frame.size.width - (115.f * 2.f), 30.f)];
     [brightnessSlider setAction:@selector(brightnessChanged:)];
     [brightnessSlider setTarget:self];
     brightnessSlider.numberOfTickMarks = 2;
@@ -138,10 +138,11 @@ static char *PLYVariableColorModifierViewIdentifier = "PLYVariableColorModifierV
     [variablePrefsView addSubview:brightnessSlider];
     [self ply_setBrightnessSlider:brightnessSlider];
 
-    NSTextField *descriptionLabel = [[NSTextField alloc] initWithFrame:NSMakeRect(40.f, 125.f, 400.f, 160.f)];
+    NSTextField *descriptionLabel = [[NSTextField alloc] initWithFrame:NSMakeRect(40.f, 155.f, 400.f, 160.f)];
     [descriptionLabel setEditable:NO];
     [descriptionLabel setBezeled:NO];
     [descriptionLabel setSelectable:NO];
+    descriptionLabel.font = [NSFont systemFontOfSize:[NSFont smallSystemFontSize]];
     descriptionLabel.textColor = [NSColor darkGrayColor];
     descriptionLabel.stringValue = @"Local variables, properties, and ivars, as well as statics and arguments are colored.\n\nThey are assigned a color by adding them to a sorted set. Essentially, they are given a transient position on the spectrum, and the saturation and brightness levels are pre-defined to maintain a sense of consistency.\n\nBy doing this, a clash of neons versus pastels does not occur while the hue itself can shift.";
     [variablePrefsView addSubview:descriptionLabel];

@@ -123,7 +123,7 @@ static char *PLYVariableColorModifierViewIdentifier = "PLYVariableColorModifierV
     [descriptionLabel setBezeled:NO];
     [descriptionLabel setSelectable:NO];
     descriptionLabel.textColor = [NSColor darkGrayColor];
-    descriptionLabel.stringValue = @"Local variables, properties, and ivars, as well as statics and arguments are colored.\n\nThey are assigned a  color by adding them to a sorted set. Essentially, they are given a transient position on the spectrum, and the saturation and brightness levels are pre-defined to maintain a sense of consistency.\n\nBy doing this, a clash of neons versus pastels does not occur while the hue itself can shift.";
+    descriptionLabel.stringValue = @"Local variables, properties, and ivars, as well as statics and arguments are colored.\n\nThey are assigned a color by adding them to a sorted set. Essentially, they are given a transient position on the spectrum, and the saturation and brightness levels are pre-defined to maintain a sense of consistency.\n\nBy doing this, a clash of neons versus pastels does not occur while the hue itself can shift.";
     [variablePrefsView addSubview:descriptionLabel];
 
     [self ply_setVarPrefsView:variablePrefsView];

@@ -2,7 +2,7 @@
 
 Coloring with significance.
 
-Polychromatic is an Xcode plugin that truly emphasizes content. By giving properties, ivars, and local variables each a unique, dynamic color, and stripping away color from types which do not neeed it, logic becomes clear and apparent.
+Polychromatic is an Xcode plugin that truly emphasizes content. By giving properties, ivars, and local variables each a unique, dynamic color, and stripping away color from types which do not need it, logic becomes clear and apparent.
 
 ##Screenshots
 ![CSSEdit Tribute Theme](https://files.app.net/20wlfjgeI.png)

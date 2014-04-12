@@ -361,8 +361,8 @@
 				DSTROOT = "$(HOME)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Frameworks",
-					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/SharedFrameworks",
+					"$(DEVELOPER_DIR)/../Frameworks",
+					"$(DEVELOPER_DIR)/../SharedFrameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Polychromatic/Polychromatic-Prefix.pch";
@@ -386,8 +386,8 @@
 				DSTROOT = "$(HOME)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Frameworks",
-					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/SharedFrameworks",
+					"$(DEVELOPER_DIR)/../Frameworks",
+					"$(DEVELOPER_DIR)/../SharedFrameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Polychromatic/Polychromatic-Prefix.pch";

@@ -138,6 +138,8 @@
 		<key>xcode.syntax.url</key>
 		<string>Menlo-Regular - 13.0</string>
 	</dict>
+    <key>PLYEnabled</key>
+	<true/>
 	<key>PLYVarBrightness</key>
 	<real>0.87937700748443604</real>
 	<key>PLYVarSaturation</key>

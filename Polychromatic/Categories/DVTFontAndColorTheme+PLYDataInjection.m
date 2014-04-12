@@ -42,6 +42,7 @@ static IMP originalDataLoadImp;
         NSError *error = nil;
         NSMutableDictionary *dict = [NSPropertyListSerialization propertyListWithData:data options:NSPropertyListMutableContainersAndLeaves format:&format error:&error];
 
+        [self ply_setEnabled:[dict[@"PLYEnabled"] boolValue]];
         [self ply_setBrightness:[dict[@"PLYVarBrightness"] floatValue]];
         [self ply_setSaturation:[dict[@"PLYVarSaturation"] floatValue]];
     }
@@ -60,6 +61,7 @@ static IMP originalDataLoadImp;
 
         NSMutableDictionary *dict = [NSPropertyListSerialization propertyListWithData:data options:NSPropertyListMutableContainersAndLeaves format:&format error:arg1];
 
+        BOOL enabled = [self ply_enabled];
         CGFloat saturation = [self ply_saturation];
         CGFloat brightness = [self ply_brightness];
 
@@ -73,6 +75,7 @@ static IMP originalDataLoadImp;
             brightness = 0.5f;
         }
 
+        dict[@"PLYEnabled"] = @(enabled);
         dict[@"PLYVarSaturation"] = @(saturation);
         dict[@"PLYVarBrightness"] = @(brightness);
 
@@ -80,6 +83,16 @@ static IMP originalDataLoadImp;
     }
 
     return data;
+}
+
+- (void)ply_setEnabled:(BOOL)enabled;
+{
+    objc_setAssociatedObject(self, "ply_enabled", @(enabled), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (BOOL)ply_enabled;
+{
+    return [objc_getAssociatedObject(self, "ply_enabled") boolValue];
 }
 
 - (void)ply_setSaturation:(CGFloat)saturation

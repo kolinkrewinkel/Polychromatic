@@ -103,6 +103,27 @@
     [[NSUserDefaults standardUserDefaults] setBool:newValue forKey:@"PLYPluginEnabled"];
 
     [self.enableItem setState:newValue ? NSOnState : NSOffState];
+    [self refreshAllWindows];
+}
+
+- (void)refreshAllWindows
+{
+    for (NSWindow *win in [NSApp windows])
+    {
+        [self refreshSubviews:[win contentView]];
+    }
+}
+
+- (void)refreshSubviews:(NSView *)view
+{
+    if ([NSStringFromClass([view class]) isEqualToString:@"DVTSourceTextView"])
+    {
+        [view setNeedsDisplay:YES];
+    }
+    for (NSView *subview in [view subviews])
+    {
+        [self refreshSubviews:subview];
+    }
 }
 
 - (void)modifyEditorMenu:(id)sender

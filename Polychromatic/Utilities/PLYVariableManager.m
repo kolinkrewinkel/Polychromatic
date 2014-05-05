@@ -59,7 +59,7 @@ static NSString *const IDEIndexDidIndexWorkspaceNotification = @"IDEIndexDidInde
 {
     NSMutableOrderedSet *variables = [self variableSetForWorkspace:workspace];
 
-    if (!variables && workspace.filePath.pathString)
+    if (!variables && workspace.filePath.pathString && workspace.filePath.pathString.length > 0)
     {
         variables = [[NSMutableOrderedSet alloc] init];
         [self.workspaces setObject:variables forKey:workspace.filePath.pathString];

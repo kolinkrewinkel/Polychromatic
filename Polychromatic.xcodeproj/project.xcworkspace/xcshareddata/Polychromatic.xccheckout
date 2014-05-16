@@ -5,34 +5,34 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>214CC545-5296-43EF-B367-D5CCF0CEA755</string>
+	<string>E9AAD33A-92E8-4CC7-8D11-79138CD011C3</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Polychromatic</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>FB85257E-3537-4B58-A958-FE688E336122</key>
-		<string>https://github.com/kolinkrewinkel/Semantique.git</string>
+		<key>16F64D26-5425-4607-805E-F5D90E92F1B2</key>
+		<string>ssh://github.com/kolinkrewinkel/Polychromatic.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Polychromatic.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>FB85257E-3537-4B58-A958-FE688E336122</key>
+		<key>16F64D26-5425-4607-805E-F5D90E92F1B2</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/kolinkrewinkel/Semantique.git</string>
+	<string>ssh://github.com/kolinkrewinkel/Polychromatic.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>FB85257E-3537-4B58-A958-FE688E336122</string>
+	<string>16F64D26-5425-4607-805E-F5D90E92F1B2</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>FB85257E-3537-4B58-A958-FE688E336122</string>
+			<string>16F64D26-5425-4607-805E-F5D90E92F1B2</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Polychromatic</string>
 		</dict>

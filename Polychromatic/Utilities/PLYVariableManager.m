@@ -12,10 +12,14 @@
 #import "DVTFontAndColorTheme+PLYDataInjection.h"
 
 static NSString *const IDEIndexDidIndexWorkspaceNotification = @"IDEIndexDidIndexWorkspaceNotification";
+static NSInteger const IDEDefaultNumberOfColors = 10;
 
-@interface PLYVariableManager ()
+@interface PLYVariableManager (){
+	NSInteger numberOfColors;
+}
 
 @property (nonatomic, strong) NSMutableDictionary *workspaces;
+@property (nonatomic, strong) NSMutableArray* colorSpace;
 
 @end
 
@@ -41,6 +45,7 @@ static NSString *const IDEIndexDidIndexWorkspaceNotification = @"IDEIndexDidInde
     if ((self = [super init]))
     {
         self.workspaces = [[NSMutableDictionary alloc] init];
+		[self fillColorSpace];
 
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(indexDidIndexWorkspaceNotification:) name:IDEIndexDidIndexWorkspaceNotification object:nil];
     }
@@ -49,6 +54,20 @@ static NSString *const IDEIndexDidIndexWorkspaceNotification = @"IDEIndexDidInde
 }
 
 #pragma mark - Variable Management
+
+- (void)fillColorSpace {
+	self.colorSpace = [NSMutableArray new];
+	
+	for (int i = 0; i < numberOfColors; i++) {
+		CGFloat hueValue = (CGFloat)i/numberOfColors;
+		
+		NSColor* color = [NSColor colorWithCalibratedHue:hueValue
+											  saturation:[[DVTFontAndColorTheme currentTheme] ply_saturation]
+											  brightness:[[DVTFontAndColorTheme currentTheme] ply_brightness]
+												   alpha:1.f];
+		[self.colorSpace addObject:color];
+	}
+}
 
 - (NSMutableOrderedSet *)variableSetForWorkspace:(IDEWorkspace *)workspace
 {
@@ -68,13 +87,26 @@ static NSString *const IDEIndexDidIndexWorkspaceNotification = @"IDEIndexDidInde
     if (![variables containsObject:variable])
     {
         [variables addObject:variable];
-        [variables sortUsingDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"self" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]]];
+		// Why are you resorting? this only causes colors to possibly change dramatically
+		// Preferably removing this cause less hue shifting with adding of new variables
+		// but we prefer if variables never change color, for now we will block allocate
+		// color space so that color changes happen much less often and cause much less
+		// distraction.
+		//[variables sortUsingDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"self" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]]];
     }
 
     NSUInteger index = [variables indexOfObject:variable];
-    CGFloat hueValue = (CGFloat)index/variables.count;
+	
+	// Only reassign colors if our current colorSpace if full, grow and shrink colorspace
+    if (variables.count > numberOfColors) {
+		numberOfColors += IDEDefaultNumberOfColors;
+		[self fillColorSpace];
+	} else if (numberOfColors - IDEDefaultNumberOfColors > variables.count) {
+		numberOfColors -= IDEDefaultNumberOfColors;
+		[self fillColorSpace];
+	}
 
-    return [NSColor colorWithCalibratedHue:hueValue saturation:[[DVTFontAndColorTheme currentTheme] ply_saturation] brightness:[[DVTFontAndColorTheme currentTheme] ply_brightness] alpha:1.f];
+    return self.colorSpace[index];
 }
 
 - (void)indexDidIndexWorkspaceNotification:(NSNotification *)notification

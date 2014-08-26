@@ -10,29 +10,29 @@
 	<string>Polychromatic</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>FB85257E-3537-4B58-A958-FE688E336122</key>
+		<key>1E4D1041CBE4B8F7A99ED783957E9A2284B3885B</key>
 		<string>https://github.com/kolinkrewinkel/Semantique.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Polychromatic.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>FB85257E-3537-4B58-A958-FE688E336122</key>
+		<key>1E4D1041CBE4B8F7A99ED783957E9A2284B3885B</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/kolinkrewinkel/Semantique.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>FB85257E-3537-4B58-A958-FE688E336122</string>
+	<string>1E4D1041CBE4B8F7A99ED783957E9A2284B3885B</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>FB85257E-3537-4B58-A958-FE688E336122</string>
+			<string>1E4D1041CBE4B8F7A99ED783957E9A2284B3885B</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Polychromatic</string>
 		</dict>

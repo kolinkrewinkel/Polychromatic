@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Kolin Krewinkel. All rights reserved.
 //
 
+#import <CommonCrypto/CommonDigest.h>
+
 #import "PLYVariableManager.h"
 #import "DVTInterfaces.h"
 
@@ -75,7 +77,7 @@ static NSString *const IDEIndexDidIndexWorkspaceNotification = @"IDEIndexDidInde
         hash ^= byte;
     }
      return hash;
- }
+}
 
 - (void)indexDidIndexWorkspaceNotification:(NSNotification *)notification
 {

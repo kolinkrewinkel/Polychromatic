@@ -1090,6 +1090,9 @@ extern NSString *IDEEditorDocumentDidChangeNotification;
 // FIXME: Workaround for NSObject+YOLO buggyness
 -(NSColor*)yl_colorAtCharacterIndex:(unsigned long long)charIndex effectiveRange:(NSRangePointer)range context:(id)context;
 - (id<DVTSourceLanguageSourceModelService>)sourceModelItemAtCharacterIndex:(unsigned long long)arg1; //DVTSourceTextStorage in Xcode 5, DVTSourceLanguageSourceModelService protocol in Xcode 5.1
+- (id)symbolNameAtCharacterIndex:(unsigned long long)arg1 nameRanges:(id *)arg2;
+
+@property(readonly) id languageService;
 
 @end
 

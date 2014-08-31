@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Kolin Krewinkel. All rights reserved.
 //
 
+#import <CommonCrypto/CommonDigest.h>
+
 #import "PLYVariableManager.h"
 #import "DVTInterfaces.h"
 
@@ -57,7 +59,7 @@ static NSString *const IDEIndexDidIndexWorkspaceNotification = @"IDEIndexDidInde
 
 - (NSColor *)colorForVariable:(NSString *)variable inWorkspace:(IDEWorkspace *)workspace
 {
-    NSMutableOrderedSet *variables = [self variableSetForWorkspace:workspace];
+    /*NSMutableOrderedSet *variables = [self variableSetForWorkspace:workspace];
 
     if (!variables && workspace.filePath.pathString)
     {
@@ -69,10 +71,19 @@ static NSString *const IDEIndexDidIndexWorkspaceNotification = @"IDEIndexDidInde
     {
         [variables addObject:variable];
         [variables sortUsingDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"self" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]]];
-    }
+    }*/
+    
+    NSData *data = [variable dataUsingEncoding:NSUTF8StringEncoding];
 
-    NSUInteger index = [variables indexOfObject:variable];
-    CGFloat hueValue = (CGFloat)index/variables.count;
+    CC_MD5_CTX ctx;
+    CC_MD5_Init(&ctx);
+    CC_MD5_Update(&ctx, data.bytes, (CC_LONG)data.length);
+    unsigned char digest[16];
+    CC_MD5_Final(digest, &ctx);
+    
+    uint32_t value = *((uint32_t *)digest);
+    
+    CGFloat hueValue = ((CGFloat)value) / (CGFloat)UINT32_MAX;
 
     return [NSColor colorWithCalibratedHue:hueValue saturation:[[DVTFontAndColorTheme currentTheme] ply_saturation] brightness:[[DVTFontAndColorTheme currentTheme] ply_brightness] alpha:1.f];
 }

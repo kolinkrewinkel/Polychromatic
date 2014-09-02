@@ -118,6 +118,7 @@
 				33B3A3EB18CD36BE00AA64C8 /* Products */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 0;
 		};
 		33B3A3EB18CD36BE00AA64C8 /* Products */ = {
 			isa = PBXGroup;

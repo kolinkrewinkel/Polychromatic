@@ -10,6 +10,7 @@
 #import "DVTInterfaces.h"
 
 #import "DVTFontAndColorTheme+PLYDataInjection.h"
+#import "NSString+FNVHash.h"
 
 static NSString *const IDEIndexDidIndexWorkspaceNotification = @"IDEIndexDidIndexWorkspaceNotification";
 
@@ -68,10 +69,27 @@ static NSString *const IDEIndexDidIndexWorkspaceNotification = @"IDEIndexDidInde
     if (![variables containsObject:variable])
     {
         [variables addObject:variable];
-        [variables sortUsingDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"self" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]]];
-    }
+        [variables sortUsingDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"self" ascending:YES comparator:^NSComparisonResult(NSString *var1, NSString *var2) {
+            uint64_t hash1 = [var1 ply_FNV1aHash];
+            uint64_t hash2 = [var2 ply_FNV1aHash];
 
-    CGFloat hueValue = (variable.hash & 0xffffff) / (CGFloat)0xffffff;
+            if(hash1 == hash2)
+            {
+                return NSOrderedSame;
+            }
+            else if(hash1 < hash2)
+            {
+                return NSOrderedAscending;
+            }
+            else
+            {
+                return NSOrderedDescending;
+            }
+        }]]];
+    }
+	
+    NSUInteger index = [variables indexOfObject:variable];
+    CGFloat hueValue = (CGFloat)index/variables.count;
 
     return [NSColor colorWithCalibratedHue:hueValue saturation:[[DVTFontAndColorTheme currentTheme] ply_saturation] brightness:[[DVTFontAndColorTheme currentTheme] ply_brightness] alpha:1.f];
 }

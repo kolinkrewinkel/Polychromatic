@@ -57,23 +57,11 @@ static NSString *const IDEIndexDidIndexWorkspaceNotification = @"IDEIndexDidInde
 
 - (NSColor *)colorForVariable:(NSString *)variable inWorkspace:(IDEWorkspace *)workspace
 {
-    NSMutableOrderedSet *variables = [self variableSetForWorkspace:workspace];
-
-    if (!variables && workspace.filePath.pathString && workspace.filePath.pathString.length > 0)
-    {
-        variables = [[NSMutableOrderedSet alloc] init];
-        [self.workspaces setObject:variables forKey:workspace.filePath.pathString];
-    }
-
-    if (![variables containsObject:variable])
-    {
-        [variables addObject:variable];
-        [variables sortUsingDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"self" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]]];
-    }
-
-    NSUInteger index = [variables indexOfObject:variable];
-    CGFloat hueValue = (CGFloat)index/variables.count;
-
+    // Not sorting variables might result in the same color,
+    // but it ensures that the same variable will always have the same color.
+    // This makes it easier to remember variables
+    CGFloat hueValue = ([variable ply_FNV1Hash] & 0xff) / (CGFloat)255.0;
+    
     return [NSColor colorWithCalibratedHue:hueValue saturation:[[DVTFontAndColorTheme currentTheme] ply_saturation] brightness:[[DVTFontAndColorTheme currentTheme] ply_brightness] alpha:1.f];
 }
 

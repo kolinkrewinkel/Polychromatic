@@ -10,6 +10,8 @@
 
 @interface NSString (FNVHash)
 
+- (uint64_t)ply_FNV1Hash;
+
 - (uint64_t)ply_FNV1aHash;
 
 @end

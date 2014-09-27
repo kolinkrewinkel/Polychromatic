@@ -10,6 +10,22 @@
 
 @implementation NSString (FNVHash)
 
+- (uint64_t)ply_FNV1Hash
+{
+    // http://en.wikipedia.org/wiki/Fowler–Noll–Vo_hash_function
+    
+    const uint8_t *bytes = (uint8_t *)self.UTF8String;
+    
+    uint64_t hash = 14695981039346656037ULL;
+    for(uint8_t byte = *bytes; byte != '\0'; byte = *(++bytes))
+    {
+        hash *= 1099511628211ULL;
+        hash ^= byte;
+    }
+    
+    return hash;
+}
+
 - (uint64_t)ply_FNV1aHash
 {
     // http://en.wikipedia.org/wiki/Fowler–Noll–Vo_hash_function

@@ -24,6 +24,7 @@
 		33E48D2918D3F52400FCC557 /* DVTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33E48D2718D3F52400FCC557 /* DVTKit.framework */; };
 		33F94F2918CEE2040092E74C /* DVTTextStorage+PLYHighlightingHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 33F94F2818CEE2040092E74C /* DVTTextStorage+PLYHighlightingHook.m */; };
 		33F94F3318CFCBE20092E74C /* PLYVariableManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 33F94F3218CFCBE20092E74C /* PLYVariableManager.m */; };
+		50DB9C7819B59F22005138BF /* NSString+FNVHash.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DB9C7719B59F22005138BF /* NSString+FNVHash.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,8 @@
 		33F94F2818CEE2040092E74C /* DVTTextStorage+PLYHighlightingHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "DVTTextStorage+PLYHighlightingHook.m"; path = "Categories/DVTTextStorage+PLYHighlightingHook.m"; sourceTree = "<group>"; };
 		33F94F3118CFCBE20092E74C /* PLYVariableManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLYVariableManager.h; sourceTree = "<group>"; };
 		33F94F3218CFCBE20092E74C /* PLYVariableManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLYVariableManager.m; sourceTree = "<group>"; };
+		50DB9C7619B59F22005138BF /* NSString+FNVHash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+FNVHash.h"; sourceTree = "<group>"; };
+		50DB9C7719B59F22005138BF /* NSString+FNVHash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FNVHash.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +118,7 @@
 				33B3A3EB18CD36BE00AA64C8 /* Products */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 0;
 		};
 		33B3A3EB18CD36BE00AA64C8 /* Products */ = {
 			isa = PBXGroup;
@@ -190,6 +194,8 @@
 				33F94F2818CEE2040092E74C /* DVTTextStorage+PLYHighlightingHook.m */,
 				3302570118EE734F00FC14F1 /* IDEFontAndColorPrefsPaneController+PLYPrefsPaneHook.h */,
 				3302570218EE734F00FC14F1 /* IDEFontAndColorPrefsPaneController+PLYPrefsPaneHook.m */,
+				50DB9C7619B59F22005138BF /* NSString+FNVHash.h */,
+				50DB9C7719B59F22005138BF /* NSString+FNVHash.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -262,6 +268,7 @@
 				33F94F2918CEE2040092E74C /* DVTTextStorage+PLYHighlightingHook.m in Sources */,
 				33516A9518F25074005CB0A8 /* DVTSourceModelItem+PLYIdentification.m in Sources */,
 				33B3A41818CD3B5100AA64C8 /* PLYSwizzling.c in Sources */,
+				50DB9C7819B59F22005138BF /* NSString+FNVHash.m in Sources */,
 				3338E1AB18EF7F9A00C76084 /* DVTFontAndColorTheme+PLYDataInjection.m in Sources */,
 				33F94F3318CFCBE20092E74C /* PLYVariableManager.m in Sources */,
 				33B3A3F918CD36BF00AA64C8 /* Polychromatic.m in Sources */,

@@ -38,10 +38,21 @@
       buildConfiguration = "Debug"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
-      allowLocationSimulation = "YES">
+      allowLocationSimulation = "YES"
+      viewDebuggingEnabled = "No">
       <PathRunnable
-         FilePath = "/Applications/Xcode.app">
+         runnableDebuggingMode = "0"
+         FilePath = "/Applications/Xcode-Beta.app">
       </PathRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "33B3A3E918CD36BE00AA64C8"
+            BuildableName = "Polychromatic.xcplugin"
+            BlueprintName = "Polychromatic"
+            ReferencedContainer = "container:Polychromatic.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>

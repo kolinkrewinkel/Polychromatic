@@ -70,10 +70,12 @@ static NSString *const IDEIndexDidIndexWorkspaceNotification = @"IDEIndexDidInde
         [variables addObject:variable];
         [variables sortUsingDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"self" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]]];
     }
+    
+    NSUInteger numberOfDifferentColors = 1000;
+    NSUInteger shortHashValue = [variable hash] % numberOfDifferentColors;
 
-    NSUInteger index = [variables indexOfObject:variable];
-    CGFloat hueValue = (CGFloat)index/variables.count;
-
+    CGFloat hueValue = (CGFloat)shortHashValue/(CGFloat)numberOfDifferentColors;
+    
     return [NSColor colorWithCalibratedHue:hueValue saturation:[[DVTFontAndColorTheme currentTheme] ply_saturation] brightness:[[DVTFontAndColorTheme currentTheme] ply_brightness] alpha:1.f];
 }
 

@@ -57,13 +57,25 @@ static NSString *const IDEIndexDidIndexWorkspaceNotification = @"IDEIndexDidInde
 
 - (NSColor *)colorForVariable:(NSString *)variable inWorkspace:(IDEWorkspace *)workspace
 {
-    // Not sorting variables might result in the same color,
-    // but it ensures that the same variable will always have the same color.
-    // This makes it easier to remember variables
-    CGFloat hueValue = ([variable ply_FNV1Hash] & 0xff) / (CGFloat)255.0;
-    
+    NSUInteger numberOfDifferentColors = 10000;
+    NSUInteger shortHashValue = [self ply_FNV1Hash:variable] % numberOfDifferentColors;
+    CGFloat hueValue = (CGFloat)shortHashValue/(CGFloat)numberOfDifferentColors;
+
     return [NSColor colorWithCalibratedHue:hueValue saturation:[[DVTFontAndColorTheme currentTheme] ply_saturation] brightness:[[DVTFontAndColorTheme currentTheme] ply_brightness] alpha:1.f];
 }
+
+- (uint64_t)ply_FNV1Hash:(NSString *)stringToHash
+{
+    // http://en.wikipedia.org/wiki/Fowler–Noll–Vo_hash_function
+    const uint8_t *bytes = (uint8_t *)stringToHash.UTF8String;
+    uint64_t hash = 14695981039346656037ULL;
+    for(uint8_t byte = *bytes; byte != '\0'; byte = *(++bytes))
+    {
+        hash *= 1099511628211ULL;
+        hash ^= byte;
+    }
+     return hash;
+ }
 
 - (void)indexDidIndexWorkspaceNotification:(NSNotification *)notification
 {

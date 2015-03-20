@@ -57,7 +57,7 @@ static NSString *const IDEIndexDidIndexWorkspaceNotification = @"IDEIndexDidInde
 
 - (NSColor *)colorForVariable:(NSString *)variable inWorkspace:(IDEWorkspace *)workspace
 {
-    NSUInteger numberOfDifferentColors = 10000;
+    NSUInteger numberOfDifferentColors = 4096;
     NSUInteger shortHashValue = [self ply_FNV1Hash:variable] % numberOfDifferentColors;
     CGFloat hueValue = (CGFloat)shortHashValue/(CGFloat)numberOfDifferentColors;
 

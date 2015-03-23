@@ -13,6 +13,6 @@
 
 + (instancetype)sharedManager;
 
-- (NSColor *)colorForVariable:(NSString *)variable inWorkspace:(IDEWorkspace *)workspace;
+- (NSColor *)colorForVariable:(NSString *)variable;
 
 @end

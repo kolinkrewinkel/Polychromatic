@@ -41,14 +41,6 @@ static IMP originalColorAtCharacterIndexImplementation;
 
     NSRange newRange = *effectiveRange;
 
-    IDEIndex *workspaceIndex = context[@"IDEIndex"];
-    IDEWorkspace *workspace = [workspaceIndex valueForKey:@"_workspace"];
-
-    if (!workspaceIndex || !workspace)
-    {
-        return originalColor;
-    }
-
     static Class swiftLanguageServiceClass = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^
@@ -71,7 +63,7 @@ static IMP originalColorAtCharacterIndexImplementation;
                 id nameRanges;
                 id name = [self symbolNameAtCharacterIndex:newRange.location nameRanges:&nameRanges];
 
-                return [[PLYVariableManager sharedManager] colorForVariable:name inWorkspace:workspace];
+                return [[PLYVariableManager sharedManager] colorForVariable:name];
             }
         }
     }
@@ -100,7 +92,11 @@ static IMP originalColorAtCharacterIndexImplementation;
              parentIsMethodAndInheritsFromPropertyDeclaration))
         {
             NSString *string = [self.sourceModelService stringForItem:item];
-            return [[PLYVariableManager sharedManager] colorForVariable:string inWorkspace:workspace];;
+
+            if (string)
+            {
+                return [[PLYVariableManager sharedManager] colorForVariable:string];
+            }
         }
     }
 

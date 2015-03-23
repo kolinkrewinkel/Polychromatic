@@ -13,14 +13,6 @@
 
 #import "DVTFontAndColorTheme+PLYDataInjection.h"
 
-static NSString *const IDEIndexDidIndexWorkspaceNotification = @"IDEIndexDidIndexWorkspaceNotification";
-
-@interface PLYVariableManager ()
-
-@property (nonatomic, strong) NSMutableDictionary *workspaces;
-
-@end
-
 @implementation PLYVariableManager
 
 #pragma mark - Singleton
@@ -36,28 +28,9 @@ static NSString *const IDEIndexDidIndexWorkspaceNotification = @"IDEIndexDidInde
     return sharedManager;
 }
 
-#pragma mark - Initialization
-
-- (id)init
-{
-    if ((self = [super init]))
-    {
-        self.workspaces = [[NSMutableDictionary alloc] init];
-
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(indexDidIndexWorkspaceNotification:) name:IDEIndexDidIndexWorkspaceNotification object:nil];
-    }
-
-    return self;
-}
-
 #pragma mark - Variable Management
 
-- (NSMutableOrderedSet *)variableSetForWorkspace:(IDEWorkspace *)workspace
-{
-    return self.workspaces[workspace.filePath.pathString];
-}
-
-- (NSColor *)colorForVariable:(NSString *)variable inWorkspace:(IDEWorkspace *)workspace
+- (NSColor *)colorForVariable:(NSString *)variable
 {
     NSUInteger numberOfDifferentColors = 4096;
     NSUInteger shortHashValue = [self ply_FNV1Hash:variable] % numberOfDifferentColors;
@@ -77,14 +50,6 @@ static NSString *const IDEIndexDidIndexWorkspaceNotification = @"IDEIndexDidInde
         hash ^= byte;
     }
      return hash;
-}
-
-- (void)indexDidIndexWorkspaceNotification:(NSNotification *)notification
-{
-    IDEIndex *index = notification.object;
-    IDEWorkspace *workspace = [index valueForKey:@"_workspace"];
-
-    [[self variableSetForWorkspace:workspace] removeAllObjects];
 }
 
 @end

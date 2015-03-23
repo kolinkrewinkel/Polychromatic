@@ -81,7 +81,23 @@ static IMP originalColorAtCharacterIndexImplementation;
 
         /* It's possible for us to simply use the source model, but we may want to express fine-grain control based on the node. Plus, we already have the item onhand. */
 
-        if ([item ply_isIdentifier] && ![item.parent ply_isMethod])
+        BOOL isIdentifier = [item ply_isIdentifier];
+        BOOL parentIsMethod = [item.parent ply_isMethod];
+        BOOL inheritsFromPropertyDeclaration = [item ply_inheritsFromNodeOfType:32];
+
+        /*
+         This is relatively backwards: for some reason, explicitly defined setters and getters in @property are *not* considered methods/children of methods, whereas the property names themselves are. To combat this, the following two obscure BOOLs are used to disable the getters/setters and enable the coloring of the property var names.
+         */
+
+        /* Disallows getter/setter-attributes from being colored, as their parents are not methods but they inherit from property declarations. */
+        BOOL parentIsNotMethodAndDoesNotInheritFromPropertyDeclaration = (!parentIsMethod && !inheritsFromPropertyDeclaration);
+
+        /* Ensures property var names are colored as they are considered methods and are within property declarations. */
+        BOOL parentIsMethodAndInheritsFromPropertyDeclaration = (parentIsMethod && inheritsFromPropertyDeclaration);
+
+        if (isIdentifier &&
+            (parentIsNotMethodAndDoesNotInheritFromPropertyDeclaration ||
+             parentIsMethodAndInheritsFromPropertyDeclaration))
         {
             NSString *string = [self.sourceModelService stringForItem:item];
             return [[PLYVariableManager sharedManager] colorForVariable:string inWorkspace:workspace];;

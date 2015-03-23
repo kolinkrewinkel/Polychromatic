@@ -69,4 +69,19 @@
     return (self.nodeType == 13);
 }
 
+- (BOOL)ply_inheritsFromNodeOfType:(short)nodeType
+{
+    DVTSourceModelItem *parent = self.parent;
+    while (parent) {
+        if (parent.nodeType == nodeType)
+        {
+            return YES;
+        }
+
+        parent = parent.parent;
+    }
+
+    return NO;
+}
+
 @end

@@ -21,5 +21,6 @@
 - (BOOL)ply_isSystemFunction;
 - (BOOL)ply_isUserClass;
 - (BOOL)ply_isUserFunction;
+- (BOOL)ply_inheritsFromNodeOfType:(short)nodeType;
 
 @end

@@ -53,8 +53,9 @@ static IMP originalColorAtCharacterIndexImplementation;
     {
         long long nodeType = [self nodeTypeAtCharacterIndex:newRange.location effectiveRange:effectiveRange context:context];
 
-        if (nodeType == 9 ||
-						nodeType == 16)
+        if (nodeType == [DVTSourceNodeTypes registerNodeTypeNamed:@"xcode.syntax.identifier.variable"] ||
+            nodeType == [DVTSourceNodeTypes registerNodeTypeNamed:@"xcode.syntax.identifier.constant"] ||
+            nodeType == [DVTSourceNodeTypes registerNodeTypeNamed:@"xcode.syntax.identifier"])
         {
             PLYMockSwift *fauxSwiftService = (PLYMockSwift *)self.languageService;
             NSRange funcDefinitionRange = [fauxSwiftService methodDefinitionRangeAtIndex:newRange.location];

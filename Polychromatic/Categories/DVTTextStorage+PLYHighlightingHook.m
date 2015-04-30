@@ -53,7 +53,8 @@ static IMP originalColorAtCharacterIndexImplementation;
     {
         long long nodeType = [self nodeTypeAtCharacterIndex:newRange.location effectiveRange:effectiveRange context:context];
 
-        if (nodeType == 9)
+        if (nodeType == 9 ||
+						nodeType == 16)
         {
             PLYMockSwift *fauxSwiftService = (PLYMockSwift *)self.languageService;
             NSRange funcDefinitionRange = [fauxSwiftService methodDefinitionRangeAtIndex:newRange.location];

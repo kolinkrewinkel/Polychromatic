@@ -46,8 +46,8 @@
     uint64_t hash = 14695981039346656037ULL;
     for(uint8_t byte = *bytes; byte != '\0'; byte = *(++bytes))
     {
-        hash *= 1099511628211ULL;
         hash ^= byte;
+        hash *= 1099511628211ULL;
     }
      return hash;
 }

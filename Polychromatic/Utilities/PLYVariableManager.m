@@ -33,13 +33,13 @@
 - (NSColor *)colorForVariable:(NSString *)variable
 {
     NSUInteger numberOfDifferentColors = 4096;
-    NSUInteger shortHashValue = [self ply_FNV1Hash:variable] % numberOfDifferentColors;
+    NSUInteger shortHashValue = [self ply_FNV1aHash:variable] % numberOfDifferentColors;
     CGFloat hueValue = (CGFloat)shortHashValue/(CGFloat)numberOfDifferentColors;
 
     return [NSColor colorWithCalibratedHue:hueValue saturation:[[DVTFontAndColorTheme currentTheme] ply_saturation] brightness:[[DVTFontAndColorTheme currentTheme] ply_brightness] alpha:1.f];
 }
 
-- (uint64_t)ply_FNV1Hash:(NSString *)stringToHash
+- (uint64_t)ply_FNV1aHash:(NSString *)stringToHash
 {
     // http://en.wikipedia.org/wiki/Fowler–Noll–Vo_hash_function
     const uint8_t *bytes = (uint8_t *)stringToHash.UTF8String;

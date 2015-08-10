@@ -62,8 +62,8 @@ static IMP originalColorAtCharacterIndexImplementation;
 
             if (funcDefinitionRange.location == NSIntegerMax)
             {
-                id nameRanges;
-                id name = [self symbolNameAtCharacterIndex:newRange.location nameRanges:&nameRanges];
+                NSArray *nameRanges;
+                NSString *name = [self symbolNameAtCharacterIndex:newRange.location nameRanges:&nameRanges];
 
                 return [[PLYVariableManager sharedManager] colorForVariable:name];
             }

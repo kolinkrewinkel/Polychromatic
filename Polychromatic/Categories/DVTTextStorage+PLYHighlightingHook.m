@@ -51,7 +51,8 @@ static IMP originalColorAtCharacterIndexImplementation;
     /* First account for Swift, and if it isn't, perform the normal Objective-C routine. */
     if (swiftLanguageServiceClass != nil && [self.languageService isKindOfClass:swiftLanguageServiceClass])
     {
-        long long nodeType = [self nodeTypeAtCharacterIndex:newRange.location effectiveRange:effectiveRange context:context];
+        NSRange swiftEffectiveRange;
+        long long nodeType = [self nodeTypeAtCharacterIndex:newRange.location effectiveRange:&swiftEffectiveRange context:context];
 
         if (nodeType == [DVTSourceNodeTypes registerNodeTypeNamed:@"xcode.syntax.identifier.variable"] ||
             nodeType == [DVTSourceNodeTypes registerNodeTypeNamed:@"xcode.syntax.identifier.constant"] ||

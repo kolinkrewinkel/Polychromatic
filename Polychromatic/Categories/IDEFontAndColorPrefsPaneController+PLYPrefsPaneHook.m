@@ -11,9 +11,9 @@
 #import "PLYView.h"
 #import "DVTFontAndColorTheme+PLYDataInjection.h"
 
-static IMP originalViewLoadImp;
-static IMP originalTabChangeImp;
-static IMP originalFontPickerImp;
+static void (* originalViewLoadImp)(id, SEL);
+static void (*originalTabChangeImp)(id, SEL);
+static void (*originalFontPickerImp)(id, SEL);
 
 static char *PLYVariableColorModifierViewIdentifier = "PLYVariableColorModifierViewIdentifier";
 
@@ -23,9 +23,9 @@ static char *PLYVariableColorModifierViewIdentifier = "PLYVariableColorModifierV
 
 + (void)load
 {
-    originalViewLoadImp = PLYPoseSwizzle([IDEFontAndColorPrefsPaneController class], @selector(loadView), self, @selector(ply_loadView), YES);
-    originalTabChangeImp = PLYPoseSwizzle([IDEFontAndColorPrefsPaneController class], @selector(_handleTabChanged), self, @selector(ply_handleTabChanged), YES);
-    originalFontPickerImp = PLYPoseSwizzle(self, @selector(_updateFontPickerAndColorWell), self, @selector(ply_updateFontPickerAndColorWell), YES);
+    originalViewLoadImp = (void *) PLYPoseSwizzle([IDEFontAndColorPrefsPaneController class], @selector(loadView), self, @selector(ply_loadView), YES);
+    originalTabChangeImp = (void *) PLYPoseSwizzle([IDEFontAndColorPrefsPaneController class], @selector(_handleTabChanged), self, @selector(ply_handleTabChanged), YES);
+    originalFontPickerImp = (void *) PLYPoseSwizzle(self, @selector(_updateFontPickerAndColorWell), self, @selector(ply_updateFontPickerAndColorWell), YES);
 }
 
 #pragma mark - View Methods

@@ -24,7 +24,7 @@ Cloning the source and opening the project will allow you to build the plugin. B
 
 * Evan Brooks for bringing the idea to my [attention](https://medium.com/p/3a6db2743a1e).  
 * [Tony Arnold](https://twitter.com/tonyarnold) for putting up with my antics and helping me develop this thing!
-* [Boris Bügling](https://github.com/neonichu) for giving me some concept of how to get started with a plugin for this, even though I discarded all of your code.
+* [Boris Bügling](https://github.com/neonichu) for giving me some concept of how to get started with this plugin.
 * Everyone who provided feedback and testing.  
   
 ###Personal  

@@ -6,24 +6,20 @@
 //  Copyright (c) 2014 Kolin Krewinkel. All rights reserved.
 //
 
-// PLY-GODDAMN-VIEW
-// This is so stupid-unnecessary why did i ever leave iOS
-
 #import "PLYView.h"
 
 @implementation PLYView
 
 #pragma mark - Initialization
 
-- (void)commonInit // LOL as if this name will never collide cause everyone uses it
+- (void)commonInit
 {
     self.wantsLayer = YES;
 }
 
 - (id)init
 {
-    if ((self = [super init]))
-    {
+    if ((self = [super init])) {
         [self commonInit];
     }
 
@@ -32,8 +28,7 @@
 
 - (id)initWithFrame:(NSRect)frameRect
 {
-    if ((self = [super initWithFrame:frameRect]))
-    {
+    if ((self = [super initWithFrame:frameRect])) {
         [self commonInit];
     }
 
@@ -42,8 +37,7 @@
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
-    if ((self = [super initWithCoder:aDecoder]))
-    {
+    if ((self = [super initWithCoder:aDecoder])) {
         [self commonInit];
     }
 

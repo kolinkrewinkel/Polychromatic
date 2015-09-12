@@ -23,9 +23,23 @@ static char *PLYVariableColorModifierViewIdentifier = "PLYVariableColorModifierV
 
 + (void)load
 {
-    originalViewLoadImp = (void *) PLYPoseSwizzle([IDEFontAndColorPrefsPaneController class], @selector(loadView), self, @selector(ply_loadView), YES);
-    originalTabChangeImp = (void *) PLYPoseSwizzle([IDEFontAndColorPrefsPaneController class], @selector(_handleTabChanged), self, @selector(ply_handleTabChanged), YES);
-    originalFontPickerImp = (void *) PLYPoseSwizzle(self, @selector(_updateFontPickerAndColorWell), self, @selector(ply_updateFontPickerAndColorWell), YES);
+    originalViewLoadImp = (void *) PLYPoseSwizzle([IDEFontAndColorPrefsPaneController class],
+                                                  @selector(loadView),
+                                                  self,
+                                                  @selector(ply_loadView),
+                                                  YES);
+
+    originalTabChangeImp = (void *) PLYPoseSwizzle([IDEFontAndColorPrefsPaneController class],
+                                                   @selector(_handleTabChanged),
+                                                   self,
+                                                   @selector(ply_handleTabChanged),
+                                                   YES);
+
+    originalFontPickerImp = (void *) PLYPoseSwizzle(self,
+                                                    @selector(_updateFontPickerAndColorWell),
+                                                    self,
+                                                    @selector(ply_updateFontPickerAndColorWell),
+                                                    YES);
 }
 
 #pragma mark - View Methods
@@ -44,15 +58,13 @@ static char *PLYVariableColorModifierViewIdentifier = "PLYVariableColorModifierV
     // This is the view that acts as a tab/replacement view.
     DVTTabChooserView *tabChooser = [self ply_tabChooserView];
 
-    if (tabChooser.choices.count == 3)
-    {
+    if (tabChooser.choices.count == 3) {
         return;
     }
 
     // Customize the choices in two stages:
     // First, add the variables object (for changing saturation and brightness and whatnot)
     // Change the original "Source Editor" one to be more descriptive.
-
     NSMutableArray *choices = [[NSMutableArray alloc] initWithArray:tabChooser.choices];
     [choices addObject:[[DVTChoice alloc] initWithTitle:@"Variables" toolTip:@"Variables" image:nil representedObject:nil]];
 
@@ -75,8 +87,7 @@ static char *PLYVariableColorModifierViewIdentifier = "PLYVariableColorModifierV
     [self brightnessSlider].floatValue = [[self theme] ply_brightness];
     [self ply_setBrightness:[[self theme] ply_brightness]];
 
-    if ([self ply_varPrefsView].superview)
-    {
+    if ([self ply_varPrefsView].superview) {
         [self adjustColorWellSamples];
     }
 }
@@ -133,8 +144,7 @@ static char *PLYVariableColorModifierViewIdentifier = "PLYVariableColorModifierV
 
 - (void)ply_handleTabChanged
 {
-    if ([[self ply_tabChooserView].choices indexOfObject:[self ply_tabChooserView].selectedChoice] < 2)
-    {
+    if ([[self ply_tabChooserView].choices indexOfObject:[self ply_tabChooserView].selectedChoice] < 2) {
         [self setVariablePrefsViewHidden:YES];
         originalTabChangeImp(self, @selector(_handleTabChanged));
 
@@ -149,23 +159,18 @@ static char *PLYVariableColorModifierViewIdentifier = "PLYVariableColorModifierV
     // Hide the font/color list view
     NSTableView *fontsTableView = [self ply_fontAndColorItemTable];
 
-    if (hidden && !fontsTableView.superview)
-    {
-        for (NSColorWell *colorWell in [self colorWells])
-        {
+    if (hidden && !fontsTableView.superview) {
+        for (NSColorWell *colorWell in [self colorWells]) {
             [self restoreColorWell:colorWell];
         }
 
         NSScrollView *scrollView = (NSScrollView *)[self ply_varPrefsView].superview.superview;
         scrollView.documentView = fontsTableView;
-    }
-    else if (!hidden && fontsTableView.superview)
-    {
+    } else if (!hidden && fontsTableView.superview) {
         NSScrollView *scrollView = (NSScrollView *)fontsTableView.superview.superview;
         scrollView.documentView = [self ply_varPrefsView];
 
-        for (NSColorWell *colorWell in [self colorWells])
-        {
+        for (NSColorWell *colorWell in [self colorWells]) {
             [self preserveColorWell:colorWell];
         }
 
@@ -173,17 +178,17 @@ static char *PLYVariableColorModifierViewIdentifier = "PLYVariableColorModifierV
     }
 }
 
-- (void)addSubviewsOfView:(NSView *)view withClass:(Class)class inArray:(NSMutableArray *)array excludingView:(NSView *)excludingView
+- (void)addSubviewsOfView:(NSView *)view
+                withClass:(Class)class
+                  inArray:(NSMutableArray *)array
+            excludingView:(NSView *)excludingView
 {
-    if (view == excludingView)
-    {
+    if (view == excludingView) {
         return;
     }
 
-    for (NSView *subview in view.subviews)
-    {
-        if ([subview isKindOfClass:class])
-        {
+    for (NSView *subview in view.subviews) {
+        if ([subview isKindOfClass:class]) {
             [array addObject:subview];
         }
 
@@ -194,7 +199,10 @@ static char *PLYVariableColorModifierViewIdentifier = "PLYVariableColorModifierV
 - (NSArray *)colorWells
 {
     NSMutableArray *colorWells = [[NSMutableArray alloc] init];
-    [self addSubviewsOfView:self.view withClass:[NSColorWell class] inArray:colorWells excludingView:[self ply_varPrefsView].superview.superview.superview];
+    [self addSubviewsOfView:self.view
+                  withClass:[NSColorWell class]
+                    inArray:colorWells
+              excludingView:[self ply_varPrefsView].superview.superview.superview];
 
     return colorWells;
 }
@@ -204,8 +212,7 @@ static char *PLYVariableColorModifierViewIdentifier = "PLYVariableColorModifierV
     NSArray *colorWells = [self colorWells];
 
     NSUInteger index = 0;
-    for (NSColorWell *colorWell in colorWells)
-    {
+    for (NSColorWell *colorWell in colorWells) {
         CGFloat hue = (CGFloat)index/colorWells.count;
         [colorWell setColor:[NSColor colorWithCalibratedHue:hue saturation:self.ply_Saturation brightness:self.ply_Brightness alpha:1.f]];
 

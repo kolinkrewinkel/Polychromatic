@@ -6,9 +6,8 @@
 //  Copyright (c) 2014 Kolin Krewinkel. All rights reserved.
 //
 
-#import <AppKit/AppKit.h>
+@import AppKit;
 
-@class IDEWorkspace;
 @interface PLYVariableManager : NSObject
 
 + (instancetype)sharedManager;

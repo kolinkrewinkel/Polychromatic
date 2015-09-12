@@ -8,7 +8,7 @@
 
 #import "Polychromatic.h"
 
-@interface Polychromatic()
+@interface Polychromatic ()
 
 @property (nonatomic, strong) NSBundle *bundle;
 
@@ -22,8 +22,7 @@
 {
     NSString *currentApplicationName = [[NSBundle mainBundle] infoDictionary][@"CFBundleName"];
 
-    if ([currentApplicationName isEqual:@"Xcode"])
-    {
+    if ([currentApplicationName isEqual:@"Xcode"]) {
         [self sharedPluginWithBundle:plugin];
     }
 }
@@ -47,15 +46,13 @@
 
 - (id)initWithBundle:(NSBundle *)bundle
 {
-    if ((self = [super init]))
-    {
+    if ((self = [super init])) {
         self.bundle = bundle;
 
         [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"PLYHasCompletedFirstRun": @NO, @"PLYPluginEnabled": @YES}];
 
         BOOL hasCompletedFirstRun = [[NSUserDefaults standardUserDefaults] boolForKey:@"PLYHasCompletedFirstRun"];
-        if (!hasCompletedFirstRun)
-        {
+        if (!hasCompletedFirstRun) {
             [self showInstallWindow:self];
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"PLYHasCompletedFirstRun"];
         }
@@ -71,28 +68,38 @@
 
 - (void)showInstallWindow:(id)sender
 {
-    NSAlert *alert = [NSAlert alertWithMessageText:@"Polychromatic" defaultButton:@"Install Themes" alternateButton:@"Dismiss" otherButton:nil informativeTextWithFormat:@"This plugin is intended for use with monochromatic colors for all types except vibrant variables (local and instance variables, as well as properties.)\n\nTasteful sample themes are provided to demo the concept. Installing them as a basis is recommended."];
+    NSAlert *alert = [NSAlert alertWithMessageText:@"Polychromatic"
+                                     defaultButton:@"Install Themes"
+                                   alternateButton:@"Dismiss"
+                                       otherButton:nil
+                         informativeTextWithFormat:@"This plugin is intended for use with monochromatic colors for all types except vibrant variables (local and instance variables, as well as properties.)\n\nSample themes are provided to demo the concept. Installing them as a basis is recommended."];
 
-    if ([alert runModal] == 1)
-    {
+    if ([alert runModal] == 1) {
         __block NSError *error = nil;
         NSString *basePath = [self.bundle resourcePath];
         NSArray *themes = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error] filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self.absoluteString ENDSWITH '.dvtcolortheme'"]];
 
-        if (error)
-        {
+        if (error) {
             NSLog(@"nsfilemanager error: %@", error);
 
             return;
         }
 
+        NSString *destinationDirectory =
+        [NSString stringWithFormat:@"%@/Library/Developer/Xcode/UserData/FontAndColorThemes", NSHomeDirectory()];
+
         [themes enumerateObjectsUsingBlock:^(NSString *themePath, NSUInteger idx, BOOL *stop) {
             NSString *replacementName = [themePath.lastPathComponent stringByReplacingOccurrencesOfString:@".dvtcolortheme" withString:@" (Polychromatic).dvtcolortheme"];
-            NSString *destinationDirectory = [NSString stringWithFormat:@"%@/Library/Developer/Xcode/UserData/FontAndColorThemes", NSHomeDirectory()];
             NSString *destinationPath = [NSString stringWithFormat:@"%@/%@", destinationDirectory, replacementName];
 
-            [[NSFileManager defaultManager] createDirectoryAtPath:destinationDirectory withIntermediateDirectories:YES attributes:nil error:NULL];
-            [[NSFileManager defaultManager] copyItemAtPath:[NSString stringWithFormat:@"%@/%@", basePath, themePath] toPath:destinationPath error:&error];
+            [[NSFileManager defaultManager] createDirectoryAtPath:destinationDirectory
+                                      withIntermediateDirectories:YES
+                                                       attributes:nil
+                                                            error:NULL];
+
+            [[NSFileManager defaultManager] copyItemAtPath:[NSString stringWithFormat:@"%@/%@", basePath, themePath]
+                                                    toPath:destinationPath
+                                                     error:&error];
         }];
     }
 }
@@ -110,8 +117,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         NSMenuItem *editorMenuItem = [[NSApp mainMenu] itemWithTitle:@"Editor"];
 
-        if ([editorMenuItem.submenu itemWithTitle:@"Polychromatic"])
-        {
+        if ([editorMenuItem.submenu itemWithTitle:@"Polychromatic"]) {
             return;
         }
 
@@ -125,14 +131,12 @@
 
         self.enableItem = [[NSMenuItem alloc] initWithTitle:@"Enabled" action:@selector(toggleEnabled:) keyEquivalent:@"E"];
 
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:@"PLYPluginEnabled"])
-        {
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:@"PLYPluginEnabled"]) {
             [self.enableItem setState:NSOnState];
         }
 
         self.enableItem.target = self;
         [polychromaticMenu addItem:self.enableItem];
-
 
         menuItem.submenu = polychromaticMenu;
         [editorMenuItem.submenu addItem:[NSMenuItem separatorItem]];

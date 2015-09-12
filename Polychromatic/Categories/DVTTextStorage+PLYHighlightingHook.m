@@ -63,8 +63,7 @@ static IMP originalColorAtCharacterIndexImplementation;
             PLYMockSwift *fauxSwiftService = (PLYMockSwift *)self.languageService;
             NSRange funcDefinitionRange = [fauxSwiftService methodDefinitionRangeAtIndex:newRange.location];
 
-            if (funcDefinitionRange.location == NSIntegerMax)
-            {
+            if (funcDefinitionRange.location == NSIntegerMax) {
                 NSArray *nameRanges;
                 NSString *name = [self symbolNameAtCharacterIndex:newRange.location nameRanges:&nameRanges];
 

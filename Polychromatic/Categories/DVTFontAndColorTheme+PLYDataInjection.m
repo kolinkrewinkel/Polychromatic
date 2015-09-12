@@ -84,7 +84,7 @@ static NSString *kPLYThemePath = @"Library/Developer/Xcode/UserData/FontAndColor
         dict[@"PLYVarSaturation"] = @(saturation);
         dict[@"PLYVarBrightness"] = @(brightness);
 
-        data = [NSPropertyListSerialization dataFromPropertyList:dict format:format errorDescription:arg1];
+        data = [NSPropertyListSerialization dataFromPropertyList:dict format:format errorDescription:nil];
     }
 
     return data;

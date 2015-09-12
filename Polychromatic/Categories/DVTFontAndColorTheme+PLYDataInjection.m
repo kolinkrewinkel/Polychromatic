@@ -12,12 +12,23 @@
 static IMP originalDataRepImp;
 static IMP originalDataLoadImp;
 
+static NSString *kPLYThemePath = @"Library/Developer/Xcode/UserData/FontAndColorThemes";
+
 @implementation DVTFontAndColorTheme (PLYDataInjection)
 
 + (void)load
 {
-    originalDataRepImp = PLYPoseSwizzle(self, @selector(dataRepresentationWithError:), self, @selector(ply_dataRepresentationWithError:), YES);
-    originalDataLoadImp = PLYPoseSwizzle(self, @selector(_loadFontsAndColors), self, @selector(ply_loadFontsAndColors), YES);
+    originalDataRepImp = PLYPoseSwizzle(self,
+                                        @selector(dataRepresentationWithError:),
+                                        self,
+                                        @selector(ply_dataRepresentationWithError:),
+                                        YES);
+
+    originalDataLoadImp = PLYPoseSwizzle(self,
+                                         @selector(_loadFontsAndColors),
+                                         self,
+                                         @selector(ply_loadFontsAndColors),
+                                         YES);
 }
 
 - (BOOL)ply_loadFontsAndColors
@@ -27,20 +38,19 @@ static IMP originalDataLoadImp;
     // Unfortunately, this has to be loaded twice.
     NSData *data = nil;
 
-    if (self.isBuiltIn)
-    {
+    if (self.isBuiltIn) {
         data = [NSData dataWithContentsOfFile:[[self valueForKey:@"_dataURL"] absoluteString]];
-    }
-    else
-    {
-        data = [NSData dataWithContentsOfFile:[NSString stringWithFormat:@"%@/Library/Developer/Xcode/UserData/FontAndColorThemes/%@", NSHomeDirectory(), self.name]];
+    } else {
+        NSString *themePath = [NSString stringWithFormat:@"%@/%@/%@", NSHomeDirectory(), kPLYThemePath, self.name];
+        data = [NSData dataWithContentsOfFile:themePath];
     }
 
-    if (data)
-    {
+    if (data) {
         NSPropertyListFormat format = 0;
-        NSError *error = nil;
-        NSMutableDictionary *dict = [NSPropertyListSerialization propertyListWithData:data options:NSPropertyListMutableContainersAndLeaves format:&format error:&error];
+        NSDictionary *dict = [NSPropertyListSerialization propertyListWithData:data
+                                                                       options:NSPropertyListImmutable
+                                                                        format:&format
+                                                                         error:nil];
 
         [self ply_setBrightness:[dict[@"PLYVarBrightness"] floatValue]];
         [self ply_setSaturation:[dict[@"PLYVarSaturation"] floatValue]];
@@ -53,30 +63,28 @@ static IMP originalDataLoadImp;
 {
     NSData *data = originalDataRepImp(self, @selector(dataRepresentationWithError:), arg1);
 
-    if (data)
-    {
+    if (data) {
         NSPropertyListFormat format = 0;
-        NSString *error = nil;
-
-        NSMutableDictionary *dict = [NSPropertyListSerialization propertyListWithData:data options:NSPropertyListMutableContainersAndLeaves format:&format error:arg1];
+        NSMutableDictionary *dict = [NSPropertyListSerialization propertyListWithData:data
+                                                                              options:NSPropertyListMutableContainersAndLeaves
+                                                                               format:&format
+                                                                                error:arg1];
 
         CGFloat saturation = [self ply_saturation];
         CGFloat brightness = [self ply_brightness];
 
-        if (saturation == 0.f)
-        {
+        if (saturation == 0.f) {
             saturation = 0.5f;
         }
 
-        if (brightness == 0.f)
-        {
+        if (brightness == 0.f) {
             brightness = 0.5f;
         }
 
         dict[@"PLYVarSaturation"] = @(saturation);
         dict[@"PLYVarBrightness"] = @(brightness);
 
-        data = [NSPropertyListSerialization dataFromPropertyList:dict format:format errorDescription:&error];
+        data = [NSPropertyListSerialization dataFromPropertyList:dict format:format errorDescription:arg1];
     }
 
     return data;

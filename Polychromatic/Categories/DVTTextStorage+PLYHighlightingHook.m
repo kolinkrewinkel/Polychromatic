@@ -17,13 +17,13 @@ static IMP originalColorAtCharacterIndexImplementation;
 
 @implementation DVTTextStorage (PLYHighlightingHook)
 
-+ (void)initialize
++ (void)load
 {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^
-    {
-        originalColorAtCharacterIndexImplementation = PLYPoseSwizzle([DVTTextStorage class], NSSelectorFromString(@"colorAtCharacterIndex:effectiveRange:context:"), self, @selector(ply_colorAtCharacterIndex:effectiveRange:context:), YES);
-    });
+    originalColorAtCharacterIndexImplementation = PLYPoseSwizzle([DVTTextStorage class],
+                                                                 @selector(colorAtCharacterIndex:effectiveRange:context:),
+                                                                 self,
+                                                                 @selector(ply_colorAtCharacterIndex:effectiveRange:context:),
+                                                                 YES);
 }
 
 - (NSColor *)ply_colorAtCharacterIndex:(unsigned long long)index

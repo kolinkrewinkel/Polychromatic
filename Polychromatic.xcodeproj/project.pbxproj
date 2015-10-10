@@ -45,10 +45,10 @@
 		33B3A3FA18CD36BF00AA64C8 /* Polychromatic-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Polychromatic-Prefix.pch"; sourceTree = "<group>"; };
 		33B3A40C18CD38DF00AA64C8 /* PLYSwizzling.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = PLYSwizzling.c; sourceTree = "<group>"; };
 		33B3A40D18CD38DF00AA64C8 /* PLYSwizzling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLYSwizzling.h; sourceTree = "<group>"; };
-		33E48D2218D3F50500FCC557 /* IDEFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEFoundation.framework; path = ../../../../Applications/Xcode.app/Contents/Frameworks/IDEFoundation.framework; sourceTree = "<group>"; };
-		33E48D2418D3F51200FCC557 /* IDEKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEKit.framework; path = ../../../../Applications/Xcode.app/Contents/Frameworks/IDEKit.framework; sourceTree = "<group>"; };
-		33E48D2618D3F52400FCC557 /* DVTFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTFoundation.framework; path = ../../../../Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework; sourceTree = "<group>"; };
-		33E48D2718D3F52400FCC557 /* DVTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTKit.framework; path = ../../../../Applications/Xcode.app/Contents/SharedFrameworks/DVTKit.framework; sourceTree = "<group>"; };
+		33E48D2218D3F50500FCC557 /* IDEFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEFoundation.framework; path = /Applications/Xcode.app/Contents/Frameworks/IDEFoundation.framework; sourceTree = "<group>"; };
+		33E48D2418D3F51200FCC557 /* IDEKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEKit.framework; path = /Applications/Xcode.app/Contents/Frameworks/IDEKit.framework; sourceTree = "<group>"; };
+		33E48D2618D3F52400FCC557 /* DVTFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTFoundation.framework; path = /Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework; sourceTree = "<group>"; };
+		33E48D2718D3F52400FCC557 /* DVTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTKit.framework; path = /Applications/Xcode.app/Contents/SharedFrameworks/DVTKit.framework; sourceTree = "<group>"; };
 		33F94F2718CEE2040092E74C /* DVTTextStorage+PLYHighlightingHook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "DVTTextStorage+PLYHighlightingHook.h"; path = "Categories/DVTTextStorage+PLYHighlightingHook.h"; sourceTree = "<group>"; };
 		33F94F2818CEE2040092E74C /* DVTTextStorage+PLYHighlightingHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "DVTTextStorage+PLYHighlightingHook.m"; path = "Categories/DVTTextStorage+PLYHighlightingHook.m"; sourceTree = "<group>"; };
 		33F94F3118CFCBE20092E74C /* PLYVariableManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLYVariableManager.h; sourceTree = "<group>"; };
@@ -349,6 +349,8 @@
 					"$(inherited)",
 					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Frameworks/IDEKit.framework/Versions/A",
 					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Frameworks/IDEFoundation.framework/Versions/A",
+					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/SharedFrameworks/DVTKit.framework/Versions/A",
+					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework/Versions/A",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kolinkrewinkel.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = Polychromatic;
@@ -375,6 +377,8 @@
 					"$(inherited)",
 					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Frameworks/IDEKit.framework/Versions/A",
 					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Frameworks/IDEFoundation.framework/Versions/A",
+					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/SharedFrameworks/DVTKit.framework/Versions/A",
+					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework/Versions/A",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kolinkrewinkel.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = Polychromatic;

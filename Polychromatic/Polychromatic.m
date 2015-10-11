@@ -77,6 +77,7 @@
     if ([alert runModal] == 1) {
         __block NSError *error = nil;
         NSString *basePath = [self.bundle resourcePath];
+        basePath = [basePath stringByAppendingPathComponent:@"Bundled Themes"];
         NSArray *themes = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error] filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self.absoluteString ENDSWITH '.dvtcolortheme'"]];
 
         if (error) {

@@ -8,7 +8,7 @@
 
 #import "DVTTextStorage+PLYHighlightingHook.h"
 
-#import "Polychromatic.h"
+#import "PolychromaticPlugin.h"
 #import "PLYSwizzling.h"
 #import "PLYVariableManager.h"
 #import "DVTSourceModelItem+PLYIdentification.h"
@@ -39,7 +39,7 @@ static IMP originalColorAtCharacterIndexImplementation;
                                                                          effectiveRange,
                                                                          context);
 
-    if (![[Polychromatic sharedPlugin] pluginEnabled]) {
+    if (![[PolychromaticPlugin sharedPlugin] pluginEnabled]) {
         return originalColor;
     }
 

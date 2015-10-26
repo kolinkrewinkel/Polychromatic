@@ -6,11 +6,15 @@
 //  Copyright (c) 2014 Kolin Krewinkel. All rights reserved.
 //
 
+#import "PLYFirstRunManager.h"
+
 #import "PolychromaticPlugin.h"
 
 @interface PolychromaticPlugin ()
 
 @property (nonatomic, strong) NSBundle *bundle;
+
+@property (nonatomic) PLYFirstRunManager *firstRunManager;
 
 @property (nonatomic, strong) NSMenuItem *enableItem;
 
@@ -18,18 +22,27 @@
 
 @implementation PolychromaticPlugin
 
+#pragma mark - Xcode
+
+/**
+ * Xcode will message this class method on statrtup to allow us to allocate a singleton for the plugin. No work should
+ * be done in this method other than its allocation.
+ */
 + (void)pluginDidLoad:(NSBundle *)plugin
 {
-    NSString *currentApplicationName = [[NSBundle mainBundle] infoDictionary][@"CFBundleName"];
-
-    if ([currentApplicationName isEqual:@"Xcode"]) {
-        [self sharedPluginWithBundle:plugin];
+    NSString *appName = [[NSBundle mainBundle] infoDictionary][(NSString *)kCFBundleNameKey];
+    if (![appName isEqual:@"Xcode"]) {
+        return;
     }
+    
+    [self sharedPluginWithBundle:plugin];
 }
+
+#pragma mark - Instantiation
 
 + (instancetype)sharedPluginWithBundle:(NSBundle *)bundle
 {
-    static id sharedPlugin = nil;
+    static id sharedPlugin;
     static dispatch_once_t onceToken;
 
     dispatch_once(&onceToken, ^{
@@ -41,68 +54,32 @@
 
 + (instancetype)sharedPlugin
 {
+    // Pass in nil for the bundle because the dispatch_once has already been executed with the bundle assigned, so it's
+    // unneeded.
     return [self sharedPluginWithBundle:nil];
 }
 
-- (id)initWithBundle:(NSBundle *)bundle
+- (instancetype)initWithBundle:(NSBundle *)bundle
 {
-    if ((self = [super init])) {
+    if (self = [super init]) {
         self.bundle = bundle;
 
-        [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"PLYHasCompletedFirstRun": @NO, @"PLYPluginEnabled": @YES}];
-
-        BOOL hasCompletedFirstRun = [[NSUserDefaults standardUserDefaults] boolForKey:@"PLYHasCompletedFirstRun"];
-        if (!hasCompletedFirstRun) {
-            [self showInstallWindow:self];
-            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"PLYHasCompletedFirstRun"];
-        }
-
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(modifyEditorMenu:)
-                                                     name:NSMenuDidChangeItemNotification
-                                                   object:nil];
+        // This needs to be wrapped in a dispatch because any references back to sharedPlugin called within will trigger
+        // a deadlock.
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[NSUserDefaults standardUserDefaults] registerDefaults:@{kPLYHasCompletedFirstRunKey: @NO, @"PLYPluginEnabled": @YES}];
+            
+            self.firstRunManager = [[PLYFirstRunManager alloc] init];
+            [self.firstRunManager showFirstRunFlowIfNeeded];
+            
+            [[NSNotificationCenter defaultCenter] addObserver:self
+                                                     selector:@selector(modifyEditorMenu:)
+                                                         name:NSMenuDidChangeItemNotification
+                                                       object:nil];
+        });
     }
 
     return self;
-}
-
-- (void)showInstallWindow:(id)sender
-{
-    NSAlert *alert = [NSAlert alertWithMessageText:@"Polychromatic"
-                                     defaultButton:@"Install Themes"
-                                   alternateButton:@"Dismiss"
-                                       otherButton:nil
-                         informativeTextWithFormat:@"This plugin is intended for use with monochromatic colors for all types except vibrant variables (local and instance variables, as well as properties.)\n\nSample themes are provided to demo the concept. Installing them as a basis is recommended."];
-
-    if ([alert runModal] == 1) {
-        __block NSError *error = nil;
-        NSString *basePath = [self.bundle resourcePath];
-        basePath = [basePath stringByAppendingPathComponent:@"Bundled Themes"];
-        NSArray *themes = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error] filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self.absoluteString ENDSWITH '.dvtcolortheme'"]];
-
-        if (error) {
-            NSLog(@"nsfilemanager error: %@", error);
-
-            return;
-        }
-
-        NSString *destinationDirectory =
-        [NSString stringWithFormat:@"%@/Library/Developer/Xcode/UserData/FontAndColorThemes", NSHomeDirectory()];
-
-        [themes enumerateObjectsUsingBlock:^(NSString *themePath, NSUInteger idx, BOOL *stop) {
-            NSString *replacementName = [themePath.lastPathComponent stringByReplacingOccurrencesOfString:@".dvtcolortheme" withString:@" (Polychromatic).dvtcolortheme"];
-            NSString *destinationPath = [NSString stringWithFormat:@"%@/%@", destinationDirectory, replacementName];
-
-            [[NSFileManager defaultManager] createDirectoryAtPath:destinationDirectory
-                                      withIntermediateDirectories:YES
-                                                       attributes:nil
-                                                            error:NULL];
-
-            [[NSFileManager defaultManager] copyItemAtPath:[NSString stringWithFormat:@"%@/%@", basePath, themePath]
-                                                    toPath:destinationPath
-                                                     error:&error];
-        }];
-    }
 }
 
 - (void)toggleEnabled:(id)sender
@@ -126,8 +103,10 @@
         NSMenuItem *menuItem = [[NSMenuItem alloc] init];
         menuItem.title = @"Polychromatic";
 
-        NSMenuItem *installItem = [[NSMenuItem alloc] initWithTitle:@"Install Sample Themes" action:@selector(showInstallWindow:) keyEquivalent:@"I"];
-        installItem.target = self;
+        NSMenuItem *installItem = [[NSMenuItem alloc] initWithTitle:@"Install Sample Themes"
+                                                             action:@selector(showFirstRunFlow)
+                                                      keyEquivalent:@"I"];
+        installItem.target = self.firstRunManager;
         [polychromaticMenu addItem:installItem];
 
         self.enableItem = [[NSMenuItem alloc] initWithTitle:@"Enabled" action:@selector(toggleEnabled:) keyEquivalent:@"E"];

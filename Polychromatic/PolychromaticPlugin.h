@@ -17,6 +17,8 @@
  */
 + (instancetype)sharedPlugin;
 
+@property (nonatomic, readonly) NSBundle *bundle;
+
 - (BOOL)pluginEnabled;
 
 @end

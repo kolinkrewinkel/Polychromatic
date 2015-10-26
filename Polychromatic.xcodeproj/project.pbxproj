@@ -21,6 +21,7 @@
 		33E48D2518D3F51200FCC557 /* IDEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33E48D2418D3F51200FCC557 /* IDEKit.framework */; };
 		33E48D2818D3F52400FCC557 /* DVTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33E48D2618D3F52400FCC557 /* DVTFoundation.framework */; };
 		33E48D2918D3F52400FCC557 /* DVTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33E48D2718D3F52400FCC557 /* DVTKit.framework */; };
+		33E519291BDE9D4D00014444 /* PLYFirstRunManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E519281BDE9D4D00014444 /* PLYFirstRunManager.m */; };
 		33F94F2918CEE2040092E74C /* DVTTextStorage+PLYHighlightingHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 33F94F2818CEE2040092E74C /* DVTTextStorage+PLYHighlightingHook.m */; };
 		33F94F3318CFCBE20092E74C /* PLYVariableManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 33F94F3218CFCBE20092E74C /* PLYVariableManager.m */; };
 /* End PBXBuildFile section */
@@ -49,6 +50,8 @@
 		33E48D2418D3F51200FCC557 /* IDEKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEKit.framework; path = /Applications/Xcode.app/Contents/Frameworks/IDEKit.framework; sourceTree = "<group>"; };
 		33E48D2618D3F52400FCC557 /* DVTFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTFoundation.framework; path = /Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework; sourceTree = "<group>"; };
 		33E48D2718D3F52400FCC557 /* DVTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTKit.framework; path = /Applications/Xcode.app/Contents/SharedFrameworks/DVTKit.framework; sourceTree = "<group>"; };
+		33E519271BDE9D4D00014444 /* PLYFirstRunManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLYFirstRunManager.h; sourceTree = "<group>"; };
+		33E519281BDE9D4D00014444 /* PLYFirstRunManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLYFirstRunManager.m; sourceTree = "<group>"; };
 		33F94F2718CEE2040092E74C /* DVTTextStorage+PLYHighlightingHook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "DVTTextStorage+PLYHighlightingHook.h"; path = "Categories/DVTTextStorage+PLYHighlightingHook.h"; sourceTree = "<group>"; };
 		33F94F2818CEE2040092E74C /* DVTTextStorage+PLYHighlightingHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "DVTTextStorage+PLYHighlightingHook.m"; path = "Categories/DVTTextStorage+PLYHighlightingHook.m"; sourceTree = "<group>"; };
 		33F94F3118CFCBE20092E74C /* PLYVariableManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLYVariableManager.h; sourceTree = "<group>"; };
@@ -142,6 +145,8 @@
 				33B3A40D18CD38DF00AA64C8 /* PLYSwizzling.h */,
 				33F94F3118CFCBE20092E74C /* PLYVariableManager.h */,
 				33F94F3218CFCBE20092E74C /* PLYVariableManager.m */,
+				33E519271BDE9D4D00014444 /* PLYFirstRunManager.h */,
+				33E519281BDE9D4D00014444 /* PLYFirstRunManager.m */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -225,6 +230,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3338E1A518EF740E00C76084 /* PLYView.m in Sources */,
+				33E519291BDE9D4D00014444 /* PLYFirstRunManager.m in Sources */,
 				33F94F2918CEE2040092E74C /* DVTTextStorage+PLYHighlightingHook.m in Sources */,
 				33516A9518F25074005CB0A8 /* DVTSourceModelItem+PLYIdentification.m in Sources */,
 				33B3A41818CD3B5100AA64C8 /* PLYSwizzling.c in Sources */,

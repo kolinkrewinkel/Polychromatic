@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Kolin Krewinkel. All rights reserved.
 //
 
-#import "Polychromatic.h"
+#import "PolychromaticPlugin.h"
 
-@interface Polychromatic ()
+@interface PolychromaticPlugin ()
 
 @property (nonatomic, strong) NSBundle *bundle;
 
@@ -16,7 +16,7 @@
 
 @end
 
-@implementation Polychromatic
+@implementation PolychromaticPlugin
 
 + (void)pluginDidLoad:(NSBundle *)plugin
 {

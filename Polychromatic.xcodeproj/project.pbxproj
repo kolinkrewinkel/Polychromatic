@@ -11,11 +11,11 @@
 		3338E1A518EF740E00C76084 /* PLYView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3338E1A418EF740E00C76084 /* PLYView.m */; };
 		3338E1AB18EF7F9A00C76084 /* DVTFontAndColorTheme+PLYDataInjection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3338E1AA18EF7F9A00C76084 /* DVTFontAndColorTheme+PLYDataInjection.m */; };
 		33516A9518F25074005CB0A8 /* DVTSourceModelItem+PLYIdentification.m in Sources */ = {isa = PBXBuildFile; fileRef = 33516A9418F25074005CB0A8 /* DVTSourceModelItem+PLYIdentification.m */; };
-		3371566A1BA3B26F00A2BCBD /* Bundled Themes in Resources */ = {isa = PBXBuildFile; fileRef = 337156691BA3B26F00A2BCBD /* Bundled Themes */; settings = {ASSET_TAGS = (); }; };
+		3371566A1BA3B26F00A2BCBD /* Bundled Themes in Resources */ = {isa = PBXBuildFile; fileRef = 337156691BA3B26F00A2BCBD /* Bundled Themes */; };
 		33B3A3EE18CD36BE00AA64C8 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33B3A3ED18CD36BE00AA64C8 /* AppKit.framework */; };
 		33B3A3F018CD36BE00AA64C8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33B3A3EF18CD36BE00AA64C8 /* Foundation.framework */; };
 		33B3A3F618CD36BE00AA64C8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 33B3A3F418CD36BE00AA64C8 /* InfoPlist.strings */; };
-		33B3A3F918CD36BF00AA64C8 /* Polychromatic.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B3A3F818CD36BE00AA64C8 /* Polychromatic.m */; };
+		33B3A3F918CD36BF00AA64C8 /* PolychromaticPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B3A3F818CD36BE00AA64C8 /* PolychromaticPlugin.m */; };
 		33B3A41818CD3B5100AA64C8 /* PLYSwizzling.c in Sources */ = {isa = PBXBuildFile; fileRef = 33B3A40C18CD38DF00AA64C8 /* PLYSwizzling.c */; };
 		33E48D2318D3F50500FCC557 /* IDEFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33E48D2218D3F50500FCC557 /* IDEFoundation.framework */; };
 		33E48D2518D3F51200FCC557 /* IDEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33E48D2418D3F51200FCC557 /* IDEKit.framework */; };
@@ -40,8 +40,8 @@
 		33B3A3EF18CD36BE00AA64C8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		33B3A3F318CD36BE00AA64C8 /* Polychromatic-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Polychromatic-Info.plist"; sourceTree = "<group>"; };
 		33B3A3F518CD36BE00AA64C8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		33B3A3F718CD36BE00AA64C8 /* Polychromatic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Polychromatic.h; sourceTree = "<group>"; };
-		33B3A3F818CD36BE00AA64C8 /* Polychromatic.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Polychromatic.m; sourceTree = "<group>"; };
+		33B3A3F718CD36BE00AA64C8 /* PolychromaticPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PolychromaticPlugin.h; sourceTree = "<group>"; };
+		33B3A3F818CD36BE00AA64C8 /* PolychromaticPlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PolychromaticPlugin.m; sourceTree = "<group>"; };
 		33B3A3FA18CD36BF00AA64C8 /* Polychromatic-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Polychromatic-Prefix.pch"; sourceTree = "<group>"; };
 		33B3A40C18CD38DF00AA64C8 /* PLYSwizzling.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = PLYSwizzling.c; sourceTree = "<group>"; };
 		33B3A40D18CD38DF00AA64C8 /* PLYSwizzling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLYSwizzling.h; sourceTree = "<group>"; };
@@ -116,8 +116,8 @@
 			children = (
 				337156691BA3B26F00A2BCBD /* Bundled Themes */,
 				33F94F3018CFC4DE0092E74C /* Categories */,
-				33B3A3F718CD36BE00AA64C8 /* Polychromatic.h */,
-				33B3A3F818CD36BE00AA64C8 /* Polychromatic.m */,
+				33B3A3F718CD36BE00AA64C8 /* PolychromaticPlugin.h */,
+				33B3A3F818CD36BE00AA64C8 /* PolychromaticPlugin.m */,
 				33B3A3F218CD36BE00AA64C8 /* Supporting Files */,
 				33B3A40418CD375300AA64C8 /* Utilities */,
 				3338E1A218EF740E00C76084 /* Views */,
@@ -230,7 +230,7 @@
 				33B3A41818CD3B5100AA64C8 /* PLYSwizzling.c in Sources */,
 				3338E1AB18EF7F9A00C76084 /* DVTFontAndColorTheme+PLYDataInjection.m in Sources */,
 				33F94F3318CFCBE20092E74C /* PLYVariableManager.m in Sources */,
-				33B3A3F918CD36BF00AA64C8 /* Polychromatic.m in Sources */,
+				33B3A3F918CD36BF00AA64C8 /* PolychromaticPlugin.m in Sources */,
 				3302570318EE734F00FC14F1 /* IDEFontAndColorPrefsPaneController+PLYPrefsPaneHook.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

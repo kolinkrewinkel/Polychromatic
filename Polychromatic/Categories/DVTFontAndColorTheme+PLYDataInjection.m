@@ -9,10 +9,16 @@
 #import "DVTFontAndColorTheme+PLYDataInjection.h"
 #import "PLYSwizzling.h"
 
-static IMP originalDataRepImp;
-static IMP originalDataLoadImp;
+static IMP originalDataRepImp = nil;
+static IMP originalDataLoadImp = nil;
 
-static NSString *kPLYThemePath = @"Library/Developer/Xcode/UserData/FontAndColorThemes";
+static NSString *kPlistBrightnessKey = @"PLYVarBrightness";
+static NSString *kPlistSaturationKey = @"PLYVarSaturation";
+
+static char *kAssociatedObjectBrightnessKey = "PLYVarBrightness";
+static char *kAssociatedObjectSaturationKey = "PLYVarSaturation";
+
+static NSString *kThemePath = @"Library/Developer/Xcode/UserData/FontAndColorThemes";
 
 @implementation DVTFontAndColorTheme (PLYDataInjection)
 
@@ -41,7 +47,7 @@ static NSString *kPLYThemePath = @"Library/Developer/Xcode/UserData/FontAndColor
     if (self.isBuiltIn) {
         data = [NSData dataWithContentsOfFile:[[self valueForKey:@"_dataURL"] absoluteString]];
     } else {
-        NSString *themePath = [NSString stringWithFormat:@"%@/%@/%@", NSHomeDirectory(), kPLYThemePath, self.name];
+        NSString *themePath = [NSString stringWithFormat:@"%@/%@/%@", NSHomeDirectory(), kThemePath, self.name];
         data = [NSData dataWithContentsOfFile:themePath];
     }
 
@@ -52,8 +58,8 @@ static NSString *kPLYThemePath = @"Library/Developer/Xcode/UserData/FontAndColor
                                                                         format:&format
                                                                          error:nil];
 
-        [self ply_setBrightness:[dict[@"PLYVarBrightness"] floatValue]];
-        [self ply_setSaturation:[dict[@"PLYVarSaturation"] floatValue]];
+        [self ply_setBrightness:[dict[kPlistBrightnessKey] floatValue]];
+        [self ply_setSaturation:[dict[kPlistSaturationKey] floatValue]];
     }
 
     return result;
@@ -81,8 +87,8 @@ static NSString *kPLYThemePath = @"Library/Developer/Xcode/UserData/FontAndColor
             brightness = 0.5f;
         }
 
-        dict[@"PLYVarSaturation"] = @(saturation);
-        dict[@"PLYVarBrightness"] = @(brightness);
+        dict[kPlistSaturationKey] = @(saturation);
+        dict[kPlistBrightnessKey] = @(brightness);
 
         data = [NSPropertyListSerialization dataFromPropertyList:dict format:format errorDescription:nil];
     }
@@ -92,22 +98,22 @@ static NSString *kPLYThemePath = @"Library/Developer/Xcode/UserData/FontAndColor
 
 - (void)ply_setSaturation:(CGFloat)saturation
 {
-    objc_setAssociatedObject(self, "ply_saturation", @(saturation), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, kAssociatedObjectSaturationKey, @(saturation), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (CGFloat)ply_saturation
 {
-    return [objc_getAssociatedObject(self, "ply_saturation") floatValue];
+    return [objc_getAssociatedObject(self, kAssociatedObjectSaturationKey) floatValue];
 }
 
 - (void)ply_setBrightness:(CGFloat)brightness
 {
-    objc_setAssociatedObject(self, "ply_brightness", @(brightness), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, kAssociatedObjectBrightnessKey, @(brightness), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (CGFloat)ply_brightness
 {
-    return [objc_getAssociatedObject(self, "ply_brightness") floatValue];
+    return [objc_getAssociatedObject(self, kAssociatedObjectBrightnessKey) floatValue];
 }
 
 @end

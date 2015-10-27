@@ -6,12 +6,12 @@
 //  Copyright (c) 2015 Kolin Krewinkel. All rights reserved.
 //
 
-#import "DVTTextStorage+PLYHighlightingHook.h"
-
-#import "PolychromaticPlugin.h"
-#import "PLYSwizzling.h"
-#import "PLYVariableManager.h"
 #import "DVTSourceModelItem+PLYIdentification.h"
+#import "PolychromaticPlugin.h"
+#import "PLYColorGeneration.h"
+#import "PLYSwizzling.h"
+
+#import "DVTTextStorage+PLYHighlightingHook.h"
 
 static IMP originalColorAtIndexImp;
 
@@ -88,7 +88,7 @@ static IMP originalColorAtIndexImp;
             NSArray *nameRanges;
             NSString *name = [self symbolNameAtCharacterIndex:range.location nameRanges:&nameRanges];
 
-            return [[PLYVariableManager sharedManager] colorForVariable:name];
+            return PLYGenerateColor(name);
         }
     }
     
@@ -126,7 +126,7 @@ static IMP originalColorAtIndexImp;
         NSString *string = [self.sourceModelService stringForItem:item];
         
         if (string) {
-            return [[PLYVariableManager sharedManager] colorForVariable:string];
+            return PLYGenerateColor(string);
         }
     }
     

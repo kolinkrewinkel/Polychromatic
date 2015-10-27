@@ -23,7 +23,7 @@
 		33E48D2918D3F52400FCC557 /* DVTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33E48D2718D3F52400FCC557 /* DVTKit.framework */; };
 		33E519291BDE9D4D00014444 /* PLYFirstRunManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E519281BDE9D4D00014444 /* PLYFirstRunManager.m */; };
 		33F94F2918CEE2040092E74C /* DVTTextStorage+PLYHighlightingHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 33F94F2818CEE2040092E74C /* DVTTextStorage+PLYHighlightingHook.m */; };
-		33F94F3318CFCBE20092E74C /* PLYVariableManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 33F94F3218CFCBE20092E74C /* PLYVariableManager.m */; };
+		33F94F3318CFCBE20092E74C /* PLYColorGeneration.m in Sources */ = {isa = PBXBuildFile; fileRef = 33F94F3218CFCBE20092E74C /* PLYColorGeneration.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,8 +53,8 @@
 		33E519281BDE9D4D00014444 /* PLYFirstRunManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLYFirstRunManager.m; sourceTree = "<group>"; };
 		33F94F2718CEE2040092E74C /* DVTTextStorage+PLYHighlightingHook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "DVTTextStorage+PLYHighlightingHook.h"; path = "Categories/DVTTextStorage+PLYHighlightingHook.h"; sourceTree = "<group>"; };
 		33F94F2818CEE2040092E74C /* DVTTextStorage+PLYHighlightingHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "DVTTextStorage+PLYHighlightingHook.m"; path = "Categories/DVTTextStorage+PLYHighlightingHook.m"; sourceTree = "<group>"; };
-		33F94F3118CFCBE20092E74C /* PLYVariableManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLYVariableManager.h; sourceTree = "<group>"; };
-		33F94F3218CFCBE20092E74C /* PLYVariableManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLYVariableManager.m; sourceTree = "<group>"; };
+		33F94F3118CFCBE20092E74C /* PLYColorGeneration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLYColorGeneration.h; sourceTree = "<group>"; };
+		33F94F3218CFCBE20092E74C /* PLYColorGeneration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLYColorGeneration.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,8 +141,8 @@
 			children = (
 				33B3A40C18CD38DF00AA64C8 /* PLYSwizzling.c */,
 				33B3A40D18CD38DF00AA64C8 /* PLYSwizzling.h */,
-				33F94F3118CFCBE20092E74C /* PLYVariableManager.h */,
-				33F94F3218CFCBE20092E74C /* PLYVariableManager.m */,
+				33F94F3118CFCBE20092E74C /* PLYColorGeneration.h */,
+				33F94F3218CFCBE20092E74C /* PLYColorGeneration.m */,
 				33E519271BDE9D4D00014444 /* PLYFirstRunManager.h */,
 				33E519281BDE9D4D00014444 /* PLYFirstRunManager.m */,
 			);
@@ -233,7 +233,7 @@
 				33516A9518F25074005CB0A8 /* DVTSourceModelItem+PLYIdentification.m in Sources */,
 				33B3A41818CD3B5100AA64C8 /* PLYSwizzling.c in Sources */,
 				3338E1AB18EF7F9A00C76084 /* DVTFontAndColorTheme+PLYDataInjection.m in Sources */,
-				33F94F3318CFCBE20092E74C /* PLYVariableManager.m in Sources */,
+				33F94F3318CFCBE20092E74C /* PLYColorGeneration.m in Sources */,
 				33B3A3F918CD36BF00AA64C8 /* PolychromaticPlugin.m in Sources */,
 				3302570318EE734F00FC14F1 /* IDEFontAndColorPrefsPaneController+PLYPrefsPaneHook.m in Sources */,
 			);

@@ -8,10 +8,4 @@
 
 @import AppKit;
 
-@interface PLYVariableManager : NSObject
-
-+ (instancetype)sharedManager;
-
-- (NSColor *)colorForVariable:(NSString *)variable;
-
-@end
+NSColor *PLYGenerateColor(NSString *identifier);

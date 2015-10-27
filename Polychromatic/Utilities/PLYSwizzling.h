@@ -8,5 +8,5 @@
 
 #import <objc/runtime.h>
 
-IMP PLYPoseSwizzle(Class originalClass, SEL originalSelector, Class posingClass, SEL replacementSelector, BOOL instanceMethod);
+IMP PLYSwizzle(Class originalClass, SEL originalSelector, Class posingClass, SEL replacementSelector, BOOL instanceMethod);
 

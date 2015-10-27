@@ -27,17 +27,17 @@ static NSString *kThemePath = @"Library/Developer/Xcode/UserData/FontAndColorThe
 
 + (void)load
 {
-    originalDataRepImp = PLYPoseSwizzle(self,
-                                        @selector(dataRepresentationWithError:),
-                                        self,
-                                        @selector(ply_dataRepresentationWithError:),
-                                        YES);
-
-    originalDataLoadImp = PLYPoseSwizzle(self,
-                                         @selector(_loadFontsAndColors),
-                                         self,
-                                         @selector(ply_loadFontsAndColors),
-                                         YES);
+    originalDataRepImp = PLYSwizzle(self,
+                                    @selector(dataRepresentationWithError:),
+                                    self,
+                                    @selector(ply_dataRepresentationWithError:),
+                                    YES);
+    
+    originalDataLoadImp = PLYSwizzle(self,
+                                     @selector(_loadFontsAndColors),
+                                     self,
+                                     @selector(ply_loadFontsAndColors),
+                                     YES);
 }
 
 #pragma mark - Data Read/Write

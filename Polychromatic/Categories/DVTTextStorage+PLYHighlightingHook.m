@@ -21,11 +21,11 @@ static IMP originalColorAtIndexImp;
 
 + (void)load
 {
-    originalColorAtIndexImp = PLYPoseSwizzle([DVTTextStorage class],
-                                             @selector(colorAtCharacterIndex:effectiveRange:context:),
-                                             self,
-                                             @selector(ply_colorAtCharacterIndex:effectiveRange:context:),
-                                             YES);
+    originalColorAtIndexImp = PLYSwizzle([DVTTextStorage class],
+                                         @selector(colorAtCharacterIndex:effectiveRange:context:),
+                                         self,
+                                         @selector(ply_colorAtCharacterIndex:effectiveRange:context:),
+                                         YES);
 }
 
 #pragma mark - Color overriding

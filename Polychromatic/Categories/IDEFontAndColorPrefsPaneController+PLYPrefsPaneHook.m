@@ -23,23 +23,23 @@ static char *PLYVariableColorModifierViewIdentifier = "PLYVariableColorModifierV
 
 + (void)load
 {
-    originalViewLoadImp = (void *)PLYPoseSwizzle([IDEFontAndColorPrefsPaneController class],
-                                                 @selector(loadView),
-                                                 self,
-                                                 @selector(ply_loadView),
-                                                 YES);
+    originalViewLoadImp = (void *)PLYSwizzle([IDEFontAndColorPrefsPaneController class],
+                                             @selector(loadView),
+                                             self,
+                                             @selector(ply_loadView),
+                                             YES);
     
-    originalTabChangeImp = (void *)PLYPoseSwizzle([IDEFontAndColorPrefsPaneController class],
-                                                  @selector(_handleTabChanged),
-                                                  self,
-                                                  @selector(ply_handleTabChanged),
-                                                  YES);
+    originalTabChangeImp = (void *)PLYSwizzle([IDEFontAndColorPrefsPaneController class],
+                                              @selector(_handleTabChanged),
+                                              self,
+                                              @selector(ply_handleTabChanged),
+                                              YES);
     
-    originalFontPickerImp = (void *)PLYPoseSwizzle(self,
-                                                   @selector(_updateFontPickerAndColorWell),
-                                                   self,
-                                                   @selector(ply_updateFontPickerAndColorWell),
-                                                   YES);
+    originalFontPickerImp = (void *)PLYSwizzle(self,
+                                               @selector(_updateFontPickerAndColorWell),
+                                               self,
+                                               @selector(ply_updateFontPickerAndColorWell),
+                                               YES);
 }
 
 #pragma mark - View Methods

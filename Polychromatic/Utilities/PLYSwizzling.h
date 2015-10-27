@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Kolin Krewinkel. All rights reserved.
 //
 
-#import <objc/runtime.h>
+#include <objc/runtime.h>
 
 IMP PLYSwizzle(Class originalClass, SEL originalSelector, Class posingClass, SEL replacementSelector, BOOL instanceMethod);
 

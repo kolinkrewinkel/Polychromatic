@@ -17,6 +17,8 @@ static IMP originalColorAtCharacterIndexImplementation;
 
 @implementation DVTTextStorage (PLYHighlightingHook)
 
+#pragma mark - NSObject
+
 + (void)load
 {
     originalColorAtCharacterIndexImplementation = PLYPoseSwizzle([DVTTextStorage class],
@@ -25,6 +27,8 @@ static IMP originalColorAtCharacterIndexImplementation;
                                                                  @selector(ply_colorAtCharacterIndex:effectiveRange:context:),
                                                                  YES);
 }
+
+#pragma mark - Color overriding
 
 - (NSColor *)ply_colorAtCharacterIndex:(unsigned long long)index
                         effectiveRange:(NSRangePointer)effectiveRange

@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Kolin Krewinkel. All rights reserved.
 //
 
-@import AppKit;
+@import Foundation;
 
 @interface PolychromaticPlugin : NSObject
 

@@ -43,7 +43,6 @@
 		33B3A3F518CD36BE00AA64C8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		33B3A3F718CD36BE00AA64C8 /* PolychromaticPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PolychromaticPlugin.h; sourceTree = "<group>"; };
 		33B3A3F818CD36BE00AA64C8 /* PolychromaticPlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PolychromaticPlugin.m; sourceTree = "<group>"; };
-		33B3A3FA18CD36BF00AA64C8 /* Polychromatic-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Polychromatic-Prefix.pch"; sourceTree = "<group>"; };
 		33B3A40C18CD38DF00AA64C8 /* PLYSwizzling.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = PLYSwizzling.c; sourceTree = "<group>"; };
 		33B3A40D18CD38DF00AA64C8 /* PLYSwizzling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLYSwizzling.h; sourceTree = "<group>"; };
 		33E48D2218D3F50500FCC557 /* IDEFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEFoundation.framework; path = /Applications/Xcode.app/Contents/Frameworks/IDEFoundation.framework; sourceTree = "<group>"; };
@@ -133,7 +132,6 @@
 			children = (
 				33B3A3F418CD36BE00AA64C8 /* InfoPlist.strings */,
 				33B3A3F318CD36BE00AA64C8 /* Polychromatic-Info.plist */,
-				33B3A3FA18CD36BF00AA64C8 /* Polychromatic-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -347,8 +345,6 @@
 					"$(DEVELOPER_DIR)/../Frameworks",
 					"$(DEVELOPER_DIR)/../SharedFrameworks",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Polychromatic/Polychromatic-Prefix.pch";
 				INFOPLIST_FILE = "Polychromatic/Polychromatic-Info.plist";
 				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
 				LIBRARY_SEARCH_PATHS = (
@@ -375,8 +371,6 @@
 					"$(DEVELOPER_DIR)/../Frameworks",
 					"$(DEVELOPER_DIR)/../SharedFrameworks",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Polychromatic/Polychromatic-Prefix.pch";
 				INFOPLIST_FILE = "Polychromatic/Polychromatic-Info.plist";
 				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
 				LIBRARY_SEARCH_PATHS = (

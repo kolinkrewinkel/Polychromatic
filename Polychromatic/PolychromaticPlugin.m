@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Kolin Krewinkel. All rights reserved.
 //
 
+@import AppKit;
+
 #import "PLYFirstRunManager.h"
 
 #import "PolychromaticPlugin.h"

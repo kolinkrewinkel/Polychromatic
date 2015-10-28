@@ -100,11 +100,7 @@ static IMP originalColorAtIndexImp;
 - (NSColor *)ply_colorForObjCCodeRange:(NSRange)range context:(id)context fallbackColor:(NSColor *)fallbackColor
 {
     DVTSourceModelItem *item = [self.sourceModelService sourceModelItemAtCharacterIndex:range.location];
-    if (item.needsAdjustNodeType) {
-        return fallbackColor;
-    }
-
-    if (![item ply_isIdentifier]) {
+    if (item.needsAdjustNodeType || ![item ply_isIdentifier]) {
         return fallbackColor;
     }
 
